@@ -1,0 +1,5 @@
+<show-page>
+  <append-content-header:>
+    <transition-buttons />
+  </append-content-header:> 
+</show-page>

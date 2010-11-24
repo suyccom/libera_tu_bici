@@ -1,0 +1,34 @@
+<index-page>
+
+<!--Título de las bicis-->
+<content-header:>
+  <h2 class="heading">Hay <count/> disponible(s)</h2>
+</content-header:>
+
+<append-scripts:>
+  <%= GMap.header %>
+</append-scripts:>
+
+
+<prepend-content:>
+  <google-map id="sites" ne-lat="35.0" ne-long="36.0" sw-lat="147.0" sw-long="149.0" width="100%" height="400">
+<!--        <marker lat="43.253444" long="-2.920641" title="Marker 1" info="Bicicleta <a href='/bicicletas/1'>Pincha aquí</b></a>"/>-->
+<!--        <marker-address address="Puente de Deusto, Bilbao" title="geocoded" info="Test"/>-->
+        <repeat with="&@bicicletas">
+          <marker-address address="&this.lugar" title="&this.name" info="
+            <p><a href='/bicicletas/#{this.id}'><img src='#{this.foto.url :small}'/></a></p>
+            <p><a href='/bicicletas/#{this.id}'>#{this.name}</a></p>
+          "/>
+        </repeat>
+<!--        <marker lat="35.25" long="148.0" title="Marker 2" info="This is <b>Marker 2</b>"/>-->
+<!--        <marker lat="35.5" long="148.5" title="Marker 3" info="This is <b>Marker 3</b>"/>-->
+  </google-map>
+</prepend-content>
+
+<content-body:>
+  <collection />
+  <p style="clear:both;">Este sitio web ha sido financiado por...</p>
+</content-body:>
+
+
+</index-page>

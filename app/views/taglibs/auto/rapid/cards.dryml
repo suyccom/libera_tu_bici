@@ -1,0 +1,39 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+<def tag="card" for="Bicicleta">
+  <card class="bicicleta" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <a:owner param="creator-link"/>
+      <ht key="peticions.collection.count" count="&this.peticions.size">
+         <count:peticions param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Peticion">
+  <card class="peticion" param="default" merge>
+    <header: param>
+      <div param="actions">
+        <a action="edit" if="&can_edit?" param="edit-link">
+          <ht key="peticions.actions.edit">Edit</ht>
+        </a>
+      </div>
+    </header:>
+    <body: param>
+      <a:owner param="creator-link"/>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="User">
+  <card class="user" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+

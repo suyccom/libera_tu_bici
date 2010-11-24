@@ -1,0 +1,9 @@
+<show-page>
+<before-field-list:>
+  <img style="float:left;" src="/#{this.foto.url :medium}" alt="foto de la bicicleta"/>
+</before-field-list:>
+<field-list: fields="lugar,descripcion" />
+<form:>
+  <field-list: skip="owner"/>
+</form:>
+</show-page>

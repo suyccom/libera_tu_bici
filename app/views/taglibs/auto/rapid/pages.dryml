@@ -1,0 +1,514 @@
+<!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
+
+<!-- ====== Main Navigation ====== -->
+
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Bicicleta"><ht key="bicicletas.nav_item">Bicicletas</ht></nav-item>
+  </navigation>
+</def>
+
+
+
+
+<!-- ====== Bicicleta Pages ====== -->
+
+<def tag="index-page" for="Bicicleta">
+  <page merge title="#{ht 'bicicletas.index.title', :default=>['Bicicletas'] }">
+    <body: class="index-page bicicleta" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="bicicletas.index.heading">
+            Bicicletas
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="bicicletas.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="bicicletas.actions.new">New Bicicleta</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Bicicleta">
+  <page merge title="#{ht 'bicicletas.new.title', :default=>[' New Bicicleta'] }">
+    <body: class="new-page bicicleta" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="bicicletas.new.heading">
+            New Bicicleta
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'bicicletas.actions.create', :default=>['Create Bicicleta']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Bicicleta">
+  <page merge title="#{ht 'bicicletas.show.title', :default=>['Bicicleta'] }">
+
+    <body: class="show-page bicicleta" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="bicicletas.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a:owner param="creator-link"/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="bicicletas.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Bicicleta
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="lugar, descripcion, foto_file_name, foto_content_type, foto_file_size, foto_updated_at" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="bicicletas.collection.heading.other" >
+                  Peticions
+                </ht>
+              </h3>
+
+              <collection:peticions param/>
+
+              <section param="add-to-collection" if="&can_create?(@bicicleta.peticions)">
+                <h3 param="add-form-heading">
+                  <ht key="peticions.collection.add_form_heading">
+                    Add a Peticion
+                  </ht>
+                </h3>
+                <form with="&@peticion || new_for_current_user(@bicicleta.peticions)" owner="bicicleta" without-cancel param>
+                  <field-list: skip="bicicleta"/>
+                  <submit: label="#{ht 'peticions.actions.add', :default=>['Add'] }"/>
+                </form>
+              </section>
+            </section>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Bicicleta">
+  <page merge title="#{ht 'bicicletas.edit.title', :default=>['Edit Bicicleta'] }">
+
+    <body: class="edit-page bicicleta" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="bicicletas.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'bicicletas.actions.delete', :default=>['Remove This Bicicleta']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Peticion Pages ====== -->
+
+<def tag="index-page" for="Peticion">
+  <page merge title="#{ht 'peticions.index.title', :default=>['Peticions'] }">
+    <body: class="index-page peticion" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="peticions.index.heading">
+            Peticions
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="peticions.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="peticions.actions.new">New Peticion</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Peticion">
+  <page merge title="#{ht 'peticions.new.title', :default=>[' New Peticion'] }">
+    <body: class="new-page peticion" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="peticions.new.heading">
+            New Peticion
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'peticions.actions.create', :default=>['Create Peticion']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Peticion">
+  <page merge title="#{ht 'peticions.show.title', :default=>['Peticion'] }">
+
+    <body: class="show-page peticion" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:bicicleta param="parent-link">&laquo; <ht key="peticions.actions.back" to="bicicleta"><name/></ht></a:bicicleta>
+            <h2 param="heading">
+              <ht key="peticions.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a:owner param="creator-link"/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="peticions.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Peticion
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="mensaje, lifecycle_state" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Peticion">
+  <page merge title="#{ht 'peticions.edit.title', :default=>['Edit Peticion'] }">
+
+    <body: class="edit-page peticion" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="peticions.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'peticions.actions.delete', :default=>['Remove This Peticion']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+
+<def tag="comenzar-donacion-page" polymorphic/>
+<def tag="comenzar-donacion-page" for="Peticion">
+  <page title="#{ht 'peticions.comenzar_donacion.title', :default=>['Comenzar Donacion']}" merge>
+
+    <body: class="lifecycle-transition-page comenzar-donacion-page" param/>
+
+    <content:>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="peticions.comenzar_donacion.heading">
+            Comenzar Donacion
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <comenzar-donacion-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+<def tag="denegar-donacion-page" polymorphic/>
+<def tag="denegar-donacion-page" for="Peticion">
+  <page title="#{ht 'peticions.denegar_donacion.title', :default=>['Denegar Donacion']}" merge>
+
+    <body: class="lifecycle-transition-page denegar-donacion-page" param/>
+
+    <content:>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="peticions.denegar_donacion.heading">
+            Denegar Donacion
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <denegar-donacion-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+<def tag="completar-donacion-page" polymorphic/>
+<def tag="completar-donacion-page" for="Peticion">
+  <page title="#{ht 'peticions.completar_donacion.title', :default=>['Completar Donacion']}" merge>
+
+    <body: class="lifecycle-transition-page completar-donacion-page" param/>
+
+    <content:>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="peticions.completar_donacion.heading">
+            Completar Donacion
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <completar-donacion-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+<!-- ====== User Pages ====== -->
+
+<def tag="index-page" for="User">
+  <page merge title="#{ht 'users.index.title', :default=>['Users'] }">
+    <body: class="index-page user" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="users.index.heading">
+            Users
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="users.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="User">
+  <page merge title="#{ht 'users.new.title', :default=>[' New User'] }">
+    <body: class="new-page user" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="users.new.heading">
+            New User
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'users.actions.create', :default=>['Create User']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="User">
+  <page merge title="#{ht 'users.show.title', :default=>['User'] }">
+
+    <body: class="show-page user" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="users.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="administrator" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="users.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit User
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="email_address, state" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="User">
+  <page merge title="#{ht 'users.edit.title', :default=>['Edit User'] }">
+
+    <body: class="edit-page user" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="users.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'users.actions.delete', :default=>['Remove This User']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="signup-page" polymorphic/>
+<def tag="signup-page" for="User">
+  
+  <page title="#{ht 'users.signup.title', :default=>['Signup']}" merge>  
+
+    <body: class="lifecycle-start-page signup-page" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="users.signup.heading">
+            Signup
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <signup-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+<def tag="reset-password-page" polymorphic/>
+<def tag="reset-password-page" for="User">
+  <page title="#{ht 'users.reset_password.title', :default=>['Reset Password']}" merge>
+
+    <body: class="lifecycle-transition-page reset-password-page" param/>
+
+    <content:>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="users.reset_password.heading">
+            Reset Password
+          </ht>
+        </h2>
+      </header>
+
+      <section param="content-body">
+        <reset-password-form param="form"/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+

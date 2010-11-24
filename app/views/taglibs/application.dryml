@@ -1,0 +1,184 @@
+<include src="rapid" plugin="hobo"/>
+
+<include src="taglibs/auto/rapid/cards"/>
+<include src="taglibs/auto/rapid/pages"/>
+<include src="taglibs/auto/rapid/forms"/>
+
+<set-theme name="clean"/>
+
+<def tag="app-name">Libera tu bici</def>
+
+
+
+<!-- Añadir los botones de transición a la card de cada petición -->
+<!-- Añadir el estado actual y el mensaje-->
+<def tag="card" for="Peticion">
+  <card class="peticion" param="default" merge>
+    <header: param>
+      <h4 param="heading">Petición de <this.owner/> (<this.lifecycle-state/>)</h4>
+      <div param="actions">
+        <delete-button label="X" param/>
+      </div>
+    </header:>
+    <body: param>
+      <p><i><this.mensaje/></i></p>
+      <transition-buttons/>
+    </body:>
+  </card>
+</def>
+
+
+
+
+<!-- Card de cada bicicleta -->
+<def tag="card" for="Bicicleta">
+  <card class="bicicleta" param="default" merge>
+    <header: param>
+      <a><img style="float:left; padding-right:10px;" src="#{this.foto.url :small}"/></a>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="peticions.collection.count" count="&this.peticions.size">
+         <count:peticions param/>
+      </ht>
+      <p><this.descripcion/></p>
+    </body:>
+  </card>
+</def>
+
+
+
+
+
+
+
+<!--Cambios en la plantilla-->
+<extend tag="page">
+<old-page merge without-live-search>
+</old-page>
+</extend>
+
+
+<!-- Integrar el plugin de Google Maps -->
+<!--    <include src="hobo-jquery" plugin="hobo-jquery" />-->
+<def tag="google-map" attrs="id, ne-lat, ne-long, sw-lat, sw-long, width, height">
+  <%  @map = GMap.new(id)
+      @map.control_init(:large_map => true,:map_type => true)
+      #@map.center_zoom_on_points_init([ne_lat,ne_long],[sw_lat,sw_long]) 
+      @map.center_zoom_init([43.2567,-2.91], 13)%>
+  <do param='default'/>
+  <%=  @map.div(:width => width, :height => height) %>
+  <%=  @map.to_html %>
+</def>
+
+<def tag="marker" attrs="lat, long, title, info">
+  <%  @map.overlay_init(GMarker.new([lat,long],:title => title, :info_window => info)) %>
+  <%  @map.overlay_init(GMarker.new("Puente de Deusto, Bilbao", :title => "geocoded")) %>
+</def>
+
+<def tag="marker-address" attrs="address,title,info">
+  <%  @map.overlay_init(GMarker.new(address, :title => title, :info_window => info)) %>
+</def>
+
+
+
+
+
+
+<!-- ====== Main Navigation ====== -->
+
+<def tag="main-nav">
+  <!--<navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Bicicleta"><ht key="bicicletas.nav_item">Bicicletas</ht></nav-item>
+  </navigation>-->
+  <div class="presentacion-bloque">
+  <h2>¿Necesitas una bici?</h2>
+  <p>En esta página web te damos la oportunidad de moverte en bici por Bilbao. Personas voluntarias "liberan" bicicletas para que otros las utilicen durante un período de un año.</p>
+  
+  <p>El objetivo es promover el medio de transporte más efectivo y saludable. Anímate y anda en bici!</p>
+  </div>
+  <div class="presentacion-bloque">
+    <h3><a href="/">Necesito una bici</a></h3>
+    <p>Pincha <a href="/">aquí</a> para buscar una bicicleta</p>
+    <h3><a href="/bicicletas/new">Quiero liberar una bicicleta</a></h3>
+    <p>¿Te sobra una bici? Pincha <a href="/bicicletas/new">aquí</a> para acceder al formulario para liberar una bicicleta</p>
+  </div>
+</def>
+
+
+
+
+<!--Test para mejorar el aspecto de login-->
+<def tag="login-page">
+  <% remember_me = true if remember_me.nil? %>
+  <page title="#{ht 'hobo.login.title', :default=>['Log in'] }" merge>
+   
+    <body: class="login-page" param/>
+    
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading"><ht key="hobo.login.heading">Log In</ht></h2>
+      </header>
+      
+      <section param="content-body">      
+        <form action="&request.request_uri" class="login" param>
+          <labelled-item-list param>
+            <labelled-item>
+              <item-label param="login-label"><ht key="hobo.login.email"><%= model.login_attribute.to_s.titleize %></ht></item-label>
+              <item-value><input type="text" name="login" id="login" class="string" param="login-input" /></item-value>
+            </labelled-item>
+
+            <labelled-item>
+              <item-label param="password-label"><ht key="hobo.login.password">Password</ht></item-label>
+              <item-value>
+                <input type="password" name="password" id="password" class="string" param="password-input"/>
+              </item-value>
+            </labelled-item>
+
+            <labelled-item param="remember-me">
+              <item-label class="field-label" param="remember-me-label"><ht key="hobo.login.remember_me">Remember me:</ht></item-label>
+              <item-value>
+                <input type="checkbox" name="remember_me" id="remember-me" param="remember-me-input" checked/>
+              </item-value>
+            </labelled-item>
+          </labelled-item-list>
+          <div param="actions">
+            <submit label="#{ht 'hobo.actions.login', :default=>['Log in'] }" param/><if test="&signup_url" class='nav-item'>
+            <ht key="hobo.support.or">or</ht> <a param="signup" href="&signup_url"><ht key="hobo.login.signup">Sign up</ht></a></if>
+          </div>
+        </form>
+        <a href="&forgot_password_url" param="forgot-password" if="&forgot_password_url"><ht key="hobo.login.forgot_password">Forgot your password?</ht></a>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+
+
+<!-- Paperclip -->
+<def tag="input" for="Paperclip::Attachment"> 
+  <%= file_field_tag param_name_for_this, attributes %> 
+</def>
+ 
+ 
+<extend tag="form" for="Bicicleta"> 
+<old-form enctype="multipart/form-data" merge> 
+  <field-list: fields="name,lugar,descripcion,foto" /> 
+  <submit: label="Liberar bicicleta"/>
+</old-form> 
+</extend> 
+
+
+
+<!--Change pages header to include a link to Inicio-->
+<extend tag="page">
+  <old-page merge>
+    <account-nav:> 
+      <prepend-ul:>
+        <li><a href="/">Inicio</a></li>
+      </prepend-ul:>
+    </account-nav:>
+  </old-page>
+</extend>

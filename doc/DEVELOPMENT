@@ -1,0 +1,44 @@
+
+#####
+PASOS
+#####
+
+
+
+
+######
+PENSAR
+######
+  - Es la petición la que tiene estados ("esperando", "denegado", "tramitando", "completada"), y la que cuando se pasa de "tramitando" a "completada" ejecuta el cambio de dueño de la bicicleta.
+  - Solo el dueño puede cambiar una petición a "tramitando" o a "denegado" y solo el receptor puede marcarlo como "completada". Una vez marcada como completada, nadie puede cambiarla.
+  - Cuando está en "esperando" el creador de la petición puede cancelarla.
+  - Así podremos sacar estadísticas de cuántas transferencias se han hecho, se podrá ver si una bici ha pertenecido anteriormente a alguien, etc.
+
+
+
+
+###########
+ITERACIONES
+###########
+
+- Transferencias de bicicletas / Lifecycle
+  + Txapelgorri hace una petición de bicicleta a Iox.
+  - Iox pulsa "Comenzar transferencia" y le escribe un mensaje a Txapelgorri.
+  - Txapelgorri e Iox se pasan la bicicleta
+  - Txapelgorri entra en la web y pulsa en "Transferencia completada"
+
+- Cambiar los usuarios de prueba para que tengan nombres para la demo "donante1", "receptor1", "receptor2", "administrador"
+
+
+
+###########
+COMPLETADAS
+###########
+
++ Permisos
+  - Los usuarios registrados solo pueden modificar sus propias bicicletas
+  - Los administradores pueden modificar todas
+
++ Solo el creador de la petición, el dueño de la bici y el administrador pueden ver las peticiones
+
++ Cambiar la card de la petición para que se vea mejor
