@@ -21,9 +21,8 @@ class Peticion < ActiveRecord::Base
     state :tramitando
     state :completada
     
-    transition :comenzar_donacion, { :esperando => :tramitando }, :available_to => :all
-    transition :denegar_donacion, { :esperando => :denegada }, :available_to => :all
-    transition :completar_donacion, { :tramitando => :completada }, :available_to => :owner
+    transition :denegar_donacion, { :esperando => :denegada }, :available_to => "bicicleta.owner"
+    transition :bicicleta_entregada_a_este_usuario, { :esperando => :completada }, :available_to => "bicicleta.owner"
 
 
   end
@@ -32,7 +31,7 @@ class Peticion < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.signed_up? && acting_user != bicicleta.owner
+    acting_user.signed_up? && acting_user != bicicleta.owner && bicicleta.estado == "disponible" && !bicicleta.peticionarios.member?(acting_user)
   end
 
   def update_permitted?

@@ -6,5 +6,5 @@ class BicicletaHints < Hobo::ViewHints
   # children :primary_collection1, :aside_collection1, :aside_collection2
   
   children :peticions
-  field_names :name => "Descripción corta", :descripcion => "Descripción larga"
+  field_names :name => "Descripción corta", :descripcion => "Descripción larga", :owner => "Usuario", :lugar => "Dirección"
 end

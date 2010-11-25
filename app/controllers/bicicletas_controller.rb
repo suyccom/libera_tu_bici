@@ -10,4 +10,22 @@ class BicicletasController < ApplicationController
     login_required
   end
 
+
+
+  ########################
+  #---- Search Scopes ---#
+  ########################
+  def index
+    #Por defecto solo muestra las disponibles
+    if (!params[:estado])
+      params[:estado] = 'disponible'
+    end
+  
+  
+    @estado_actual = params[:estado]
+    hobo_index Bicicleta.apply_scopes(
+      :estado_is => params[:estado])
+  end
+
+
 end

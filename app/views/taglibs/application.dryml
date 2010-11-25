@@ -21,8 +21,10 @@
       </div>
     </header:>
     <body: param>
-      <p><i><this.mensaje/></i></p>
       <transition-buttons/>
+      <p><i><this.mensaje/></i></p>
+      <if test="&current_user==this.bicicleta.owner"><p>Para ponerte en contacto con este usuario envíale un email a <b><this.owner.email-address/></b>.</p></if>
+      
     </body:>
   </card>
 </def>
@@ -52,7 +54,7 @@
 
 
 
-<!--Cambios en la plantilla-->
+<!--Desactivar la búsqueda-->
 <extend tag="page">
 <old-page merge without-live-search>
 </old-page>
@@ -86,7 +88,7 @@
 
 
 <!-- ====== Main Navigation ====== -->
-
+<!-- Trucamos el menú principal para mostrar la cabecera -->
 <def tag="main-nav">
   <!--<navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
@@ -95,7 +97,7 @@
   <div class="presentacion-bloque">
   <h2>¿Necesitas una bici?</h2>
   <p>En esta página web te damos la oportunidad de moverte en bici por Bilbao. Personas voluntarias "liberan" bicicletas para que otros las utilicen durante un período de un año.</p>
-  
+  <br/>
   <p>El objetivo es promover el medio de transporte más efectivo y saludable. Anímate y anda en bici!</p>
   </div>
   <div class="presentacion-bloque">
@@ -182,3 +184,17 @@
     </account-nav:>
   </old-page>
 </extend>
+
+
+<!-- Renders a readable list of error messages following a form submission. Expects the errors to be in `this.errors`. Renders nothing if there are no errors.
+  -->
+<def tag="error-messages">
+  <section class="error-messages" merge-attrs if="&this.errors.length > 0">
+    <h2 param="heading">Para continuar por favor corrige los siguientes errores:</h2>
+    <ul param>
+      <% this.errors.each do |attr, message|; next if message == "..." -%>
+        <li param><%= this.class.human_attribute_name(attr) unless attr.to_s == 'base' %> <%= message %></li>
+      <% end -%>
+    </ul>
+  </section>
+</def>

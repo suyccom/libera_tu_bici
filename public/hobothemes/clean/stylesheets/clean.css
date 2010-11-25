@@ -371,8 +371,9 @@ color:#fff;
   clear:both;
 }
 .show-page.bicicleta .field-list{
-  padding-left:15px;
+  padding:15px;
   width:auto;
+  background-color:#F5F5F5;
 }
 .show-page.bicicleta .new .field-list{
   width:100%;
@@ -382,4 +383,13 @@ color:#fff;
 }
 .transitions{
   float:right;
+}
+.notita,.flash.notice{
+  background-color:#D9F471;
+  padding:30px;
+  font-size:16px;
+  color:black;
+}
+.notita{
+  width:500px;
 }

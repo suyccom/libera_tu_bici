@@ -2,7 +2,12 @@
 
 <!--Título de las bicis-->
 <content-header:>
-  <h2 class="heading">Hay <count/> disponible(s)</h2>
+  <div class="filter" style="float:right;">
+        Filtrar por estado: <filter-menu no-filter=""
+param-name="estado" options="&Bicicleta::Lifecycle.states.keys"/>
+  </div>
+  <h2 class="heading">Hay <count/> <%=@estado_actual%>(s)</h2>
+
 </content-header:>
 
 <append-scripts:>

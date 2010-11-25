@@ -3,7 +3,7 @@
 <def tag="form" for="Bicicleta">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, lugar, descripcion, foto_file_name, foto_content_type, foto_file_size, foto_updated_at, owner" param/>
+    <field-list fields="name, lugar, descripcion, foto_file_name, foto_content_type, foto_file_size, foto_updated_at, estado, owner" param/>
     <div param="actions">
       <submit label="#{ht 'bicicletas.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -23,17 +23,6 @@
 </def>
 
 
-<def tag="comenzar-donacion-form" polymorphic/>
-<def tag="comenzar-donacion-form" for="Peticion">
-  <form lifecycle="comenzar_donacion" merge param="default">
-    <error-messages param/>
-    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
-    <field-list fields="" param/>
-    <div param="actions">
-      <submit label="#{ht 'peticions.actions.comenzar_donacion', :default=>['Comenzar Donacion']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
 <def tag="denegar-donacion-form" polymorphic/>
 <def tag="denegar-donacion-form" for="Peticion">
   <form lifecycle="denegar_donacion" merge param="default">
@@ -45,14 +34,14 @@
     </div>
   </form>
 </def>
-<def tag="completar-donacion-form" polymorphic/>
-<def tag="completar-donacion-form" for="Peticion">
-  <form lifecycle="completar_donacion" merge param="default">
+<def tag="bicicleta-entregada-a-este-usuario-form" polymorphic/>
+<def tag="bicicleta-entregada-a-este-usuario-form" for="Peticion">
+  <form lifecycle="bicicleta_entregada_a_este_usuario" merge param="default">
     <error-messages param/>
     <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
     <field-list fields="" param/>
     <div param="actions">
-      <submit label="#{ht 'peticions.actions.completar_donacion', :default=>['Completar Donacion']}" param/><or-cancel param="cancel"/>
+      <submit label="#{ht 'peticions.actions.bicicleta_entregada_a_este_usuario', :default=>['Bicicleta Entregada A Este Usuario']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
@@ -60,7 +49,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, email_address, administrator, state" param/>
+    <field-list fields="name, email_address, administrator, telefono, state" param/>
     <div param="actions">
       <submit label="#{ht 'users.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

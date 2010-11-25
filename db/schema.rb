@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101124060527) do
+ActiveRecord::Schema.define(:version => 20101124185657) do
 
   create_table "bicicletas", :force => true do |t|
     t.string   "name"
@@ -22,8 +22,11 @@ ActiveRecord::Schema.define(:version => 20101124060527) do
     t.string   "foto_content_type"
     t.integer  "foto_file_size"
     t.datetime "foto_updated_at"
+    t.string   "estado",            :default => "disponible"
+    t.datetime "key_timestamp"
   end
 
+  add_index "bicicletas", ["estado"], :name => "index_bicicletas_on_estado"
   add_index "bicicletas", ["owner_id"], :name => "index_bicicletas_on_owner_id"
   add_index "bicicletas", ["owner_id"], :name => "index_bicicletas_on_user_id"
 
@@ -53,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20101124060527) do
     t.datetime "updated_at"
     t.string   "state",                                   :default => "active"
     t.datetime "key_timestamp"
+    t.string   "telefono"
   end
 
   add_index "users", ["state"], :name => "index_users_on_state"

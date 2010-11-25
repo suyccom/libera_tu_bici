@@ -99,7 +99,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="lugar, descripcion, foto_file_name, foto_content_type, foto_file_size, foto_updated_at" param/>
+            <field-list fields="lugar, descripcion, foto_file_name, foto_content_type, foto_file_size, foto_updated_at, estado" param/>
             <section param="collection-section">
               <h3 param="collection-heading">
                 <ht key="bicicletas.collection.heading.other" >
@@ -279,29 +279,6 @@
 
 
 
-<def tag="comenzar-donacion-page" polymorphic/>
-<def tag="comenzar-donacion-page" for="Peticion">
-  <page title="#{ht 'peticions.comenzar_donacion.title', :default=>['Comenzar Donacion']}" merge>
-
-    <body: class="lifecycle-transition-page comenzar-donacion-page" param/>
-
-    <content:>
-      <header param="content-header">
-        <h2 param="heading">
-          <ht key="peticions.comenzar_donacion.heading">
-            Comenzar Donacion
-          </ht>
-        </h2>
-      </header>
-
-      <section param="content-body">
-        <comenzar-donacion-form param="form"/>
-      </section>
-    </content:>
-
-  </page>
-</def>
-
 <def tag="denegar-donacion-page" polymorphic/>
 <def tag="denegar-donacion-page" for="Peticion">
   <page title="#{ht 'peticions.denegar_donacion.title', :default=>['Denegar Donacion']}" merge>
@@ -325,23 +302,23 @@
   </page>
 </def>
 
-<def tag="completar-donacion-page" polymorphic/>
-<def tag="completar-donacion-page" for="Peticion">
-  <page title="#{ht 'peticions.completar_donacion.title', :default=>['Completar Donacion']}" merge>
+<def tag="bicicleta-entregada-a-este-usuario-page" polymorphic/>
+<def tag="bicicleta-entregada-a-este-usuario-page" for="Peticion">
+  <page title="#{ht 'peticions.bicicleta_entregada_a_este_usuario.title', :default=>['Bicicleta Entregada A Este Usuario']}" merge>
 
-    <body: class="lifecycle-transition-page completar-donacion-page" param/>
+    <body: class="lifecycle-transition-page bicicleta-entregada-a-este-usuario-page" param/>
 
     <content:>
       <header param="content-header">
         <h2 param="heading">
-          <ht key="peticions.completar_donacion.heading">
-            Completar Donacion
+          <ht key="peticions.bicicleta_entregada_a_este_usuario.heading">
+            Bicicleta Entregada A Este Usuario
           </ht>
         </h2>
       </header>
 
       <section param="content-body">
-        <completar-donacion-form param="form"/>
+        <bicicleta-entregada-a-este-usuario-form param="form"/>
       </section>
     </content:>
 
@@ -432,7 +409,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="email_address, state" param/>
+            <field-list fields="email_address, telefono, state" param/>
           </section>
     </content:>
 

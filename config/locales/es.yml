@@ -43,17 +43,17 @@ es:
     login:
       title: "Iniciar sesión"
       heading: "Iniciar sesión"
-      email_address: &email_address "Correo eléctronico"
+      email_address: "Correo eléctronico"
       name: "Nombre"
       password: "Contraseña"
       remember_me: "Recuerda mis datos"
-      login: "Identifición"
-      signup: "Inscripción"
+      login: "Identificación"
+      signup: "Registro de nuevo usuario"
       forgot_password: &forgot_password "¿Contraseña olvidada?"
 
     signup:
-      title: "Inscripción"
-      heading: "Inscribir Nuevo Usuario"
+      title: "Registro de usuarios"
+      heading: "Formulario para registrar un nuevo usuario"
 
     forgot_password:
       title: *forgot_password
@@ -154,7 +154,7 @@ es:
       new:
         heading: "Nuevo {{model}}"
       error:
-        heading: "Occurió el siguiente error:"
+        heading: "Ocurrió el siguiente error:"
       select_many:
         prompt: "Añadir {{model}}"
 
@@ -194,14 +194,52 @@ es:
         one: "Hay solo 1 petición"
         zero: "No hay peticiones"
         other: "Hay {{count}} peticiones"
+    show:
+      title: "{{model}}"
+      heading: "{{model}} {{name}}"
+      back_link: "Atrás"
+      edit_link: "Editar {{model}}"
+      new_link: "Nuevo {{model}}"
+      add_form_heading: "Añadir petición"
+    messages:
+      create:
+        success: "La petición se ha realizado correctamente. Recibirás un correo electrónico con la contestación del dueño. Ten en cuento que puede que más personas pidan esta misma bicicleta. ¡Buena suerte!"
         
         
-  users:
-    name: "Nombre"
-    email_address: "Email"
-    password: "Contraseña"
-    password_confirmation: "Confirmar contraseña"
-        
+#  users:
+#    name: "Nombre"
+#    email_address: "Email"
+#    password: "Contraseña"
+#    password_confirmation: "Confirmar contraseña"
+#    telefono: "Telefono"
+  
+  bicicletas:
+#    show:
+#      title: "Bicicleta {{name}}"
+#      heading: "Bicicleta {{name}}"
+#      back_link: "Atrás"
+#      edit_link: "Editar {{model}}"
+#      new_link: "Nueva {{model}}"
+#      add_form_heading: "Añadir {{model}}"
+    show:
+      title: "{{model}}"
+      heading: "Bicicleta: {{name}}"
+      back_link: "Atrás"
+      edit_link: "Editar bicicleta"
+      new_link: "Nueva bicicleta"
+      add_form_heading: "Añadir bicicleta"
+    messages:
+      create:
+        success: "La bicicleta se ha liberado correctamente. Ahora otros usuarios podrán pedírtela. Recibirás sus mensajes por correo electrónico. ¡Gracias!"
+        error: "Test"
+      name:
+        blank: "PRueba2"
+    errors:
+      name:
+        blank: "Prueba"
+      destroy:
+        success: "La bicicleta se ha eliminado correctamente."
+        # <br/><a href='/'><b>Volver a la página de Inicio</b></a>
   
 #  autoridads:
 #    index:
@@ -258,3 +296,9 @@ es:
 
   suyccom:
     not_available: "(Vacío)"
+    
+    
+  activerecord:
+    errors:
+      messages:
+        blank: ": Por favor rellena este campo"
