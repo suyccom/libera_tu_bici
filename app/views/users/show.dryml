@@ -1,0 +1,38 @@
+<show-page>
+
+  <field-list: replace>
+    <img style="float:left;" src="/#{this.foto.url :medium}" alt="foto de la bicicleta"/>
+    <transition-buttons/>
+    <field-list fields="name, descripcion, email_address, state, direccion_activa" tag="editor">
+      <direccion-activa-view:><this/></direccion-activa-view>
+    </field-list>
+    <div style="clear:both">&nbsp;</div>
+    <peticiones-de-bicicleta/>
+  </field-list:>
+
+
+  <!--<form:>-->
+  <!--  <field-list: skip="owner"/>-->
+  <!--</form:>-->
+
+  <!--<collection-heading:>-->
+  <!--  <p if="&logged_in?">Peticiones</p>-->
+  <!--  <p class="notita" unless="&logged_in?"><b>Para pedir esta bicicleta necesitas tener un usuario</b>: <a href="/users/signup">Pincha <u>aquí para registrarte</u></a> o <a href="/login"><u>aquí para identificarte</u></a>.</p>-->
+  <!--</collection-heading:>-->
+
+</show-page>
+
+
+
+
+<def tag="peticiones-de-bicicleta">
+<collection:peticions param/>
+  <section param="add-to-collection" if="&can_create?(@user.peticions)">
+    <h3 param="add-form-heading">Pide esta bicicleta</h3>
+    <form with="&@peticion" without-cancel param>
+<!--      <input type="hidden" />-->
+      <field-list: />
+<!--      <submit: label="#{ht 'peticions.actions.add', :default=>['Add'] }"/>-->
+    </form>
+  </section>
+</def>

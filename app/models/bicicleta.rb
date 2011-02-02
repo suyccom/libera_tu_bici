@@ -10,27 +10,12 @@ class Bicicleta < ActiveRecord::Base
   end
   
   
-  has_attached_file :foto, 
-          :styles => { 
-            :original => ["1000x1000", :jpg ], 
-            :medium => ["500x800", :jpg ], 
-            :small => ["150x200", :jpg ], 
-            :thumbnail => ["100x100#", :jpg ] 
-          }, 
-          :default_style => :small, 
-          :path => "#{RAILS_ROOT}/public/images/fotos/:style/:id_:basename.:extension",
-          :url => "images/fotos/:style/:id_:basename.:extension"
-          
-          
-  validates_attachment_presence :foto
-  validates_attachment_size :foto, :less_than => 2.megabytes
-  validates_attachment_content_type :foto, :content_type => ['image/jpeg', 'image/png']
-  
+
 
   #belongs_to :user
-  belongs_to :owner, :class_name => "User", :creator => true
-  has_many :peticions
-  has_many :peticionarios, :through => :peticions, :source => :owner
+#  belongs_to :owner, :class_name => "User", :creator => true
+#  has_many :peticions
+#  has_many :peticionarios, :through => :peticions, :source => :owner
   
 
   

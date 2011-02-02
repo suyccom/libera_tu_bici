@@ -358,7 +358,7 @@ table.app-summary th { padding: 2px; border-bottom: 1px solid; background: #acd3
   padding:5px 0px 0px 25px;
   color: black;
 }
-.card.bicicleta{
+.card.user{
   width:400px;
   height:112px;
   float:left;
@@ -367,15 +367,15 @@ table.app-summary th { padding: 2px; border-bottom: 1px solid; background: #acd3
 .heading{
 color:#fff;
 }
-.show-page.bicicleta .collection-section{
+.show-page.user .collection-section{
   clear:both;
 }
-.show-page.bicicleta .field-list{
+.show-page.user .field-list{
   padding:15px;
   width:auto;
   background-color:#F5F5F5;
 }
-.show-page.bicicleta .new .field-list{
+.show-page.user .new .field-list{
   width:100%;
 }
 .card.peticion .heading{

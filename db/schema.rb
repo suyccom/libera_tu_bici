@@ -9,40 +9,45 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101124185657) do
+ActiveRecord::Schema.define(:version => 20101227132844) do
 
   create_table "bicicletas", :force => true do |t|
     t.string   "name"
     t.string   "lugar"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "owner_id"
     t.text     "descripcion"
-    t.string   "foto_file_name"
-    t.string   "foto_content_type"
-    t.integer  "foto_file_size"
-    t.datetime "foto_updated_at"
-    t.string   "estado",            :default => "disponible"
+    t.string   "estado",        :default => "disponible"
     t.datetime "key_timestamp"
   end
 
   add_index "bicicletas", ["estado"], :name => "index_bicicletas_on_estado"
-  add_index "bicicletas", ["owner_id"], :name => "index_bicicletas_on_owner_id"
-  add_index "bicicletas", ["owner_id"], :name => "index_bicicletas_on_user_id"
+
+  create_table "direccions", :force => true do |t|
+    t.string   "email"
+    t.string   "direccion"
+    t.string   "telefono"
+    t.date     "fecha_alta"
+    t.date     "fecha_baja"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "direccions", ["user_id"], :name => "index_direccions_on_user_id"
 
   create_table "peticions", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "owner_id"
-    t.integer  "bicicleta_id"
     t.text     "mensaje"
     t.string   "lifecycle_state", :default => "esperando"
     t.datetime "key_timestamp"
+    t.integer  "user_id"
   end
 
-  add_index "peticions", ["bicicleta_id"], :name => "index_peticions_on_bicicleta_id"
   add_index "peticions", ["lifecycle_state"], :name => "index_peticions_on_lifecycle_state"
-  add_index "peticions", ["owner_id"], :name => "index_peticions_on_owner_id"
+  add_index "peticions", ["user_id"], :name => "index_peticions_on_owner_id"
+  add_index "peticions", ["user_id"], :name => "index_peticions_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40
@@ -50,15 +55,21 @@ ActiveRecord::Schema.define(:version => 20101124185657) do
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
     t.string   "name"
-    t.string   "email_address"
     t.boolean  "administrator",                           :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state",                                   :default => "active"
     t.datetime "key_timestamp"
-    t.string   "telefono"
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
+    t.string   "email_address"
+    t.integer  "direccion_activa_id"
+    t.text     "descripcion"
   end
 
+  add_index "users", ["direccion_activa_id"], :name => "index_users_on_direccion_activa_id"
   add_index "users", ["state"], :name => "index_users_on_state"
 
 end

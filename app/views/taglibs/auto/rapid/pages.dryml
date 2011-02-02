@@ -6,6 +6,9 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Bicicleta"><ht key="bicicletas.nav_item">Bicicletas</ht></nav-item>
+    <nav-item with="&Direccion"><ht key="direccions.nav_item">Direccions</ht></nav-item>
+    <nav-item with="&Peticion"><ht key="peticions.nav_item">Peticions</ht></nav-item>
+    <nav-item with="&User"><ht key="users.nav_item">Users</ht></nav-item>
   </navigation>
 </def>
 
@@ -89,8 +92,6 @@
 
             <record-flags fields="" param/>
 
-            <a:owner param="creator-link"/>
-
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="bicicletas.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
                 Edit Bicicleta
@@ -99,28 +100,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="lugar, descripcion, foto_file_name, foto_content_type, foto_file_size, foto_updated_at, estado" param/>
-            <section param="collection-section">
-              <h3 param="collection-heading">
-                <ht key="bicicletas.collection.heading.other" >
-                  Peticions
-                </ht>
-              </h3>
-
-              <collection:peticions param/>
-
-              <section param="add-to-collection" if="&can_create?(@bicicleta.peticions)">
-                <h3 param="add-form-heading">
-                  <ht key="peticions.collection.add_form_heading">
-                    Add a Peticion
-                  </ht>
-                </h3>
-                <form with="&@peticion || new_for_current_user(@bicicleta.peticions)" owner="bicicleta" without-cancel param>
-                  <field-list: skip="bicicleta"/>
-                  <submit: label="#{ht 'peticions.actions.add', :default=>['Add'] }"/>
-                </form>
-              </section>
-            </section>
+            <field-list fields="lugar, descripcion, estado" param/>
           </section>
     </content:>
 
@@ -141,6 +121,126 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'bicicletas.actions.delete', :default=>['Remove This Bicicleta']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Direccion Pages ====== -->
+
+<def tag="index-page" for="Direccion">
+  <page merge title="#{ht 'direccions.index.title', :default=>['Direccions'] }">
+    <body: class="index-page direccion" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="direccions.index.heading">
+            Direccions
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="direccions.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="direccions.actions.new">New Direccion</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Direccion">
+  <page merge title="#{ht 'direccions.new.title', :default=>[' New Direccion'] }">
+    <body: class="new-page direccion" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="direccions.new.heading">
+            New Direccion
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'direccions.actions.create', :default=>['Create Direccion']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Direccion">
+  <page merge title="#{ht 'direccions.show.title', :default=>['Direccion'] }">
+
+    <body: class="show-page direccion" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="direccions.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="direccions.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Direccion
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="email, telefono, fecha_alta, fecha_baja, user" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Direccion">
+  <page merge title="#{ht 'direccions.edit.title', :default=>['Edit Direccion'] }">
+
+    <body: class="edit-page direccion" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="direccions.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'direccions.actions.delete', :default=>['Remove This Direccion']}" param/>
       </section>
 
       <section param="content-body">
@@ -224,7 +324,6 @@
 
     <content: param>
           <header param="content-header">
-            <a:bicicleta param="parent-link">&laquo; <ht key="peticions.actions.back" to="bicicleta"><name/></ht></a:bicicleta>
             <h2 param="heading">
               <ht key="peticions.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -232,8 +331,6 @@
             </h2>
 
             <record-flags fields="" param/>
-
-            <a:owner param="creator-link"/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="peticions.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
@@ -243,7 +340,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="mensaje, lifecycle_state" param/>
+            <field-list fields="mensaje, lifecycle_state, user" param/>
           </section>
     </content:>
 
@@ -275,55 +372,6 @@
 </def>
 
 
-
-
-
-
-<def tag="denegar-donacion-page" polymorphic/>
-<def tag="denegar-donacion-page" for="Peticion">
-  <page title="#{ht 'peticions.denegar_donacion.title', :default=>['Denegar Donacion']}" merge>
-
-    <body: class="lifecycle-transition-page denegar-donacion-page" param/>
-
-    <content:>
-      <header param="content-header">
-        <h2 param="heading">
-          <ht key="peticions.denegar_donacion.heading">
-            Denegar Donacion
-          </ht>
-        </h2>
-      </header>
-
-      <section param="content-body">
-        <denegar-donacion-form param="form"/>
-      </section>
-    </content:>
-
-  </page>
-</def>
-
-<def tag="bicicleta-entregada-a-este-usuario-page" polymorphic/>
-<def tag="bicicleta-entregada-a-este-usuario-page" for="Peticion">
-  <page title="#{ht 'peticions.bicicleta_entregada_a_este_usuario.title', :default=>['Bicicleta Entregada A Este Usuario']}" merge>
-
-    <body: class="lifecycle-transition-page bicicleta-entregada-a-este-usuario-page" param/>
-
-    <content:>
-      <header param="content-header">
-        <h2 param="heading">
-          <ht key="peticions.bicicleta_entregada_a_este_usuario.heading">
-            Bicicleta Entregada A Este Usuario
-          </ht>
-        </h2>
-      </header>
-
-      <section param="content-body">
-        <bicicleta-entregada-a-este-usuario-form param="form"/>
-      </section>
-    </content:>
-
-  </page>
-</def>
 
 
 
@@ -409,7 +457,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="email_address, telefono, state" param/>
+            <field-list fields="email_address, descripcion, foto_file_name, foto_content_type, foto_file_size, foto_updated_at, state, direccion_activa" param/>
           </section>
     </content:>
 

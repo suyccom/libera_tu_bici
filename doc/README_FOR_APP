@@ -1,7 +1,79 @@
 Use this README file to introduce your application and point to useful places in the API for learning more.
 Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
 
-http://www.amovens.com/
+Aplicación BizizBizi
+
+¿Qué necesitan?
+  - 
+  - Otra persona se conecta a la página web y ve que hay una bicicleta disponible y pincha en "Quiero esa bici". Envía un mensaje al dueño de la bici.
+  - El dueño de la bici queda con el interesado y le da la bici + el usuario y la contraseña de la bici.
+  - El dueño o el interesado actualizan el estado en la web.
+  - Las bicicletas tienen una trazabilidad y una duración de un año. Después de un año el nuevo dueño recibe un email de recordatorio.
+  - Es posible ver estadísticas de cuántas bicicletas se han liberado históricamente.
+  
+
+
+Nomenclatura
+  - Visitante: las personas que utilizan la web
+  - Dueño: visitante que libera una bici
+  - Interesado: visitante que quiere una bici
+  - Usuario/Bicicleta: cada usuario de la web con su contraseña es en realidad una bicicleta, como "rojita"
+
+
+
+Funcionalidad
+  - Un dueño puede liberar una bicicleta
+    - Una persona tiene una bicicleta. Utiliza el formulario de "Añadir bicicleta" para añadirla.
+    - Si pierde su contraseña, posibilidad de recordarla por correo electrónico.
+    
+  - Un interesado puede conseguir una bicicleta
+    - Ve un Mapa y una lista filtrable con las bicicletas disponibles
+    - El interesado puede elegir una bicicleta y ver sus datos en detalle
+    - El interesado puede enviar un mensaje al dueño
+    - El dueño puede negociar con el interesado un intercambio o rechazar si tiene varias peticiones
+  
+  - Un visitante puede obtener información del proyecto: 
+    - Información general: qué es bizizbizi, por qué, cuándo comenzó, subvencionado por...
+    - Estadísticas de uso del portal: cuántas visitas, cuántas bicis liberadas, la bici que ha pasado por más sitios, la que más kilómetros se ha desplazado...
+  
+  - Un visitante puede obtener trazabilidad de una bicicleta (dueños, lugares)
+    - Aparte de los filtros, también es posible buscar las bicicletas por nombre
+    - En el detalle de la bici: ver la lista de dueños que ha tenido y lugares por los que ha estado, ha dado 0,3 veces la vuelta al mundo. Es la número 234 en distancia recorrida.
+    
+  
+  
+  
+
+  
+  
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Usuarios entorno DESARROLLO
@@ -11,62 +83,12 @@ Usuarios entorno DESARROLLO
   - Usuario3: nestux - nestux@iox.com / robot
 
 
-Aplicación BizizBizi
-
-¿Qué necesitan?
-  - Una persona tiene una bicicleta que ya no necesita. Utiliza el formulario de "Añadir bicicleta" para añadirla.
-  - Otra persona se conecta a la página web y ve que hay una bicicleta disponible y pincha en "Quiero esa bici". Para solicitarla necesita registrarse y enviar un mensaje al donante.
-  
-  
 ¿Qué estados tienen las bicicletas?
   - Disponibles (verde)
   - Gestionándose (naranja)
   - Liberada (azul)
   - Baja (gris, por falta de comunicación o baja voluntaria)
-  
 
-¿La comunicación debe ir a través de la página web? Sí, para evitar SPAM y que los intercambios sean más limpios.
-
-
-¿Los usuarios deben estar registrados en la página web?
-  Sí para hacer intercambios, pero no para ver las bicicletas disponibles. De esta forma podemos ver cómo la bicicleta 341 ha ido de "iox" a "txapelgorri", y tres meses después de "txapelgorri" a "nestux". Podríamos decir que esa ha sido la bici "más chula"
-  
-
-¿Qué datos de usuarios se recogen con el registro? Alias, email y contraseña (dos veces).
-¿Qué datos añade el usuario cuando va a añadir una bici? Lugar (dirección + mapa), tipo de bici, foto...
-
-¿Cómo le damos vidilla a la web? Permitiendo a los usuarios que suban fotos a la aplicación.
-¿Qué es lo primero que se ve al entrar a la web? Foto de una bici, número de bicis disponibles y mapa
-¿Es posible suscribirse para enterarse cuando sale una bici "al mercado"?
-
-
-
-
-
-
-
-¿La aplicación va a ser Software Libre? Sí, definitivamente.
-
-
-
-Posibles problemas
-  - El que ha puesto la bicicleta no contesta > Primero recordatorio > Después baja de la bicicleta
-  - ¿El que ha puesto la bicicleta puede denegar o elegir a quién se la dona? Pues sí, claro que sí. 
-  - Una bicicleta disponible recibe un montón de mensajes de repente, agobiando al donante > limitar los mensajes a tres peticiones.
-  - Una persona pone una bicicleta disponible pero se la deniega a todo el mundo
-  
-  
-¿Qué posibilidades tienen los administradores? 
-  - Banear a un usuario sobre el que reciben quejas
-  - Dar de baja una bicicleta de forma forzosa
-  
-  
-  
-
-TABLAS
-  - Usuarios (has_many :bicicletas)
-  - Bicicletas (belongs_to :user), descripcion, lugar, foto
-  - Peticiones (belongs_to :bicicleta; :user)
-  - Mensajes (belongs_to :peticion; :user)
+http://www.amovens.com/
   
 

@@ -7,8 +7,9 @@ class Peticion < ActiveRecord::Base
     timestamps
   end
   
-  belongs_to :owner, :class_name => "User", :creator => true #El usuario que hace la petición
-  belongs_to :bicicleta #La bicicleta que pide
+  
+  #belongs_to :owner, :class_name => "User", :creator => true #El usuario que hace la petición
+  belongs_to :user #La bicicleta que se ha pedido
   
   
   
@@ -21,8 +22,8 @@ class Peticion < ActiveRecord::Base
     state :tramitando
     state :completada
     
-    transition :denegar_donacion, { :esperando => :denegada }, :available_to => "bicicleta.owner"
-    transition :bicicleta_entregada_a_este_usuario, { :esperando => :completada }, :available_to => "bicicleta.owner"
+#    transition :denegar_donacion, { :esperando => :denegada }, :available_to => "bicicleta.owner"
+#    transition :bicicleta_entregada_a_este_usuario, { :esperando => :completada }, :available_to => "bicicleta.owner"
 
 
   end
@@ -31,7 +32,8 @@ class Peticion < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.signed_up? && acting_user != bicicleta.owner && bicicleta.estado == "disponible" && !bicicleta.peticionarios.member?(acting_user)
+#    acting_user.signed_up? && acting_user != bicicleta.owner && bicicleta.estado == "disponible" && !bicicleta.peticionarios.member?(acting_user)
+    true
   end
 
   def update_permitted?
@@ -43,8 +45,8 @@ class Peticion < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    #true
-    owner_is?(acting_user) || bicicleta.owner == acting_user || acting_user.administrator?
+    true
+    #owner_is?(acting_user) || bicicleta.owner == acting_user || acting_user.administrator?
   end
 
 end

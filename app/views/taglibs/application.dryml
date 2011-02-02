@@ -12,37 +12,37 @@
 
 <!-- Añadir los botones de transición a la card de cada petición -->
 <!-- Añadir el estado actual y el mensaje-->
-<def tag="card" for="Peticion">
-  <card class="peticion" param="default" merge>
-    <header: param>
-      <h4 param="heading">Petición de <this.owner/> (<this.lifecycle-state/>)</h4>
-      <div param="actions">
-        <delete-button label="X" param/>
-      </div>
-    </header:>
-    <body: param>
-      <transition-buttons/>
-      <p><i><this.mensaje/></i></p>
-      <if test="&current_user==this.bicicleta.owner"><p>Para ponerte en contacto con este usuario envíale un email a <b><this.owner.email-address/></b>.</p></if>
-      
-    </body:>
-  </card>
-</def>
+<!--<def tag="card" for="Peticion">-->
+<!--  <card class="peticion" param="default" merge>-->
+<!--    <header: param>-->
+<!--      <h4 param="heading">Petición de <this.user/> (<this.lifecycle-state/>)</h4>-->
+<!--      <div param="actions">-->
+<!--        <delete-button label="X" param/>-->
+<!--      </div>-->
+<!--    </header:>-->
+<!--    <body: param>-->
+<!--      <transition-buttons/>-->
+<!--      <p><i><this.mensaje/></i></p>-->
+<!--      <if test="&current_user==this.bicicleta.owner"><p>Para ponerte en contacto con este usuario envíale un email a <b><this.owner.email-address/></b>.</p></if>-->
+<!--      -->
+<!--    </body:>-->
+<!--  </card>-->
+<!--</def>-->
 
 
 
 
 <!-- Card de cada bicicleta -->
-<def tag="card" for="Bicicleta">
-  <card class="bicicleta" param="default" merge>
+<def tag="card" for="User">
+  <card class="user" param="default" merge>
     <header: param>
       <a><img style="float:left; padding-right:10px;" src="#{this.foto.url :small}"/></a>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
     <body: param>
-      <ht key="peticions.collection.count" count="&this.peticions.size">
-         <count:peticions param/>
-      </ht>
+<!--      <ht key="peticions.collection.count" count="&this.peticions.size">-->
+<!--         <count:peticions param/>-->
+<!--      </ht>-->
       <p><this.descripcion/></p>
     </body:>
   </card>
@@ -165,9 +165,9 @@
 </def>
  
  
-<extend tag="form" for="Bicicleta"> 
+<extend tag="form" for="User"> 
 <old-form enctype="multipart/form-data" merge> 
-  <field-list: fields="name,lugar,descripcion,foto" /> 
+  <field-list: fields="name, email_address, administrator, direccion_activa, foto" /> 
   <submit: label="Liberar bicicleta"/>
 </old-form> 
 </extend> 
@@ -198,3 +198,20 @@
     </ul>
   </section>
 </def>
+
+
+
+
+
+
+<!-- Debuggeando error en el EDIT de USER -->
+<!--<def tag="form" for="User">-->
+<!--  <fie-->
+<!--  <form merge param="default">-->
+<!--    <error-messages param/>-->
+<!--    <field-list fields="name, email_address, administrator, foto_file_name, foto_content_type, foto_file_size, foto_updated_at, state, direccion_activa" param/>-->
+<!--    <div param="actions">-->
+<!--      <submit label="#{ht 'users.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>-->
+<!--    </div>-->
+<!--  </form>-->
+<!--</def>-->

@@ -1,17 +1,40 @@
 class User < ActiveRecord::Base
 
+  # Nota: en esta aplicación las usuarias son las bicicletas, no las personas :)
+  
   hobo_user_model # Don't put anything above this
 
   fields do
-    name          :string, :required, :unique
-    email_address :email_address, :login => true
+    name          :string, :required, :unique, :login => true
+    email_address     :email_address
+    descripcion   :text
     administrator :boolean, :default => false
-    telefono :string
     timestamps
   end
   
-  has_many :bicicletas
-  has_many :peticiones
+  has_many :direccions
+  has_many :peticions
+  
+  belongs_to :direccion_activa, :class_name => "Direccion"
+  
+  
+  has_attached_file :foto, 
+          :styles => { 
+            :original => ["1000x1000", :jpg ], 
+            :medium => ["500x800", :jpg ], 
+            :small => ["150x200", :jpg ], 
+            :thumbnail => ["100x100#", :jpg ] 
+          }, 
+          :default_style => :small, 
+          :path => "#{RAILS_ROOT}/public/images/fotos/:style/:id_:basename.:extension",
+          :url => "images/fotos/:style/:id_:basename.:extension"
+          
+          
+  validates_attachment_presence :foto
+  validates_attachment_size :foto, :less_than => 2.megabytes
+  validates_attachment_content_type :foto, :content_type => ['image/jpeg', 'image/png']
+    
+  
 
   # This gives admin rights to the first sign-up.
   # Just remove it if you don't want that
@@ -36,6 +59,9 @@ class User < ActiveRecord::Base
                :params => [ :password, :password_confirmation ]
 
   end
+  
+  
+
   
 
   # --- Permissions --- #
