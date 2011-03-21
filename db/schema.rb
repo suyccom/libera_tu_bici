@@ -9,14 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101227132844) do
+ActiveRecord::Schema.define(:version => 20110317125330) do
 
   create_table "bicicletas", :force => true do |t|
     t.string   "name"
     t.string   "lugar"
+    t.text     "descripcion"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "descripcion"
     t.string   "estado",        :default => "disponible"
     t.datetime "key_timestamp"
   end
@@ -37,16 +37,16 @@ ActiveRecord::Schema.define(:version => 20101227132844) do
   add_index "direccions", ["user_id"], :name => "index_direccions_on_user_id"
 
   create_table "peticions", :force => true do |t|
+    t.text     "mensaje"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "mensaje"
+    t.integer  "user_id"
     t.string   "lifecycle_state", :default => "esperando"
     t.datetime "key_timestamp"
-    t.integer  "user_id"
+    t.string   "email"
   end
 
   add_index "peticions", ["lifecycle_state"], :name => "index_peticions_on_lifecycle_state"
-  add_index "peticions", ["user_id"], :name => "index_peticions_on_owner_id"
   add_index "peticions", ["user_id"], :name => "index_peticions_on_user_id"
 
   create_table "users", :force => true do |t|
@@ -55,18 +55,18 @@ ActiveRecord::Schema.define(:version => 20101227132844) do
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
     t.string   "name"
+    t.string   "email_address"
+    t.text     "descripcion"
     t.boolean  "administrator",                           :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                                   :default => "active"
-    t.datetime "key_timestamp"
+    t.integer  "direccion_activa_id"
     t.string   "foto_file_name"
     t.string   "foto_content_type"
     t.integer  "foto_file_size"
     t.datetime "foto_updated_at"
-    t.string   "email_address"
-    t.integer  "direccion_activa_id"
-    t.text     "descripcion"
+    t.string   "state",                                   :default => "active"
+    t.datetime "key_timestamp"
   end
 
   add_index "users", ["direccion_activa_id"], :name => "index_users_on_direccion_activa_id"
