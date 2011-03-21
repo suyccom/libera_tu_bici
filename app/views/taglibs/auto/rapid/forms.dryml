@@ -27,7 +27,7 @@
 <def tag="form" for="Peticion">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="mensaje, lifecycle_state, user" param/>
+    <field-list fields="email, mensaje, lifecycle_state, user" param/>
     <div param="actions">
       <submit label="#{ht 'peticions.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

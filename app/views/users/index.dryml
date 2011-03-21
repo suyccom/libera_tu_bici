@@ -6,7 +6,7 @@
         Filtrar por estado: <filter-menu no-filter=""
 param-name="estado" options="&User::Lifecycle.states.keys"/>
   </div>
-  <h2 class="heading">Hay <count/> <%=@estado_actual%>(s)</h2>
+  <h2 class="heading">Hay <%= @users.size %> bicicletas <%=@estado_actual%></h2>
 
 </content-header:>
 
@@ -16,15 +16,32 @@ param-name="estado" options="&User::Lifecycle.states.keys"/>
 
 
 <prepend-content:>
-  <google-map id="sites" ne-lat="35.0" ne-long="36.0" sw-lat="147.0" sw-long="149.0" width="100%" height="400">
+<!--  <google-map id="sites" ne-lat="35.0" ne-long="36.0" sw-lat="147.0" sw-long="149.0" width="100%" height="400">-->
+  <google-map id="sites" inicio="43.2567" fin="-2.91" width="100%" height="400">
+  
+  
+  
 <!--        <marker lat="43.253444" long="-2.920641" title="Marker 1" info="Bicicleta <a href='/bicicletas/1'>Pincha aquí</b></a>"/>-->
 <!--        <marker-address address="Puente de Deusto, Bilbao" title="geocoded" info="Test"/>-->
+
+
+
+
+
         <repeat with="&@users">
           <marker-address address="&this.direccion_activa.direccion" title="&this.name" info="
             <p><a href='/bicicletas/#{this.id}'><img src='#{this.foto.url :small}'/></a></p>
             <p><a href='/bicicletas/#{this.id}'>#{this.name}</a></p>
           "/>
         </repeat>
+
+
+
+
+
+
+
+
 <!--        <marker lat="35.25" long="148.0" title="Marker 2" info="This is <b>Marker 2</b>"/>-->
 <!--        <marker lat="35.5" long="148.5" title="Marker 3" info="This is <b>Marker 3</b>"/>-->
   </google-map>

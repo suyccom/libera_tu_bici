@@ -11,6 +11,9 @@ class Bicicleta < ActiveRecord::Base
   
   
 
+  
+  
+
 
   #belongs_to :user
 #  belongs_to :owner, :class_name => "User", :creator => true

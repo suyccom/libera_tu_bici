@@ -1,38 +1,102 @@
 <show-page>
 
+  <append-scripts:>
+    <%= GMap.header %>
+  </append-scripts:>
+
   <field-list: replace>
-    <img style="float:left;" src="/#{this.foto.url :medium}" alt="foto de la bicicleta"/>
-    <transition-buttons/>
-    <field-list fields="name, descripcion, email_address, state, direccion_activa" tag="editor">
-      <direccion-activa-view:><this/></direccion-activa-view>
-    </field-list>
+    <!-- Si la foto no existe, mostrar formulario para subirla -->
+    <formulario-subir-foto unless="&this.foto_file_size"/>
+    
+    <img style="float:left;width:500px;height:334px;" src="/#{this.foto.url :medium}" alt="foto de la bicicleta" if="&this.foto_file_size"/>
+    
+    <div style="width:403px; height:334px; float:right; background-color:#F5F5F5;">
+      <formulario-direccion if="&this.foto_file_size && !this.direccion_activa"/>
+      <mapa-google if="&this.direccion_activa"/>
+      <field-list if="&this.direccion_activa" style="width:100%;" fields="descripcion" tag="editor"/>
+    </div>
+    
+    
     <div style="clear:both">&nbsp;</div>
+    
     <peticiones-de-bicicleta/>
+    <formulario-peticion/>
   </field-list:>
-
-
-  <!--<form:>-->
-  <!--  <field-list: skip="owner"/>-->
-  <!--</form:>-->
-
-  <!--<collection-heading:>-->
-  <!--  <p if="&logged_in?">Peticiones</p>-->
-  <!--  <p class="notita" unless="&logged_in?"><b>Para pedir esta bicicleta necesitas tener un usuario</b>: <a href="/users/signup">Pincha <u>aquí para registrarte</u></a> o <a href="/login"><u>aquí para identificarte</u></a>.</p>-->
-  <!--</collection-heading:>-->
 
 </show-page>
 
 
 
 
+
+
+
+
+
+
+
+
 <def tag="peticiones-de-bicicleta">
-<collection:peticions param/>
-  <section param="add-to-collection" if="&can_create?(@user.peticions)">
-    <h3 param="add-form-heading">Pide esta bicicleta</h3>
-    <form with="&@peticion" without-cancel param>
-<!--      <input type="hidden" />-->
-      <field-list: />
-<!--      <submit: label="#{ht 'peticions.actions.add', :default=>['Add'] }"/>-->
-    </form>
+  <collection:peticions param>
+    <empty-message: replace/>
+  </collection>
+</def>
+
+
+<def tag="formulario-peticion">
+  <section style="background-color:#F5F5F5;" param="add-to-collection" if="&can_create?(@user.peticions)">
+    <div part="mensaje">
+      <h3 style="background-color:#9AFF9A; padding:10px;" if="&@mensaje"><%= @mensaje %></h3>
+      <h3 unless="&@mensaje">Esta bicicleta está disponible. Pídesela al dueño!</h3>
+    </div>
+      <form with="&@peticion" update="mensaje" reset-form without-cancel param>
+        <field-list: fields="email, mensaje"/>
+        <after-field-list:>
+          <input type="hidden" name="peticion[user_id]" value="&@user.id"/>
+        </after-field-list:>
+        <submit: label="#{ht 'peticions.actions.add', :default=>['Add'] }"/>
+      </form>
+    
   </section>
+</def>
+
+
+<def tag="formulario-subir-foto">
+  <div style="float:left;width:480px;height:314px;padding:10px;background-color:#F8FA84;">
+    <h2><span style="font-size:1.8em">Paso 2 de 3</span>&nbsp;Foto y descripción de la bicicleta</h2>
+    <form merge enctype="multipart/form-data" param="default">
+      <error-messages param/>
+      <field-list style="background-color:#F8FA84;" fields="foto,descripcion" param>
+        <descripcion-view:><input style="height:130px;"/></descripcion-view:>
+      </field-list>
+      <div param="actions" style="margin:10px;">
+        <submit label="Siguiente paso" param/>
+      </div>
+    </form>
+  </div>
+</def>
+
+
+<def tag="mapa-google">
+  <google-map id="sites" inicio="43.2567" fin="-2.91" width="400" height="200">
+    <marker-address address="&this.direccion_activa.direccion" title="geocoded" />
+  </google-map>
+</def>
+
+
+<def tag="formulario-direccion">
+  <h2 style="text-align:center;">
+    <span style="font-size:1.8em">Paso 3 de 3</span>
+    &nbsp;Datos de contacto
+  </h2>
+
+  <form with="&Direccion.new" merge>
+    <error-messages param/>
+    <!-- NOS FALTA EL HIDDEN FIELD CON EL USER AL QUE ASOCIARLO -->
+    <input type="hidden" name="direccion[user_id]" value="&@user.id"/>
+    <field-list fields="direccion, email"/>
+    <div param="actions">
+      <submit label="Liberar bicicleta" param/>
+    </div>
+  </form>
 </def>

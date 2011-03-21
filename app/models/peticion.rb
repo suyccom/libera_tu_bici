@@ -3,7 +3,8 @@ class Peticion < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    mensaje :text
+    email :email_address, :required
+    mensaje :text, :required
     timestamps
   end
   
@@ -32,7 +33,6 @@ class Peticion < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-#    acting_user.signed_up? && acting_user != bicicleta.owner && bicicleta.estado == "disponible" && !bicicleta.peticionarios.member?(acting_user)
     true
   end
 
@@ -45,8 +45,7 @@ class Peticion < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
-    #owner_is?(acting_user) || bicicleta.owner == acting_user || acting_user.administrator?
+    user_is?(acting_user) || acting_user.administrator? || new_record?
   end
 
 end

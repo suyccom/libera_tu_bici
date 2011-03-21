@@ -63,11 +63,13 @@
 
 <!-- Integrar el plugin de Google Maps -->
 <!--    <include src="hobo-jquery" plugin="hobo-jquery" />-->
-<def tag="google-map" attrs="id, ne-lat, ne-long, sw-lat, sw-long, width, height">
+<def tag="google-map" attrs="id, inicio, fin, distancia, ne-lat, ne-long, sw-lat, sw-long, width, height">
   <%  @map = GMap.new(id)
       @map.control_init(:large_map => true,:map_type => true)
       #@map.center_zoom_on_points_init([ne_lat,ne_long],[sw_lat,sw_long]) 
-      @map.center_zoom_init([43.2567,-2.91], 13)%>
+      #@map.center_zoom_init([43.2567,-2.91], 13)
+      @map.center_zoom_init([inicio,fin], 12)
+      %>
   <do param='default'/>
   <%=  @map.div(:width => width, :height => height) %>
   <%=  @map.to_html %>
@@ -103,7 +105,7 @@
   <div class="presentacion-bloque">
     <h3><a href="/">Necesito una bici</a></h3>
     <p>Pincha <a href="/">aquí</a> para buscar una bicicleta</p>
-    <h3><a href="/bicicletas/new">Quiero liberar una bicicleta</a></h3>
+    <h3><a href="/users/signup">Quiero liberar una bicicleta</a></h3>
     <p>¿Te sobra una bici? Pincha <a href="/bicicletas/new">aquí</a> para acceder al formulario para liberar una bicicleta</p>
   </div>
 </def>
@@ -163,14 +165,7 @@
 <def tag="input" for="Paperclip::Attachment"> 
   <%= file_field_tag param_name_for_this, attributes %> 
 </def>
- 
- 
-<extend tag="form" for="User"> 
-<old-form enctype="multipart/form-data" merge> 
-  <field-list: fields="name, email_address, administrator, direccion_activa, foto" /> 
-  <submit: label="Liberar bicicleta"/>
-</old-form> 
-</extend> 
+
 
 
 
@@ -205,13 +200,22 @@
 
 
 <!-- Debuggeando error en el EDIT de USER -->
-<!--<def tag="form" for="User">-->
-<!--  <fie-->
-<!--  <form merge param="default">-->
-<!--    <error-messages param/>-->
-<!--    <field-list fields="name, email_address, administrator, foto_file_name, foto_content_type, foto_file_size, foto_updated_at, state, direccion_activa" param/>-->
-<!--    <div param="actions">-->
-<!--      <submit label="#{ht 'users.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>-->
-<!--    </div>-->
-<!--  </form>-->
-<!--</def>-->
+<def tag="form" for="User">
+  <form merge enctype="multipart/form-data" param="default">
+    <error-messages param/>
+    <field-list fields="name, email_address, administrator, foto" param/>
+    <div param="actions">
+      <submit label="#{ht 'users.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
+
+
+
+
+<extend tag="editor" for="text">
+  <old-editor merge blank-message="(click para editar)" />
+</extend>

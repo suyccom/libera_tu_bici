@@ -6,8 +6,6 @@
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Bicicleta"><ht key="bicicletas.nav_item">Bicicletas</ht></nav-item>
-    <nav-item with="&Direccion"><ht key="direccions.nav_item">Direccions</ht></nav-item>
-    <nav-item with="&Peticion"><ht key="peticions.nav_item">Peticions</ht></nav-item>
     <nav-item with="&User"><ht key="users.nav_item">Users</ht></nav-item>
   </navigation>
 </def>
@@ -157,9 +155,6 @@
       </header>
 
       <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="direccions.actions.new">New Direccion</ht>
-        </a>
 
         <page-nav param="top-page-nav"/>
 
@@ -167,6 +162,13 @@
 
         <page-nav param="bottom-page-nav"/>
 
+
+        <div param="new-form">
+          <h3 param="new-form-heading">
+            <ht key="direccions.form.new.heading">New Direccion</ht>
+          </h3>
+          <form with="&@invalid_record || new_for_current_user(Direccion)" param/>
+        </div>
 
       </section>
     </content:>
@@ -211,12 +213,6 @@
             </h2>
 
             <record-flags fields="" param/>
-
-            <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="direccions.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Direccion
-              </ht>
-            </a>
           </header>
 
           <section param="content-body">
@@ -340,7 +336,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="mensaje, lifecycle_state, user" param/>
+            <field-list fields="email, mensaje, lifecycle_state, user" param/>
           </section>
     </content:>
 

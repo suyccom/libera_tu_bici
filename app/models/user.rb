@@ -12,9 +12,13 @@ class User < ActiveRecord::Base
     timestamps
   end
   
+  
+  # --- Campos adicionales para el formulario de signup --- #
+  attr_accessor :telefono, :type => :string
+  
+  
   has_many :direccions
   has_many :peticions
-  
   belongs_to :direccion_activa, :class_name => "Direccion"
   
   
@@ -27,18 +31,26 @@ class User < ActiveRecord::Base
           }, 
           :default_style => :small, 
           :path => "#{RAILS_ROOT}/public/images/fotos/:style/:id_:basename.:extension",
-          :url => "images/fotos/:style/:id_:basename.:extension"
-          
-          
-  validates_attachment_presence :foto
-  validates_attachment_size :foto, :less_than => 2.megabytes
-  validates_attachment_content_type :foto, :content_type => ['image/jpeg', 'image/png']
+          :url => "images/fotos/:style/:id_:basename.:extension"  
+  #validates_attachment_presence :foto
+  #validates_attachment_size :foto, :less_than => 2.megabytes
+  #validates_attachment_content_type :foto, :content_type => ['image/jpeg', 'image/png']
     
   
 
   # This gives admin rights to the first sign-up.
   # Just remove it if you don't want that
-  before_create { |user| user.administrator = true if !Rails.env.test? && count == 0 }
+#  before_create { |user| user.administrator = true if !Rails.env.test? && count == 0 }
+  
+
+
+# --- Names Scopes --- #
+  # Buscar solo los que tengan direccion activa
+  named_scope :con_direccion_activa, :conditions => "users.direccion_activa_id IS NOT NULL"
+
+
+
+
 
   
   # --- Signup lifecycle --- #
@@ -71,9 +83,14 @@ class User < ActiveRecord::Base
   end
 
   def update_permitted?
-    acting_user.administrator? || 
-      (acting_user == self && only_changed?(:email_address, :crypted_password,
-                                            :current_password, :password, :password_confirmation))
+    #acting_user.administrator? || 
+    #(acting_user == self && only_changed?(:email_address, :crypted_password,
+    #       :current_password, :password, :password_confirmation))
+    acting_user.administrator? || (acting_user == self)
+    
+    
+    
+    
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
   end
@@ -83,7 +100,7 @@ class User < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    acting_user == self || self.direccion_activa || acting_user.administrator? || new_record?
   end
 
 end

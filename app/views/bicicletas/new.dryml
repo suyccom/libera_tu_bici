@@ -1,3 +1,6 @@
 <new-page>
+<form:>
+  <field-list: fields="name, lugar, telefono"/>
+</form:>
 <heading:>Formulario para liberar una nueva bicicleta</heading:>
 </new-page>

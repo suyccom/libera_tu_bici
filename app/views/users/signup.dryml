@@ -1,3 +1,21 @@
 <signup-page>
-
+<heading:><span style="font-size:1.8em">Paso 1 de 3</span> Nombre de la bicicleta</heading:>
 </signup-page>
+
+
+<def tag="signup-form" polymorphic/>
+<def tag="signup-form" for="User">
+  <form lifecycle="signup" merge param="default">
+    <error-messages param/>
+    <br/>
+    <field-list fields="name, password, password_confirmation">
+      <name-label:>Nombre de la bicicleta</name-label:>
+      <password-label:>Contraseña</password-label:>
+      <password-confirmation-label:>Confirmar contraseña</password-confirmation-label:>
+    </field-list>
+    <div param="actions">
+      <submit label="Siguiente paso" param/>
+    </div>
+  </form>
+</def>
+

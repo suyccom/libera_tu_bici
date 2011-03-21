@@ -16,12 +16,16 @@ class Direccion < ActiveRecord::Base
   belongs_to :user
   
   has_one :bicicleta_en_uso, :class_name => "Bicicleta"
+  
+  def after_create
+    user.update_attribute(:direccion_activa, self)
+  end
 
 
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    acting_user.signed_up?
   end
 
   def update_permitted?

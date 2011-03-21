@@ -889,7 +889,7 @@ Object.extend(Ajax.InPlaceEditor, {
     paramName: 'value',
     rows: 1,                                    // If 1 and multi-line, uses autoRows
     savingClassName: 'inplaceeditor-saving',
-    savingText: 'Saving...',
+    savingText: 'Guardando...',
     size: 0,
     stripLoadedTextTags: false,
     submitOnBlur: false,
