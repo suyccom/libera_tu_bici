@@ -187,6 +187,20 @@ es:
         delimiter: "."
         format: "%n"
 
+  #Errores de validacion     
+  activerecord:
+    errors:
+      messages:
+        title: 'Para continuar por favor corrije los siguientes errores'
+        blank: 'no puede estar en blanco'
+        record_invalid: "La validación falló: %{errors}"
+        too_short: "es demasiado corto"
+        taken: "ya hay otro registro igual"
+
+
+
+
+
   # SUYCCOMHACK: Cadenas personalizadas
   peticions:
     collection:
@@ -204,23 +218,12 @@ es:
     messages:
       create:
         success: "La petición se ha realizado correctamente. Recibirás un correo electrónico con la contestación del dueño. Ten en cuento que puede que más personas pidan esta misma bicicleta. ¡Buena suerte!"
-        
-        
-#  users:
-#    name: "Nombre"
-#    email_address: "Email"
-#    password: "Contraseña"
-#    password_confirmation: "Confirmar contraseña"
-#    telefono: "Telefono"
+    actions:
+      add: "Enviar mensaje"       
   
+  
+  # SUYCCOM: Modelo "users"
   users:
-#    show:
-#      title: "Bicicleta {{name}}"
-#      heading: "Bicicleta {{name}}"
-#      back_link: "Atrás"
-#      edit_link: "Editar {{model}}"
-#      new_link: "Nueva {{model}}"
-#      add_form_heading: "Añadir {{model}}"
     show:
       title: "{{model}}"
       heading: "Bicicleta: {{name}}"
@@ -228,6 +231,11 @@ es:
       edit_link: "Editar bicicleta"
       new_link: "Nueva bicicleta"
       add_form_heading: "Añadir bicicleta"
+    edit:
+      title: "Editar bicicleta"
+      heading: "Editar bicicleta"
+    actions:
+      edit: "Editar bicicleta"
     messages:
       create:
         success: "La bicicleta se ha liberado correctamente. Ahora otros usuarios podrán pedírtela. Recibirás sus mensajes por correo electrónico. ¡Gracias!"
@@ -241,74 +249,11 @@ es:
         success: "La bicicleta se ha eliminado correctamente."
         # <br/><a href='/'><b>Volver a la página de Inicio</b></a>
         
-        
-  peticions:
-    actions:
-      add: "Enviar mensaje"
+
   
-#  autoridads:
-#    index:
-#      title: "Listado de Autoridades"
-#      heading: "Listado de Autoridades"
-#    new:
-#      title: "Nueva Autoridad"
-#      heading: "Nueva Autoridad"
-#    show:
-#      title: "Autoridad: {{name}}"
-#      heading: "Autoridad: {{name}}"
-#    edit:
-#      title: "Editar Autoridad"
-#      heading: "Editar Autoridad"
-#    collection:
-#      count: "Hay {{count}} Autoridades"
-#    actions:
-#      new: "Añadir Autoridad"
-#      edit: "Editar Autoridad"
-#      delete: "Eliminar Autoridad"
-#    collection:
-#      count: &collection_count
-#        zero: "No hay Autoridades"
-#        one: "Hay solo 1 Autoridad"
-#        other: "Hay {{count}} Autoridades"
-        
-#  siniestros:
-#    aclaraciones_int: "Aclaraciones internas"
-#    num_siniestro: "Número de siniestro"
-#    fecha_entrada: "Fecha de entrada"
-#    fecha_accidente: "Fecha del siniestro"
-#    matricula_asegurado: "Matrícula del asegurado"
-#    matricula_contrario: "Matrícula del contrario"
-#    index:
-#      title: "Listado de Siniestros"
-#      heading: "Listado de Siniestros"
-#    new:
-#      title: "Nuevo Siniestro"
-#      heading: "Nuevo Siniestro"
-#    show:
-#      title: "Siniestro: {{name}}"
-#      heading: "Siniestro: {{name}}"
-#    edit:
-#      title: "Editar Siniestro"
-#      heading: "Editar Siniestro"
-#    actions:
-#      new: "Añadir Siniestro"
-#      edit: "Editar Siniestro"
-#      delete: "Eliminar Siniestro"
-#    collection:
-#      count: "Hay {{count}} Siniestros"
-#      one: "Hay solo 1 Siniestro"
-#      other: "Hay {{count}} {{model}}"
 
   suyccom:
     not_available: "(Vacío)"
     
     
-#Errores de validacion     
-  activerecord:
-    errors:
-      messages:
-        title: 'Para continuar por favor corrije los siguientes errores'
-        blank: 'no puede estar en blanco'
-        record_invalid: "La validación falló: %{errors}"
-        too_short: "es demasiado corto"
-        taken: "ya hay otro registro igual"
+

@@ -17,6 +17,17 @@ class User < ActiveRecord::Base
   attr_accessor :telefono, :type => :string
   
   
+  # --- Campo adicional para la edición de la dirección --- #
+  def direccion
+    direccion_activa.direccion
+  end
+  def direccion=(direccion)
+    direccion_activa.update_attribute(:direccion, direccion)
+  end
+  
+  
+  
+  
   has_many :direccions
   has_many :peticions
   belongs_to :direccion_activa, :class_name => "Direccion"

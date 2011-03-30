@@ -63,12 +63,14 @@
 
 <!-- Integrar el plugin de Google Maps -->
 <!--    <include src="hobo-jquery" plugin="hobo-jquery" />-->
-<def tag="google-map" attrs="id, inicio, fin, distancia, ne-lat, ne-long, sw-lat, sw-long, width, height">
+<def tag="google-map" attrs="id, direccion, distancia, ne-lat, ne-long, sw-lat, sw-long, width, height">
   <%  @map = GMap.new(id)
       @map.control_init(:large_map => true,:map_type => true)
       #@map.center_zoom_on_points_init([ne_lat,ne_long],[sw_lat,sw_long]) 
       #@map.center_zoom_init([43.2567,-2.91], 13)
-      @map.center_zoom_init([inicio,fin], 12)
+      #@map.center_zoom_init([inicio,fin], 12)
+      @map.center_zoom_init(Geocoding::get(direccion)[0].latlon, 12)
+      
       %>
   <do param='default'/>
   <%=  @map.div(:width => width, :height => height) %>
@@ -199,11 +201,13 @@
 
 
 
-<!-- Debuggeando error en el EDIT de USER -->
+<!-- Formulario para editar user/bicicleta -->
 <def tag="form" for="User">
   <form merge enctype="multipart/form-data" param="default">
     <error-messages param/>
-    <field-list fields="name, email_address, administrator, foto" param/>
+    <field-list fields="name, descripcion, direccion, foto" param>
+      <name-label:>Nombre</name-label:>
+    </field-list>
     <div param="actions">
       <submit label="#{ht 'users.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

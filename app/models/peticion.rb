@@ -33,7 +33,7 @@ class Peticion < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    true
+    return true unless user == acting_user
   end
 
   def update_permitted?

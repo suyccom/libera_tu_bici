@@ -13,7 +13,7 @@
     <div style="width:403px; height:334px; float:right; background-color:#F5F5F5;">
       <formulario-direccion if="&this.foto_file_size && !this.direccion_activa"/>
       <mapa-google if="&this.direccion_activa"/>
-      <field-list if="&this.direccion_activa" style="width:100%;" fields="descripcion" tag="editor"/>
+      <field-list if="&this.direccion_activa" style="width:100%;" fields="descripcion, direccion_activa"/>
     </div>
     
     
@@ -78,7 +78,7 @@
 
 
 <def tag="mapa-google">
-  <google-map id="sites" inicio="43.2567" fin="-2.91" width="400" height="200">
+  <google-map id="sites" direccion="&this.direccion_activa.direccion" width="400" height="200">
     <marker-address address="&this.direccion_activa.direccion" title="geocoded" />
   </google-map>
 </def>
