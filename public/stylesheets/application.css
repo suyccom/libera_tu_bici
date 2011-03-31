@@ -1,3 +1,25 @@
 .add-to-collection form .submit-button {
     margin-left: 145px;
 }
+
+/* Pié de página */
+div.footer-item {
+  clear: right;
+  margin-bottom: 5px;
+  margin-right:36px;
+}
+a.ds {
+  padding: 5px 0 5px 20px;
+}
+a.tc {
+  padding: 5px 0 5px 40px;
+}
+a:hover#ubuntu-footer, a#ubuntu-footer {
+  background: url('../images/ubuntu-logo.png') no-repeat scroll left center transparent;
+}
+a:hover#suyccom-footer, a#suyccom-footer {
+  background: url('../images/suyccom-logo.png') no-repeat scroll left center transparent;
+}
+a:hover#gandi-footer, a#gandi-footer {
+  background: url('../images/gandi-logo.png') no-repeat scroll left center transparent;
+}

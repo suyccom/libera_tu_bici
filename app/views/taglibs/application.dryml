@@ -223,3 +223,39 @@
 <extend tag="editor" for="text">
   <old-editor merge blank-message="(click para editar)" />
 </extend>
+
+
+
+
+
+<!-- Changes to the page layout -->
+<extend tag="page">
+  <old-page merge> 
+    <!-- Change footer to include message -->
+    <footer: param>
+      <p style="float:left; color:black; width:300px;">
+        <img src="/images/bilbao-pek.png" style="padding-top:3px;" align="left" />
+        <a href="http://www.bizizbizi.org"><img src="/images/bizizbizi.png" align="left" style="margin: 0 4px; padding-top:3px;"/></a>
+        Financiado por el ayuntamiento de Bilbao. <br/>Idea original de <a href="http://www.bizizbizi.org">Biziz Bizi</a> - asociación de ciclistas urbanos y cicloturistas de Bilbao.
+      </p>
+      <div class='footer-item'>
+        <a id='suyccom-footer' class='tc'
+          href='http://www.unoycero.com/'>
+          Creado por unoycero.com
+        </a>
+      </div>
+      <div class='footer-item'>
+        <a id='ubuntu-footer' class='ds'
+          href='http://es.wikipedia.org/wiki/Ubuntu/'>
+          Funciona con Ubuntu
+        </a>
+      </div>
+      <div class='footer-item'>
+        <a id='gandi-footer' class='ds'
+          href='http://www.gandi.net'>
+          Funciona con Gandi
+        </a>
+      </div>
+    </footer:>
+  </old-page>
+</extend>

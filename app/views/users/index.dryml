@@ -12,20 +12,20 @@
 
 
 <!-- Mapa de Google -->
-  <append-scripts:>
-    <%= GMap.header %>
-  </append-scripts:>
+<!--  <append-scripts:>-->
+<!--    <%= GMap.header %>-->
+<!--  </append-scripts:>-->
 
-  <prepend-content:>
-    <google-map id="sites" direccion="Bilbao" width="100%" height="400">
-          <repeat with="&@users">
-            <marker-address address="&this.direccion_activa.direccion" title="&this.name" info="
-              <p><a href='/bicicletas/#{this.id}'><img src='#{this.foto.url :small}'/></a></p>
-              <p><a href='/bicicletas/#{this.id}'>#{this.name}</a></p>
-            "/>
-          </repeat>
-    </google-map>
-  </prepend-content>
+<!--  <prepend-content:>-->
+<!--    <google-map id="sites" direccion="Bilbao" width="100%" height="400">-->
+<!--          <repeat with="&@users">-->
+<!--            <marker-address address="&this.direccion_activa.direccion" title="&this.name" info="-->
+<!--              <p><a href='/bicicletas/#{this.id}'><img src='#{this.foto.url :small}'/></a></p>-->
+<!--              <p><a href='/bicicletas/#{this.id}'>#{this.name}</a></p>-->
+<!--            "/>-->
+<!--          </repeat>-->
+<!--    </google-map>-->
+<!--  </prepend-content>-->
 
 
 <!-- Pie de Página -->
