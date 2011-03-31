@@ -1,8 +1,8 @@
 <show-page>
 
-<!--  <append-scripts:>-->
-<!--    <%= GMap.header %>-->
-<!--  </append-scripts:>-->
+  <append-scripts:>
+    <%= GMap.header %>
+  </append-scripts:>
 
   <field-list: replace>
     <!-- Si la foto no existe, mostrar formulario para subirla -->
@@ -12,7 +12,7 @@
     
     <div style="width:403px; height:334px; float:right; background-color:#F5F5F5;">
       <formulario-direccion if="&this.foto_file_size && !this.direccion_activa"/>
-<!--      <mapa-google if="&this.direccion_activa"/>-->
+      <mapa-google if="&this.direccion_activa"/>
       <field-list if="&this.direccion_activa" style="width:100%;" fields="descripcion, direccion_activa"/>
     </div>
     
