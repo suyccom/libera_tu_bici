@@ -17,8 +17,37 @@ class Direccion < ActiveRecord::Base
   
   has_one :bicicleta_en_uso, :class_name => "Bicicleta"
   
+  has_attached_file :foto_entrega, 
+          :styles => { 
+            :original => ["1000x1000", :jpg ], 
+            :medium => ["500x800", :jpg ], 
+            :small => ["150x200", :jpg ], 
+            :thumbnail => ["100x100#", :jpg ] 
+          }, 
+          :default_style => :small, 
+          :path => "#{RAILS_ROOT}/public/images/fotos_entregas/:style/:id_:basename.:extension",
+          :url => "images/fotos_entregas/:style/:id_:basename.:extension"  
+  
   def after_create
+    # Configuramos el usuario para que esta sea su dirección activa (la última en crearse)
     user.update_attribute(:direccion_activa, self)
+    
+    # Cuando se crea una nueva dirección aparte de la original bloqueamos la bicicleta
+    if user.direccions.count > 1
+      user.update_attribute(:disponible, false)
+    end
+  
+    # Cuando se crea una nueva dirección actualizamos el estado de las peticiones en espera
+    # Pueden pasar a estar completadas o denegadas
+    for peticion in user.peticions
+      if peticion.estado == "esperando"
+        if peticion.email == email
+          peticion.update_attribute(:estado, "completada")
+        else
+          peticion.update_attribute(:estado, "denegada")
+        end
+      end
+    end
   end
 
 

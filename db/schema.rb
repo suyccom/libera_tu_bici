@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110317125330) do
+ActiveRecord::Schema.define(:version => 20110404155523) do
 
   create_table "bicicletas", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,10 @@ ActiveRecord::Schema.define(:version => 20110317125330) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "foto_entrega_file_name"
+    t.string   "foto_entrega_content_type"
+    t.integer  "foto_entrega_file_size"
+    t.datetime "foto_entrega_updated_at"
   end
 
   add_index "direccions", ["user_id"], :name => "index_direccions_on_user_id"
@@ -41,12 +45,13 @@ ActiveRecord::Schema.define(:version => 20110317125330) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "lifecycle_state", :default => "esperando"
+    t.string   "estado",        :default => "esperando"
     t.datetime "key_timestamp"
     t.string   "email"
   end
 
-  add_index "peticions", ["lifecycle_state"], :name => "index_peticions_on_lifecycle_state"
+  add_index "peticions", ["estado"], :name => "index_peticions_on_estado"
+  add_index "peticions", ["estado"], :name => "index_peticions_on_lifecycle_state"
   add_index "peticions", ["user_id"], :name => "index_peticions_on_user_id"
 
   create_table "users", :force => true do |t|
@@ -67,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20110317125330) do
     t.datetime "foto_updated_at"
     t.string   "state",                                   :default => "active"
     t.datetime "key_timestamp"
+    t.boolean  "disponible",                              :default => true
   end
 
   add_index "users", ["direccion_activa_id"], :name => "index_users_on_direccion_activa_id"

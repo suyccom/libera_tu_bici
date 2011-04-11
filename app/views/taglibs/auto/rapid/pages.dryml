@@ -216,7 +216,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="email, telefono, fecha_alta, fecha_baja, user" param/>
+            <field-list fields="email, telefono, fecha_alta, fecha_baja, foto_entrega_file_name, foto_entrega_content_type, foto_entrega_file_size, foto_entrega_updated_at, user" param/>
           </section>
     </content:>
 
@@ -336,7 +336,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="email, mensaje, lifecycle_state, user" param/>
+            <field-list fields="email, mensaje, estado, user" param/>
           </section>
     </content:>
 
@@ -443,7 +443,7 @@
               </ht>
             </h2>
 
-            <record-flags fields="administrator" param/>
+            <record-flags fields="administrator, disponible" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="users.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">

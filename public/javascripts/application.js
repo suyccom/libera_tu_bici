@@ -6,7 +6,7 @@
 document.observe("dom:loaded", function() {
   var flash = $$('.flash');
   flash.each( function(element) {
-    new Effect.Fade(element, { duration: 5.0 });
+    new Effect.Fade(element, { duration: 8.0 });
   });
 });
 

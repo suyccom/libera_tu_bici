@@ -5,9 +5,14 @@ class UsersController < ApplicationController
   auto_actions :all, :except => [ :new, :create ]
   
   def show
+    if params[:masinfo]
+      @test = "patata - nos han pasado el ID " + params[:masinfo]
+    end
     @peticion = Peticion.new
     @nueva_direccion = Direccion.new
-    hobo_show
+    hobo_show do
+      hobo_ajax_response if request.xhr?
+    end
   end
   
   
@@ -24,6 +29,7 @@ class UsersController < ApplicationController
     @estado_actual = params[:estado]
   
     hobo_index User.apply_scopes(
+      :disponible => true,
       :not_administrator => true,
       :con_direccion_activa => true)
   end

@@ -100,9 +100,9 @@
   </navigation>-->
   <div class="presentacion-bloque">
   <h2>¿Necesitas una bici?</h2>
-  <p>En esta página web te damos la oportunidad de moverte en bici por Bilbao. Personas voluntarias "liberan" bicicletas para que otros las utilicen durante un período de un año.</p>
+  <p>Libera tu bici es un programa que pretende sacar a la calle y dar uso diario a todas esas bicicletas que ya no se usan y están aburridas, ocupando sitio en los trasteros, garajes o balcones.</p>
   <br/>
-  <p>El objetivo es promover el medio de transporte más efectivo y saludable. Anímate y anda en bici!</p>
+  <p>Para comenzar haz clic en una bici y manda un mensaje a la persona que está donando la bicicleta. <a href="/front/ayuda">Más información</a></p>
   </div>
   <div class="presentacion-bloque">
     <h3><a href="/">Necesito una bici</a></h3>
@@ -259,3 +259,56 @@
     </footer:>
   </old-page>
 </extend>
+
+
+
+
+<def tag="card" for="Peticion">
+  <card class="peticion" param="default" merge>
+    <header: param>
+      <h2 param="heading">Alguien está interesado en tu bicicleta:</h2><h4><name/></h4>
+      <p>Fecha de la petición: <this.created-at/></p>
+      <p>Para prestar la bici a esta persona <b>ponte en contacto por email</b>: <a href="mailto:#{this.email}"><this.email /></a></p>
+      <br/>
+    </header:>
+    
+    
+    
+    <body:>
+      <div part="foo" id="foo-#{typed_id}">
+        <% @email = this.email %>
+        <form unless="&@test" update="self" action="/users/show/#{@user.id}">
+          <input type="hidden" name="masinfo" value="#{this.id}"/>
+          <submit label="He entregado la bicicleta a esta persona"/>
+        </form>
+        
+        <div style="background-color:#F3FFC6;">
+        <form if="&@test" with="&Direccion.new">
+          <h3 style="padding:15px;">Para finalizar la entrega de la bicicleta rellana por favor los siguientes datos del receptor</h3>
+          <error-messages />
+          <input type="hidden" name="direccion[user_id]" value="&@user.id"/>
+          <input type="hidden" name="direccion[email]" value="&@email"/>
+          <field-list fields="direccion, foto_entrega" style="background-color:#F3FFC6;"/>
+          <div>
+            <submit style="margin-left:145px; float:left;" label="Finalizar entrega"/>
+          </div>
+        </form>
+        
+        <form if="&@test" update="self" action="/users/show/#{@user.id}">
+          <submit style="background-color:#aaa; float:left;" label="Cancelar"/>
+          &nbsp;<br/>&nbsp;
+        </form>
+        
+        
+        
+        </div>
+        
+        <ul if="&@subcategorias">
+          <repeat with="&@subcategorias"><li><this/></li></repeat>
+        </ul>
+        
+      </div>
+    </body:>
+
+  </card>
+</def>

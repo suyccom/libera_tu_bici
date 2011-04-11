@@ -10,5 +10,21 @@ class UserMailer < ActionMailer::Base
     @sent_on    = Time.now
     @headers    = {}
   end
-
+  
+  
+  def peticion_bicicleta(peticion, user)
+    subject 'Nueva petición de bicicleta'
+    recipients user.direccion_activa.email
+    from 'bicicleta_liberada@bizizbizi.org'
+    @peticion = peticion
+    @user = user
+  end
+  
+  
+  def peticion_denegada(peticion)
+    subject 'Petición de bicicleta denegada'
+    recipients peticion.email
+    @peticion = peticion
+  end
+  
 end

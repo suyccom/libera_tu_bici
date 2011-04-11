@@ -20,7 +20,12 @@
     <div style="clear:both">&nbsp;</div>
     
     <peticiones-de-bicicleta/>
-    <formulario-peticion/>
+    <formulario-peticion if="&this.disponible"/>
+
+    <bicicleta-no-disponible unless="&this.disponible"/>
+    
+    <br/><historico-bicicleta/>
+
   </field-list:>
 
 </show-page>
@@ -46,7 +51,8 @@
 <def tag="formulario-peticion">
   <section style="background-color:#F5F5F5;" param="add-to-collection" if="&can_create?(@user.peticions)">
     <div part="mensaje">
-      <h3 style="background-color:#9AFF9A; padding:10px;" if="&@mensaje"><%= @mensaje %></h3>
+      <h3 style="background-color:#9AFF9A; padding:10px;" if="&@mensaje_ok"><%= @mensaje_ok %></h3>
+      <h3 style="background-color:#FF9D9A; padding:10px;" if="&@mensaje_fallo"><%= @mensaje_fallo %></h3>
       <h3 unless="&@mensaje">Esta bicicleta está disponible. Pídesela al dueño!</h3>
     </div>
       <form with="&@peticion" update="mensaje" reset-form without-cancel param>
@@ -58,6 +64,7 @@
       </form>
     
   </section>
+  
 </def>
 
 
@@ -99,4 +106,34 @@
       <submit label="Liberar bicicleta" param/>
     </div>
   </form>
+</def>
+
+
+
+<def tag="historico-bicicleta">
+  <div style="background-color:#FFF8DC; padding:5px 15px 15px 15px;">
+    <h2>Historial de esta bicicleta</h2>
+    <ul>
+    <repeat with="&@user.direccions">
+      <li><%= this.created_at.to_date.to_s(:long) %> - <this.direccion/></li>
+    </repeat>
+    </ul>
+  </div>
+</def>
+
+
+<def tag="bicicleta-no-disponible">
+
+  <section style="padding:7px 15px 10px 15px; background-color:#FFF787;">
+    <h2>Esta bicicleta no está disponible en este momento.</h2>
+    
+    <form merge>
+      <h2>¿Quieres pasar a otra persona esta bicicleta?</h2>     
+      <error-messages/>
+      <input type="hidden" name="user[disponible]" value="1"/>
+      <submit label="Volver a liberar la bicicleta"/>
+    </form>
+
+  </section>    
+
 </def>

@@ -2,10 +2,10 @@
 
 <!--Título de las bicis-->
   <content-header:>
-    <div class="filter" style="float:right;">
-          Filtrar por estado: <filter-menu no-filter=""
-  param-name="estado" options="&User::Lifecycle.states.keys"/>
-    </div>
+<!--    <div class="filter" style="float:right;">-->
+<!--          Filtrar por estado: <filter-menu no-filter=""-->
+<!--  param-name="disponible" options="&[true,'']"/>-->
+<!--    </div>-->
     <h2 class="heading">Hay <%= @users.size %> bicicletas <%=@estado_actual%></h2>
 
   </content-header:>
@@ -31,7 +31,7 @@
 <!-- Pie de Página -->
   <content-body:>
     <collection />
-    <p style="clear:both;">Este sitio web ha sido financiado por...</p>
+    <p style="clear:both;">&nbsp;</p>
   </content-body:>
 
 

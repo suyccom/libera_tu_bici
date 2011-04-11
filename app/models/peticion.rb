@@ -8,6 +8,10 @@ class Peticion < ActiveRecord::Base
     timestamps
   end
   
+  def name
+    mensaje
+  end
+  
   
   #belongs_to :owner, :class_name => "User", :creator => true #El usuario que hace la petición
   belongs_to :user #La bicicleta que se ha pedido
@@ -16,7 +20,7 @@ class Peticion < ActiveRecord::Base
   
   # --- Lifecycle --- #
   
-  lifecycle :state_field => :lifecycle_state do
+  lifecycle :state_field => :estado do
   
     state :esperando, :default => :true
     state :denegada
@@ -27,6 +31,11 @@ class Peticion < ActiveRecord::Base
 #    transition :bicicleta_entregada_a_este_usuario, { :esperando => :completada }, :available_to => "bicicleta.owner"
 
 
+  end
+  
+  
+  def after_create
+    UserMailer.deliver_peticion_bicicleta(self, user)
   end
 
 
@@ -45,7 +54,7 @@ class Peticion < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    user_is?(acting_user) || acting_user.administrator? || new_record?
+    (user_is?(acting_user) || acting_user.administrator? || new_record?) && estado == "esperando"
   end
 
 end

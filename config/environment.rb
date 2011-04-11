@@ -32,6 +32,7 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
+  config.active_record.observers = :peticion_observer
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
@@ -42,5 +43,18 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
   config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.i18n.default_locale = :es
-  HOBO_VERBOSE_TRANSLATIONS = true
+  #HOBO_VERBOSE_TRANSLATIONS = true
+  
+  
+  
+  
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address=> "mail.gandi.net" ,
+    :port => 25,
+    :domain => "liberatubici.org",
+    :authentication => :login,
+    :user_name => "bicicleta_liberada@liberatubici.org" ,
+    :password => "pee4ooJi"
+  }
 end

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
     email_address     :email_address
     descripcion   :text
     administrator :boolean, :default => false
+    disponible :boolean, :default => true
     timestamps
   end
   
