@@ -10,7 +10,7 @@ class PeticionObserver < ActiveRecord::Observer
         #FIXME: ¿Qué ocurre cuando una bicicleta se ha liberado con éxito?
         #¿Resetear contraseña? ¿Informar a los usuarios?
       elsif peticion.estado == 'denegada'
-        UserMailer.deliver_peticion_denegada
+        UserMailer.deliver_peticion_denegada(peticion)
       end
     end
     
