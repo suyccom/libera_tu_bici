@@ -85,9 +85,9 @@
 
 
 <def tag="mapa-google">
-  <google-map id="sites" direccion="&this.direccion_activa.direccion" width="400" height="200">
-    <marker-address address="&this.direccion_activa.direccion" title="geocoded" />
-  </google-map>
+<!--  <google-map id="sites" direccion="&this.direccion_activa.direccion" width="400" height="200">-->
+<!--    <marker-address address="&this.direccion_activa.direccion" title="geocoded" />-->
+<!--  </google-map>-->
 </def>
 
 
