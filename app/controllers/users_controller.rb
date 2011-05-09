@@ -27,6 +27,8 @@ class UsersController < ApplicationController
   
   def index
     @estado_actual = params[:estado]
+    
+    @bicis_no_disponibles = User.not_disponible
   
     hobo_index User.apply_scopes(
       :disponible => true,

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
     descripcion   :text
     administrator :boolean, :default => false
     disponible :boolean, :default => true
+    fecha_liberacion :date
     timestamps
   end
   
@@ -24,6 +25,15 @@ class User < ActiveRecord::Base
   end
   def direccion=(direccion)
     direccion_activa.update_attribute(:direccion, direccion)
+  end
+  
+  # --- Calculamos la fecha en la que la bici volverá a ser liberada --- #
+  def fecha_proxima_liberacion
+    if fecha_liberacion
+      fecha_liberacion.to_time.next_year.to_date
+    else
+      "Error"
+    end
   end
   
   
@@ -53,6 +63,10 @@ class User < ActiveRecord::Base
   # This gives admin rights to the first sign-up.
   # Just remove it if you don't want that
 #  before_create { |user| user.administrator = true if !Rails.env.test? && count == 0 }
+
+
+
+  set_default_order "fecha_liberacion asc"
   
 
 

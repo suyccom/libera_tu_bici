@@ -46,15 +46,14 @@ Rails::Initializer.run do |config|
   #HOBO_VERBOSE_TRANSLATIONS = true
   
   
-  
-  
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address=> "mail.gandi.net" ,
-    :port => 25,
+    :port => 587,
     :domain => "liberatubici.org",
     :authentication => :login,
-    :user_name => "bicicleta_liberada@liberatubici.org" ,
-    :password => "pee4ooJi"
+    :user_name => "bicicleta_liberada@liberatubici.org",
+    :password => "pee4ooJi",
+    :enable_starttls_auto => true
   }
 end

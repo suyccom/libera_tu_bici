@@ -27,4 +27,10 @@ class UserMailer < ActionMailer::Base
     @peticion = peticion
   end
   
+  def bicicleta_entregada(peticion)
+    subject 'Enhorabuena por tu nueva bicicleta'
+    recipients peticion.email
+    @peticion = peticion
+  end
+  
 end

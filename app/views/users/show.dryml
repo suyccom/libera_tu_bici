@@ -85,9 +85,9 @@
 
 
 <def tag="mapa-google">
-<!--  <google-map id="sites" direccion="&this.direccion_activa.direccion" width="400" height="200">-->
-<!--    <marker-address address="&this.direccion_activa.direccion" title="geocoded" />-->
-<!--  </google-map>-->
+  <google-map id="sites" direccion="&this.direccion_activa.direccion" width="400" height="200">
+    <marker-address address="&this.direccion_activa.direccion" title="geocoded" />
+  </google-map>
 </def>
 
 
@@ -113,9 +113,12 @@
 <def tag="historico-bicicleta">
   <div style="background-color:#FFF8DC; padding:5px 15px 15px 15px;">
     <h2>Historial de esta bicicleta</h2>
-    <ul>
+    <ul class="historico-bicicleta">
     <repeat with="&@user.direccions">
-      <li><%= this.created_at.to_date.to_s(:long) %> - <this.direccion/></li>
+      <li>
+        <%= apano_fecha(this.created_at.to_date) %> - <this.direccion/> 
+        <a target="_blank" if="&this.foto_entrega_file_size" href="/#{this.foto_entrega.url :original}"><img src="/images/camara.png"/></a>
+      </li>
     </repeat>
     </ul>
   </div>

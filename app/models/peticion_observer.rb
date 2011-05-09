@@ -8,7 +8,7 @@ class PeticionObserver < ActiveRecord::Observer
     if peticion.estado_changed?
       if peticion.estado == 'completada'
         #FIXME: ¿Qué ocurre cuando una bicicleta se ha liberado con éxito?
-        #¿Resetear contraseña? ¿Informar a los usuarios?
+        UserMailer.deliver_bicicleta_entregada(peticion)
       elsif peticion.estado == 'denegada'
         UserMailer.deliver_peticion_denegada(peticion)
       end

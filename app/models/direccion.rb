@@ -30,12 +30,17 @@ class Direccion < ActiveRecord::Base
   
   def after_create
     # Configuramos el usuario para que esta sea su dirección activa (la última en crearse)
-    user.update_attribute(:direccion_activa, self)
+    user.direccion_activa = self
+    
+    # Guardamos la fecha de liberación
+    user.fecha_liberacion = Date.today
     
     # Cuando se crea una nueva dirección aparte de la original bloqueamos la bicicleta
     if user.direccions.count > 1
-      user.update_attribute(:disponible, false)
+      user.disponible = false
     end
+    
+    user.save
   
     # Cuando se crea una nueva dirección actualizamos el estado de las peticiones en espera
     # Pueden pasar a estar completadas o denegadas
@@ -49,6 +54,10 @@ class Direccion < ActiveRecord::Base
       end
     end
   end
+  
+  
+  
+
 
 
   # --- Permissions --- #

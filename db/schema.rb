@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110404155523) do
+ActiveRecord::Schema.define(:version => 20110509050612) do
 
   create_table "bicicletas", :force => true do |t|
     t.string   "name"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20110404155523) do
     t.string   "state",                                   :default => "active"
     t.datetime "key_timestamp"
     t.boolean  "disponible",                              :default => true
+    t.date     "fecha_liberacion"
   end
 
   add_index "users", ["direccion_activa_id"], :name => "index_users_on_direccion_activa_id"

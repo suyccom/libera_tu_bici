@@ -43,6 +43,7 @@
 <!--      <ht key="peticions.collection.count" count="&this.peticions.size">-->
 <!--         <count:peticions param/>-->
 <!--      </ht>-->
+      <p unless="&this.disponible">Disponible el <%= apano_fecha(this.fecha_proxima_liberacion) %></p>
       <p><this.descripcion/></p>
     </body:>
   </card>
@@ -69,8 +70,9 @@
       #@map.center_zoom_on_points_init([ne_lat,ne_long],[sw_lat,sw_long]) 
       #@map.center_zoom_init([43.2567,-2.91], 13)
       #@map.center_zoom_init([inicio,fin], 12)
-      @map.center_zoom_init(Geocoding::get(direccion)[0].latlon, 12)
-      
+      if Geocoding::get(direccion)[0]
+        @map.center_zoom_init(Geocoding::get(direccion)[0].latlon, 12)
+      end
       %>
   <do param='default'/>
   <%=  @map.div(:width => width, :height => height) %>
@@ -82,8 +84,19 @@
   <%  @map.overlay_init(GMarker.new("Puente de Deusto, Bilbao", :title => "geocoded")) %>
 </def>
 
+<def tag="marker-address-verde" attrs="address,title,info">
+  <%
+    @map.icon_global_init( GIcon.new( :image => "http://www.google.com/intl/en_us/mapfiles/ms/micons/green-dot.png", :icon_anchor => GPoint.new(12,38), :info_window_anchor => GPoint.new(9,2) ), "icon_verde" )  
+      
+    icon_verde = Variable.new("icon_verde")  
+  
+    @map.overlay_init(GMarker.new(address, :icon => icon_verde, :title => title, :info_window => info)) 
+  %>
+</def>
 <def tag="marker-address" attrs="address,title,info">
-  <%  @map.overlay_init(GMarker.new(address, :title => title, :info_window => info)) %>
+  <%
+    @map.overlay_init(GMarker.new(address, :title => title, :info_window => info)) 
+  %>
 </def>
 
 
@@ -283,7 +296,7 @@
         </form>
         
         <div style="background-color:#F3FFC6;">
-        <form if="&@test" with="&Direccion.new">
+        <form if="&@test" with="&Direccion.new" enctype="multipart/form-data">
           <h3 style="padding:15px;">Para finalizar la entrega de la bicicleta rellana por favor los siguientes datos del receptor</h3>
           <error-messages />
           <input type="hidden" name="direccion[user_id]" value="&@user.id"/>

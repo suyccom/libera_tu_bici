@@ -6,7 +6,7 @@
 <!--          Filtrar por estado: <filter-menu no-filter=""-->
 <!--  param-name="disponible" options="&[true,'']"/>-->
 <!--    </div>-->
-    <h2 class="heading">Hay <%= @users.size %> bicicletas <%=@estado_actual%></h2>
+    <h2 class="heading">Hay <%= @users.size %> bicicletas disponibles</h2>
 
   </content-header:>
 
@@ -18,12 +18,20 @@
 
   <prepend-content:>
     <google-map id="sites" direccion="Bilbao" width="100%" height="400">
-          <repeat with="&@users">
-            <marker-address address="&this.direccion_activa.direccion" title="&this.name" info="
-              <p><a href='/bicicletas/#{this.id}'><img src='#{this.foto.url :small}'/></a></p>
-              <p><a href='/bicicletas/#{this.id}'>#{this.name}</a></p>
-            "/>
-          </repeat>
+      <repeat with="&@users">
+        <marker-address-verde address="&this.direccion_activa.direccion" title="&this.name" info="
+          <p><a href='/users/#{this.id}'><img src='#{this.foto.url :small}'/></a></p>
+          <p><a href='/users/#{this.id}'>#{this.name}</a></p>
+        "/>
+      </repeat>
+      <repeat with="&@bicis_no_disponibles">
+        <marker-address address="&this.direccion_activa.direccion" title="&this.name" info="
+          <p><a href='/users/#{this.id}'><img src='#{this.foto.url :small}'/></a></p>
+          <p><a href='/users/#{this.id}'>#{this.name}</a></p>
+        "/>
+      </repeat>
+          
+          
     </google-map>
   </prepend-content>
 
@@ -31,6 +39,9 @@
 <!-- Pie de Página -->
   <content-body:>
     <collection />
+    <p style="clear:both;">&nbsp;</p>
+    <h2 class="heading">Hay <%= @bicis_no_disponibles.size %> bicicletas no disponibles</h2>
+    <collection with="&@bicis_no_disponibles"/>
     <p style="clear:both;">&nbsp;</p>
   </content-body:>
 

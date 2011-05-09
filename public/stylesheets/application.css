@@ -23,3 +23,11 @@ a:hover#suyccom-footer, a#suyccom-footer {
 a:hover#gandi-footer, a#gandi-footer {
   background: url('../images/gandi-logo.png') no-repeat scroll left center transparent;
 }
+
+
+/* Histórico de cada bicicleta */
+.historico-bicicleta li a{
+  border:none;
+  margin:0;
+  background-color:none;
+}
