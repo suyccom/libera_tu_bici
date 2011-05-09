@@ -40,9 +40,8 @@
       <h4 param="heading"><a><name/></a></h4>
     </header:>
     <body: param>
-<!--      <ht key="peticions.collection.count" count="&this.peticions.size">-->
-<!--         <count:peticions param/>-->
-<!--      </ht>-->
+
+
       <p unless="&this.disponible">Disponible el <%= apano_fecha(this.fecha_proxima_liberacion) %></p>
       <p><this.descripcion/></p>
     </body:>
