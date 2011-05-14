@@ -1,5 +1,9 @@
 <show-page>
 
+  <title:>
+    Libera tu Bici - <this.name/>
+  </title>
+
   <append-scripts:>
     <%= GMap.header %>
   </append-scripts:>
