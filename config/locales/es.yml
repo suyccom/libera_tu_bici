@@ -7,27 +7,27 @@ es:
     index:
       # if you uncomment the following you will loose the automatic selection of dinamically pluralized nav-tabs
       # if you need a different title you should implement a different way to select the tab on your own
-      #title: "Indice {{model}}"
-      heading: "Listado de {{model}}"
+      #title: "Indice %{model}"
+      heading: "Listado de %{model}"
 
     new:
-      title: "Nuevo {{model}}"
-      heading: "Nuevo {{model}}"
+      title: "Nuevo %{model}"
+      heading: "Nuevo %{model}"
 
     show:
-      title: "{{model}}"
-      heading: "{{model}} {{name}}"
+      title: "%{model}"
+      heading: "%{model} %{name}"
       back_link: "Atrás"
-      edit_link: "Editar {{model}}"
-      new_link: "Nuevo {{model}}"
-      add_form_heading: "Añadir {{model}}"
+      edit_link: "Editar %{model}"
+      new_link: "Nuevo %{model}"
+      add_form_heading: "Añadir %{model}"
 
     edit:
-      title: "Editar {{model}}"
-      heading: "Editar {{model}}"
+      title: "Editar %{model}"
+      heading: "Editar %{model}"
 
     index_for_owner:
-      title: "{{model}} para"
+      title: "%{model} para"
       # you can use the following to completely override the collection heading
       # be aware that you will loose the automatic Your <collection> / Jom's <collection>
       # default output for User models
@@ -36,8 +36,8 @@ es:
       subheading: "Para:"
 
     new_for_owner:
-      title: "Nuevo {{model}} para"
-      heading: "Nuevo {{model}}"
+      title: "Nuevo %{model} para"
+      heading: "Nuevo %{model}"
       subheading: "Para:"
 
     login:
@@ -66,7 +66,7 @@ es:
     forgot_password_sent:
       title: "Contraseña olvidada - correo eléctronico enviado"
       heading: "Contraseña olvidada - correo eléctronico enviado"
-      text: "El mensaje con las instruciones para generar una nueva contraseña ha sido enviado a {{email_address}}
+      text: "El mensaje con las instruciones para generar una nueva contraseña ha sido enviado a %{email_address}
              Si no lo recibes, por favor verifique el filtro anti-spam y/o ponte en contacto con el administrador del programa."
 
     account_disabled_page:
@@ -82,48 +82,48 @@ es:
 
     # default hobo action translation
     actions:
-      new: "Añadir {{model}}"
-      create: "Crear {{model}}"
+      new: "Añadir %{model}"
+      create: "Crear %{model}"
       previous: "Anterior"
       next: "Siguiente"
       add: "Añadir"
       show_all: "todos..."
-      delete: "Eliminar {{model}}"
+      delete: "Eliminar %{model}"
       save: "Guardar cambios"
       cancel: "Cancelar"
-      edit: "Editar {{model}}"
+      edit: "Editar %{model}"
       back: "Volver a"
-      back_to_parent: "Volver a {{parent}} {{name}}"
+      back_to_parent: "Volver a %{parent} %{name}"
       send: "Enviar"
       remove: "Eliminar"
       signup: "Registro"
       login: "Iniciar sesión"
       logout: "Cerrar sesión"
-      logged_in_as: "{{name}}"
+      logged_in_as: "%{name}"
       account: "Mi cuenta"
       save_account: "Guarda tu perfil"
 
     # default hobo message translation
     messages:
       create:
-        success: "Se ha creado {{model}} correctamente"
-        error: "Se ha creado {{model}} correctamente.\n{{errors}}"
+        success: "Se ha creado %{model} correctamente"
+        error: "Se ha creado %{model} correctamente.\n%{errors}"
       creator:
-        error: "El creador {{name}} no se pudo ejecutar.\n{{errors}}"
+        error: "El creador %{name} no se pudo ejecutar.\n%{errors}"
       transition:
-        error: "La transición {{name}} no se pudo ejecutar.\n{{errors}}"
+        error: "La transición %{name} no se pudo ejecutar.\n%{errors}"
       update:
         no_attribute_error: "Ninguna actualización esta especificada en los parámetros"
         success: "Los cambios han sido guardados"
-        error: "Ha habido un problema con ese cambio.\n{{errors}}"
+        error: "Ha habido un problema con ese cambio.\n%{errors}"
       destroy:
-        success: "{{model}} se ha borrado correctamente."
+        success: "%{model} se ha borrado correctamente."
       signup:
         success: "Primer paso completado con éxito."
         must_activate: "Tienes que activar la cuenta antes de iniciar la sesión. Por favor verifica tu correo eléctronico."
       login:
         success: "Ha iniciado sesión."
-        error: "{{login}} y/o contraseña no válidos"
+        error: "%{login} y/o contraseña no válidos"
       logout: "Sesión terminada."
       reset_password: "Tu contraseña ha sido reiniciada."
       permission_denied: "Permiso denegado"
@@ -132,31 +132,31 @@ es:
       current_password_is_not_correct: "no está correcta"
       you_are_site_admin: "Ahora eres administrador del sitio."
       you_signed_up: "Registro realizado."
-      no: "No hay {{model}} disponibles."
+      no: "No hay %{model} disponibles."
       confirm: "¿Estás segur@?"
 
     # default hobo collection translation
     collection:
       count: &collection_count
-        zero: "No hay {{model}}"
-        one: "Hay solo 1 {{model}}"
-        other: "Hay {{count}} {{model}}"
+        zero: "No hay %{model}"
+        one: "Hay solo 1 %{model}"
+        other: "Hay %{count} %{model}"
       # you can use the following to completely override the collection heading
       # be aware that you will loose the automatic Your <collection> / Jom's <collection>
       # default output for User models
       # you better define the heading.* in the specific collection namespace
       #heading:
-      add_form_heading: "Añadir {{model}}"
+      add_form_heading: "Añadir %{model}"
       empty_message: "No hay registros"
 
     # default hobo form translation
     form:
       new:
-        heading: "Nuevo {{model}}"
+        heading: "Nuevo %{model}"
       error:
         heading: "Ocurrió el siguiente error:"
       select_many:
-        prompt: "Añadir {{model}}"
+        prompt: "Añadir %{model}"
 
     # hobo support
     support:
@@ -207,13 +207,13 @@ es:
       count: &peticions_count
         one: "Hay solo 1 petición"
         zero: "No hay peticiones"
-        other: "Hay {{count}} peticiones"
+        other: "Hay %{count} peticiones"
     show:
-      title: "{{model}}"
-      heading: "{{model}} {{name}}"
+      title: "%{model}"
+      heading: "%{model} %{name}"
       back_link: "Atrás"
-      edit_link: "Editar {{model}}"
-      new_link: "Nuevo {{model}}"
+      edit_link: "Editar %{model}"
+      new_link: "Nuevo %{model}"
       add_form_heading: "Añadir petición"
     messages:
       create:
@@ -225,8 +225,8 @@ es:
   # SUYCCOM: Modelo "users"
   users:
     show:
-      title: "{{model}}"
-      heading: "Bicicleta: {{name}}"
+      title: "%{model}"
+      heading: "Bicicleta: %{name}"
       back_link: "Atrás"
       edit_link: "Editar bicicleta"
       new_link: "Nueva bicicleta"
