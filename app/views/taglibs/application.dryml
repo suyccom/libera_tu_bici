@@ -120,7 +120,7 @@
     <h3><a href="/">Necesito una bici</a></h3>
     <p>Pincha <a href="/">aquí</a> para buscar una bicicleta</p>
     <h3><a href="/users/signup">Quiero liberar una bicicleta</a></h3>
-    <p>¿Te sobra una bici? Pincha <a href="/bicicletas/new">aquí</a> para acceder al formulario para liberar una bicicleta</p>
+    <p>¿Te sobra una bici? Pincha <a href="/users/signup">aquí</a> para acceder al formulario para liberar una bicicleta</p>
   </div>
 </def>
 
