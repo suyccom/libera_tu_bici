@@ -2,7 +2,7 @@ class BicicletasController < ApplicationController
 
   hobo_model_controller
 
-  auto_actions :all
+  auto_actions :write_only
   
   
   def new
