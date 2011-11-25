@@ -37,7 +37,7 @@
   <card class="user" param="default" merge>
     <header: param>
       <a><img style="float:left; padding-right:10px;" src="#{this.foto.url :small}"/></a>
-      <h4 param="heading"><a><name/></a></h4>
+      <h4 param="heading"><a><name/> <i>(<this.direccion/>)</i></a></h4>
     </header:>
     <body: param>
 
@@ -106,10 +106,6 @@
 <!-- ====== Main Navigation ====== -->
 <!-- Trucamos el menú principal para mostrar la cabecera -->
 <def tag="main-nav">
-  <!--<navigation class="main-nav" merge-attrs param="default">
-    <nav-item href="#{base_url}/">Home</nav-item>
-    <nav-item with="&Bicicleta"><ht key="bicicletas.nav_item">Bicicletas</ht></nav-item>
-  </navigation>-->
   <div class="presentacion-bloque">
   <h2>¿Necesitas una bici?</h2>
   <p>Libera tu bici es un programa que pretende sacar a la calle y dar uso diario a todas esas bicicletas que ya no se usan y están aburridas, ocupando sitio en los trasteros, garajes o balcones.</p>
@@ -190,6 +186,7 @@
       <prepend-ul:>
         <li><a href="/">Inicio</a></li>
       </prepend-ul:>
+      <account: replace/>
     </account-nav:>
   </old-page>
 </extend>

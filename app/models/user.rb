@@ -21,10 +21,16 @@ class User < ActiveRecord::Base
   
   # --- Campo adicional para la edición de la dirección --- #
   def direccion
-    direccion_activa.direccion
+    if direccion_activa
+      direccion_activa.direccion 
+    else
+      ''
+    end
   end
   def direccion=(direccion)
-    direccion_activa.update_attribute(:direccion, direccion)
+    if direccion_activa
+      direccion_activa.update_attribute(:direccion, direccion)
+    end
   end
   
   # --- Calculamos la fecha en la que la bici volverá a ser liberada --- #
@@ -122,7 +128,7 @@ class User < ActiveRecord::Base
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    acting_user.administrator? || (acting_user == self && self.direccions.size == 1)
   end
 
   def view_permitted?(field)

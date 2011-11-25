@@ -57,6 +57,7 @@ es:
 
     forgot_password:
       title: *forgot_password
+      email: Correo electrónico
       heading: *forgot_password
       text: "Escribe la dirección del correo eléctronico que utilizaste cuando te inscribste.
              Te enviaremos un correo eléctronico a esa dirección que podras utilizar para generar una nueva contraseña."
@@ -66,7 +67,7 @@ es:
     forgot_password_sent:
       title: "Contraseña olvidada - correo eléctronico enviado"
       heading: "Contraseña olvidada - correo eléctronico enviado"
-      text: "El mensaje con las instruciones para generar una nueva contraseña ha sido enviado a %{email_address}
+      text: "El mensaje con las instrucciones para generar una nueva contraseña ha sido enviado.
              Si no lo recibes, por favor verifique el filtro anti-spam y/o ponte en contacto con el administrador del programa."
 
     account_disabled_page:
@@ -224,6 +225,7 @@ es:
   
   # SUYCCOM: Modelo "users"
   users:
+    direccion: "Población"
     show:
       title: "%{model}"
       heading: "Bicicleta: %{name}"
@@ -236,6 +238,7 @@ es:
       heading: "Editar bicicleta"
     actions:
       edit: "Editar bicicleta"
+      delete: "Eliminar bicicleta"
     messages:
       create:
         success: "La bicicleta se ha liberado correctamente. Ahora otros usuarios podrán pedírtela. Recibirás sus mensajes por correo electrónico. ¡Gracias!"

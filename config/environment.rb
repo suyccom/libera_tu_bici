@@ -44,6 +44,7 @@ Rails::Initializer.run do |config|
   config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.i18n.default_locale = :es
   #HOBO_VERBOSE_TRANSLATIONS = true
+  #HOBO_SHOW_LOCALE_KEYS = true
   
   
   config.action_mailer.delivery_method = :smtp

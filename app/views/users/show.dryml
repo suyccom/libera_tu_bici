@@ -7,14 +7,20 @@
   <append-scripts:>
     <%= GMap.header %>
   </append-scripts:>
+  
+  <edit-link: replace>
+    <edit-link restore if="&this.administrator? || this.foto_file_size"/>
+  </edit-link:>
+  
+  
 
   <field-list: replace>
     <!-- Si la foto no existe, mostrar formulario para subirla -->
-    <formulario-subir-foto unless="&this.foto_file_size"/>
+    <formulario-subir-foto unless="&this.foto_file_size || this.administrator?"/>
     
     <img style="float:left;width:500px;height:334px;" src="/#{this.foto.url :medium}" alt="foto de la bicicleta" if="&this.foto_file_size"/>
     
-    <div style="width:403px; height:334px; float:right; background-color:#F5F5F5;">
+    <div style="width:403px; height:334px; float:right; background-color:#F5F5F5;" unless="&this.administrator?">
       <formulario-direccion if="&this.foto_file_size && !this.direccion_activa"/>
       <mapa-google if="&this.direccion_activa"/>
       <field-list if="&this.direccion_activa" style="width:100%;" fields="descripcion, direccion_activa"/>
@@ -28,7 +34,9 @@
 
     <bicicleta-no-disponible unless="&this.disponible"/>
     
-    <br/><historico-bicicleta/>
+    <br/><historico-bicicleta unless="&this.administrator?"/>
+    
+    <mensaje-administrador if="&this.administrator?"/>
 
   </field-list:>
 
@@ -143,4 +151,10 @@
 
   </section>    
 
+</def>
+
+
+<def tag="mensaje-administrador">
+  <h3>Información para los administradores de Libera tu Bici</h3>
+  <p>Los administradores son un usuario un poco especial: no tienen foto ni direcciones ya que no son bicicletas como los demás. Sirven para editar y eliminar cualquier bicicleta.</p>
 </def>

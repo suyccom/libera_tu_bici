@@ -5,6 +5,6 @@ class DireccionHints < Hobo::ViewHints
   # field_help :field1 => "Enter what you want in this field"
   # children :primary_collection1, :aside_collection1, :aside_collection2
   
-  field_help :direccion => "La dirección solo se utiliza para el mapa. No hace falta ponerla completa :)",
-    :email => ""
+  field_help :direccion => "Por ejemplo 'Bilbao', o 'Valencia'"
+  field_names :direccion => "Población"
 end

@@ -89,12 +89,6 @@
             </h2>
 
             <record-flags fields="" param/>
-
-            <a action="edit" if="&can_edit?" param="edit-link">
-              <ht key="bicicletas.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
-                Edit Bicicleta
-              </ht>
-            </a>
           </header>
 
           <section param="content-body">
