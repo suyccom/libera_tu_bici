@@ -226,6 +226,10 @@ es:
   # SUYCCOM: Modelo "users"
   users:
     direccion: "Población"
+    password: "Contraseña"
+    password_confirmation: "Confirmación de contraseña"
+    reset_password:
+      heading: "Cambio de contraseña"
     show:
       title: "%{model}"
       heading: "Bicicleta: %{name}"
@@ -239,6 +243,7 @@ es:
     actions:
       edit: "Editar bicicleta"
       delete: "Eliminar bicicleta"
+      reset_password: "Cambiar contraseña"
     messages:
       create:
         success: "La bicicleta se ha liberado correctamente. Ahora otros usuarios podrán pedírtela. Recibirás sus mensajes por correo electrónico. ¡Gracias!"

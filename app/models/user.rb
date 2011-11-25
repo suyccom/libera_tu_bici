@@ -132,7 +132,7 @@ class User < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    acting_user == self || self.direccion_activa || acting_user.administrator? || new_record?
+    acting_user == self || self.direccion_activa || acting_user.administrator? || new_record? || field == :password || field == :password_confirmation 
   end
 
 end
