@@ -70,7 +70,7 @@
       #@map.center_zoom_init([43.2567,-2.91], 13)
       #@map.center_zoom_init([inicio,fin], 12)
       if Geocoding::get(direccion)[0]
-        @map.center_zoom_init(Geocoding::get(direccion)[0].latlon, 12)
+        @map.center_zoom_init(Geocoding::get(direccion)[0].latlon, 5)
       end
       %>
   <do param='default'/>
@@ -106,18 +106,36 @@
 <!-- ====== Main Navigation ====== -->
 <!-- Trucamos el menú principal para mostrar la cabecera -->
 <def tag="main-nav">
+  <if test="&params[:necesito_una_bici]">
+    <div class="presentacion-bloque">
+    <h2><a href="/">Inicio</a> > Buscar una bicicleta</h2>
+    <p>A continuación puedes ver las bicicletas que hay disponibles ahora mismo. Hac clic en cualquiera para enviar un mensaje a la persona que ha liberado la bicicleta.</p>
+    </div>
+  </if>
+  <else>
+
+
   <div class="presentacion-bloque">
-  <h2>¿Necesitas una bici?</h2>
-  <p>Libera tu bici es un programa que pretende sacar a la calle y dar uso diario a todas esas bicicletas que ya no se usan y están aburridas, ocupando sitio en los trasteros, garajes o balcones.</p>
+  <h2>Quiero liberar una bici</h2>
+  <p>Libera tu bici es un programa que pretende sacar a la calle y dar uso diario a todas esas bicicletas que ya no se usan y están aburridas, ocupando sitio en los trasteros, garajes o balcones.</p><br/>
+  <p>¿Te sobra una bici? Pincha aquí para liberarla:</p>
   <br/>
-  <p>Para comenzar haz clic en una bici y manda un mensaje a la persona que está donando la bicicleta. <a href="/front/ayuda">Más información</a></p>
+  <p><a class="boton-principal" href="/users/signup">
+    Liberar una bicicleta
+  </a></p>
+
+
+  
   </div>
   <div class="presentacion-bloque">
-    <h3><a href="/">Necesito una bici</a></h3>
-    <p>Pincha <a href="/">aquí</a> para buscar una bicicleta</p>
-    <h3><a href="/users/signup">Quiero liberar una bicicleta</a></h3>
-    <p>¿Te sobra una bici? Pincha <a href="/users/signup">aquí</a> para acceder al formulario para liberar una bicicleta</p>
+    <h2>Necesito una bici</h2>
+    <p>¿Necesitas una bici?</p><br/>
+    <p>Pincha en el siguiente enlace para buscar una bicicleta y mandar un mensaje a la persona que está donando la bicicleta. </p>
+    <br/>
+    <p><a class="boton-principal" href="/?necesito_una_bici=true">Buscar una bicicleta</a></p>
   </div>
+  
+  </else>
 </def>
 
 
@@ -139,7 +157,7 @@
         <form action="&request.request_uri" class="login" param>
           <labelled-item-list param>
             <labelled-item>
-              <item-label param="login-label"><ht key="hobo.login.email"><%= model.login_attribute.to_s.titleize %></ht></item-label>
+              <item-label param="login-label">Nombre de la bicicleta</item-label>
               <item-value><input type="text" name="login" id="login" class="string" param="login-input" /></item-value>
             </labelled-item>
 
@@ -159,10 +177,10 @@
           </labelled-item-list>
           <div param="actions">
             <submit label="#{ht 'hobo.actions.login', :default=>['Log in'] }" param/><if test="&signup_url" class='nav-item'>
-            <ht key="hobo.support.or">or</ht> <a param="signup" href="&signup_url"><ht key="hobo.login.signup">Sign up</ht></a></if>
+            <ht key="hobo.support.or">or</ht> <a href="&forgot_password_url" param="signup" if="&forgot_password_url"><ht key="hobo.login.forgot_password">Forgot your password?</ht></a></if>
           </div>
         </form>
-        <a href="&forgot_password_url" param="forgot-password" if="&forgot_password_url"><ht key="hobo.login.forgot_password">Forgot your password?</ht></a>
+        
       </section>
     </content:>
   </page>
@@ -185,8 +203,10 @@
     <account-nav:> 
       <prepend-ul:>
         <li><a href="/">Inicio</a></li>
+        <li><a href="/front/ayuda">Ayuda</a></li>
       </prepend-ul:>
       <account: replace/>
+      <sign-up: replace/>
     </account-nav:>
   </old-page>
 </extend>
@@ -214,7 +234,7 @@
 <def tag="form" for="User">
   <form merge enctype="multipart/form-data" param="default">
     <error-messages param/>
-    <field-list fields="name, descripcion, direccion, foto" param>
+    <field-list fields="name, email_address, current_password, password, descripcion, direccion, foto" param>
       <name-label:>Nombre</name-label:>
     </field-list>
     <div param="actions">

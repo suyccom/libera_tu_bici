@@ -1,1 +1,8 @@
 <edit-page/>
+
+<def tag="main-nav">
+  <h2><a href="/">Inicio</a> > <a href="/bicicletas/#{this.id}">Bicicleta <this.name/></a> > Editar</h2>
+  <div class="presentacion-bloque">
+    <p>Aquí puedes editar la información de tu bicicleta</p>
+  </div>
+</def>

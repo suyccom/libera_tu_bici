@@ -2,7 +2,7 @@
 
   <body: class="front-page"/>
 
-  <content:>
+  <content: >
     <header class="content-header">
       <h1>Más información sobre Libera tu Bici</h1>
     </header>
@@ -106,3 +106,16 @@ Si tienes cualquier problema envíanos un email a info@liberatubici.org.
   </content:>
   
 </page>
+
+
+
+
+
+
+
+<def tag="main-nav">
+  <h2><a href="/">Inicio</a> > Ayuda</h2>
+  <div class="presentacion-bloque">
+    <p>Bienvenido/a a la ayuda de Libera tu Bici</p>
+  </div>
+</def>

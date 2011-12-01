@@ -77,14 +77,37 @@ input.file_upload {
 	border: 1px dotted #666;
 }
 
+
+
+/*.button {*/
+/*	padding: 6px 10px;*/
+/*	border: none;*/
+/*    width: auto;*/
+/*	font-size: 11px; font-weight: bold;*/
+/*	margin-top: 10px;*/
+/*}*/
 .button {
 	padding: 6px 10px;
+  border-radius: 5px 5px 5px 5px;
 	border: none;
     width: auto;
-	font-size: 11px; font-weight: bold;
+	font-size: 13px; font-weight: bold;
 	margin-top: 10px;
+	background-color:#fff;
+	color:#222;
 }
-.button:hover {cursor: pointer;}
+
+
+
+
+.button:hover {
+  cursor: pointer;
+  color:white;
+  background-color:green;  
+}
+
+
+
 form .actions {_zoom: 1; overflow: hidden; font-size: 11px;}
 form .actions input { margin: 0; }
 

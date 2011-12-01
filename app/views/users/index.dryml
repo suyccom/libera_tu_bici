@@ -22,22 +22,22 @@
   </append-scripts:>
 
   <prepend-content:>
-<!--    <google-map id="sites" direccion="Bilbao" width="100%" height="400">-->
-<!--      <repeat with="&@users">-->
-<!--        <marker-address-verde address="&this.direccion_activa.direccion" title="&this.name" info="-->
-<!--          <p><a href='/users/#{this.id}'><img src='#{this.foto.url :small}'/></a></p>-->
-<!--          <p><a href='/users/#{this.id}'>#{this.name}</a></p>-->
-<!--        "/>-->
-<!--      </repeat>-->
-<!--      <repeat with="&@bicis_no_disponibles">-->
-<!--        <marker-address address="&this.direccion_activa.direccion" title="&this.name" info="-->
-<!--          <p><a href='/users/#{this.id}'><img src='#{this.foto.url :small}'/></a></p>-->
-<!--          <p><a href='/users/#{this.id}'>#{this.name}</a></p>-->
-<!--        "/>-->
-<!--      </repeat>-->
-<!--          -->
-<!--          -->
-<!--    </google-map>-->
+    <google-map unless="&params[:necesito_una_bici]" id="sites" direccion="Bilbao" width="100%" height="400">
+      <repeat with="&@users">
+        <marker-address-verde address="&this.direccion_activa.direccion" title="&this.name" info="
+          <p><a href='/users/#{this.id}'><img src='#{this.foto.url :small}'/></a></p>
+          <p><a href='/users/#{this.id}'>#{this.name}</a></p>
+        "/>
+      </repeat>
+      <repeat with="&@bicis_no_disponibles">
+        <marker-address address="&this.direccion_activa.direccion" title="&this.name" info="
+          <p><a href='/users/#{this.id}'><img src='#{this.foto.url :small}'/></a></p>
+          <p><a href='/users/#{this.id}'>#{this.name}</a></p>
+        "/>
+      </repeat>
+          
+          
+    </google-map>
   </prepend-content>
 
 

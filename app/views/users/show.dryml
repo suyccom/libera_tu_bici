@@ -32,7 +32,7 @@
     <peticiones-de-bicicleta/>
     <formulario-peticion if="&this.disponible"/>
 
-    <bicicleta-no-disponible unless="&this.disponible"/>
+    
     
     <br/><historico-bicicleta unless="&this.administrator?"/>
     
@@ -65,7 +65,7 @@
     <div part="mensaje">
       <h3 style="background-color:#9AFF9A; padding:10px;" if="&@mensaje_ok"><%= @mensaje_ok %></h3>
       <h3 style="background-color:#FF9D9A; padding:10px;" if="&@mensaje_fallo"><%= @mensaje_fallo %></h3>
-      <h3 unless="&@mensaje">Esta bicicleta está disponible. Pídesela al dueño!</h3>
+      <h3 unless="&@mensaje">Esta bicicleta está disponible. Pídela!</h3>
     </div>
       <form with="&@peticion" update="mensaje" reset-form without-cancel param>
         <field-list: fields="email, mensaje"/>
@@ -134,16 +134,16 @@
     </repeat>
     </ul>
   </div>
-</def>
+</def><formulario-peticion if="&this.disponible"/>
 
 
 <def tag="bicicleta-no-disponible">
 
-  <section style="padding:7px 15px 10px 15px; background-color:#FFF787;">
-    <h2>Esta bicicleta no está disponible en este momento.</h2>
+  <section style="margin-left: 28px; clear:both; color:black; width:60%; padding:7px 15px 10px 15px; background-color:#FFF787;">
+    <h3>Esta bicicleta no está disponible en este momento.</h3>
     
     <form merge>
-      <h2>¿Quieres pasar a otra persona esta bicicleta?</h2>     
+      <h3>¿Quieres pasar a otra persona esta bicicleta?</h3>     
       <error-messages/>
       <input type="hidden" name="user[disponible]" value="1"/>
       <submit label="Volver a liberar la bicicleta"/>
@@ -156,5 +156,22 @@
 
 <def tag="mensaje-administrador">
   <h3>Información para los administradores de Libera tu Bici</h3>
-  <p>Los administradores son un usuario un poco especial: no tienen foto ni direcciones ya que no son bicicletas como los demás. Sirven para editar y eliminar cualquier bicicleta.</p>
+  <p>Los administradores son usuarios un poco especial: no tienen foto ni direcciones ya que no son bicicletas como los demás. Sirven para editar y eliminar cualquier bicicleta.</p>
+</def>
+
+
+
+
+<def tag="main-nav">
+  <div class="presentacion-bloque">
+    <h2><a href="/">Inicio</a> > Bicicleta <this.name/></h2>
+    <p if="&this.disponible && this.foto_file_size">Esta bicicleta está disponible.</p>
+    <p if="&current_user == this && this.disponible && this.foto_file_size">Cuando una persona te pida la bicicleta, ponte en contacto con ella y pásale la bicicleta, así de fácil! No te olvides de sacar una foto :).</p>
+    <p if="&current_user == this && this.disponible && this.foto_file_size">Una vez se la hayas pasado, acuérdate de pulsar en "He entregado la bicicleta a esta persona" para que los demás sepan que esta bicicleta ya no está disponible.</p>
+    <p if="&current_user != this && this.disponible && this.foto_file_size">Puedes pedir esta bicicleta utilizando el formulario al final de esta página. Suerte!</p>
+    <p unless="&this.foto_file_size">Ánimo que ya queda poco para liberar tu bicicleta!</p>
+    <p unless="&this.foto_file_size">Para liberar una bicicleta hay que dar tres pasos, en los que te vamos a pedir: el nombre de la bicicleta, una contraseña, localidad, una foto de la bicicleta, tu email y una breve descripción.</p>
+  </div>
+  <br/>
+  <bicicleta-no-disponible unless="&this.disponible"/>
 </def>

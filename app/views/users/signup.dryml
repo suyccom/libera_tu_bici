@@ -19,3 +19,13 @@
   </form>
 </def>
 
+
+
+<def tag="main-nav">
+  <div class="presentacion-bloque">
+    <h2><a href="/">Inicio</a> > Liberar una bicicleta</h2>
+    <p>Para liberar una bicicleta hay que dar tres pasos, en los que te vamos a pedir: el nombre de la bicicleta, una contraseña, localidad, una foto de la bicicleta, tu email y una breve descripción.</p>
+    <br/>
+    <p>Cuando estés preparado/a, comienza con el primer paso.</p>
+  </div>
+</def>

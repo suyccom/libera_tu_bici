@@ -1,0 +1,10 @@
+<login-page/>
+
+
+<def tag="main-nav">
+  <h2><a href="/">Inicio</a> > Iniciar sesión</h2>
+  <div class="presentacion-bloque">
+    <p>¿Quieres acceder a la cuenta de tu bicicleta? Este es el sitio.</p>
+    <p>Si no te acuerdas de la contraseña, pulsa en "Contraseña olvidada" y podrás obtener una nueva contraseña</p>
+  </div>
+</def>

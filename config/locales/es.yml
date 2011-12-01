@@ -202,6 +202,7 @@ es:
 
 
 
+
   # SUYCCOMHACK: Cadenas personalizadas
   peticions:
     collection:
@@ -225,6 +226,8 @@ es:
   
   # SUYCCOM: Modelo "users"
   users:
+    current_password: "Contraseña actual"
+    email_address: "Email"
     direccion: "Población"
     password: "Contraseña"
     password_confirmation: "Confirmación de contraseña"

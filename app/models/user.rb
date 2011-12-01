@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   hobo_user_model # Don't put anything above this
 
   fields do
-    name          :string, :required, :unique, :login => true
-    email_address     :email_address
+    name          :string, :required, :login => true
+#    email_address     :email_address
     descripcion   :text
     administrator :boolean, :default => false
     disponible :boolean, :default => true
@@ -14,9 +14,8 @@ class User < ActiveRecord::Base
     timestamps
   end
   
-  
   # --- Campos adicionales para el formulario de signup --- #
-  attr_accessor :telefono, :type => :string
+  # attr_accessor :telefono, :type => :string
   
   
   # --- Campo adicional para la edición de la dirección --- #
@@ -30,6 +29,20 @@ class User < ActiveRecord::Base
   def direccion=(direccion)
     if direccion_activa
       direccion_activa.update_attribute(:direccion, direccion)
+    end
+  end
+  
+  # Campo adicional para editar e email
+  def email_address
+    if direccion_activa
+      direccion_activa.email
+    else
+      ''
+    end
+  end
+  def email_address=(direccion_email)
+    if direccion_activa
+      direccion_activa.update_attribute(:email, direccion_email)
     end
   end
   
@@ -118,9 +131,9 @@ class User < ActiveRecord::Base
     #acting_user.administrator? || 
     #(acting_user == self && only_changed?(:email_address, :crypted_password,
     #       :current_password, :password, :password_confirmation))
-    acting_user.administrator? || (acting_user == self)
-    
-    
+    return true if acting_user.administrator?
+    return true if acting_user == self && none_changed?(:name)
+    return true if acting_user == self && direccions.size == 1
     
     
     # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed

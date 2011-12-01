@@ -31,3 +31,26 @@ a:hover#gandi-footer, a#gandi-footer {
   margin:0;
   background-color:none;
 }
+
+
+
+
+
+.boton-principal{
+  border: 0 none;
+  border-radius: 5px 5px 5px 5px;
+  padding: 5px;
+  margin:0 auto;
+  font-weight:bold;
+  text-align:center;
+  
+  width:50%;
+  display:block;
+}
+
+.boton-principal:hover{
+  border:0;
+  color:white;
+  background-color:green;
+}
+

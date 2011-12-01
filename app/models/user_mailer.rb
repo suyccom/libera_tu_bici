@@ -3,10 +3,14 @@ class UserMailer < ActionMailer::Base
   def forgot_password(user, key)
     host = Hobo::Controller.request_host
     app_name = Hobo::Controller.app_name || host
-    @subject    = "#{app_name} -- forgotten password"
+    @subject    = "#{app_name} -- contraseña olvidada"
     @body       = { :user => user, :key => key, :host => host, :app_name => app_name }
-    @recipients = user.email_address
-    @from       = "no-reply@#{host}"
+    if Rails.env.production?
+      @recipients = user.email_address 
+    else
+      @recipients = 'tecnicos@unoycero.com'
+    end
+    @from       = 'bicicleta_liberada@bizizbizi.org'
     @sent_on    = Time.now
     @headers    = {}
   end
@@ -14,7 +18,11 @@ class UserMailer < ActionMailer::Base
   
   def peticion_bicicleta(peticion, user)
     subject 'Nueva petición de bicicleta'
-    recipients user.direccion_activa.email
+    if Rails.env.production?
+      recipients user.direccion_activa.email
+    else
+      recipients 'tecnicos@unoycero.com'
+    end
     from 'bicicleta_liberada@bizizbizi.org'
     @peticion = peticion
     @user = user
@@ -23,13 +31,21 @@ class UserMailer < ActionMailer::Base
   
   def peticion_denegada(peticion)
     subject 'Petición de bicicleta denegada'
-    recipients peticion.email
+    if Rails.env.production?
+      recipients peticion.email
+    else
+      recipients 'tecnicos@unoycero.com'
+    end
     @peticion = peticion
   end
   
   def bicicleta_entregada(peticion)
     subject 'Enhorabuena por tu nueva bicicleta'
-    recipients peticion.email
+    if Rails.env.production?
+      recipients peticion.email
+    else
+      recipients 'tecnicos@unoycero.com'
+    end
     @peticion = peticion
   end
   

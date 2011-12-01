@@ -447,7 +447,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="email_address, descripcion, fecha_liberacion, foto_file_name, foto_content_type, foto_file_size, foto_updated_at, state, direccion_activa" param/>
+            <field-list fields="descripcion, fecha_liberacion, foto_file_name, foto_content_type, foto_file_size, foto_updated_at, state, direccion_activa" param/>
           </section>
     </content:>
 
