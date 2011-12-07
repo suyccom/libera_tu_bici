@@ -18,7 +18,16 @@
     <!-- Si la foto no existe, mostrar formulario para subirla -->
     <formulario-subir-foto unless="&this.foto_file_size || this.administrator?"/>
     
-    <img style="float:left;width:500px;height:334px;" src="/#{this.foto.url :medium}" alt="foto de la bicicleta" if="&this.foto_file_size"/>
+    <% 
+     url_foto = this.foto.url :medium 
+     if this.direccions.last
+       url_foto = this.direccions.last.foto_entrega :medium if this.direccions.last.foto_entrega_file_size
+     end
+    %>
+    
+    
+    
+    <img style="float:left;width:500px;height:334px;" src="/#{url_foto}" alt="foto de la bicicleta" if="&this.foto_file_size"/>
     
     <div style="width:403px; height:334px; float:right; background-color:#F5F5F5;" unless="&this.administrator?">
       <formulario-direccion if="&this.foto_file_size && !this.direccion_activa"/>
