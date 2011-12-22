@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
     else
       @recipients = 'tecnicos@unoycero.com'
     end
-    @from       = 'bicicleta_liberada@bizizbizi.org'
+    @from       = 'notificaciones@liberatubici.org'
     @sent_on    = Time.now
     @headers    = {}
   end
@@ -23,7 +23,7 @@ class UserMailer < ActionMailer::Base
     else
       recipients 'tecnicos@unoycero.com'
     end
-    from 'bicicleta_liberada@bizizbizi.org'
+    from 'notificaciones@liberatubici.org'
     @peticion = peticion
     @user = user
   end

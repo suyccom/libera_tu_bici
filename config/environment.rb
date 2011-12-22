@@ -53,7 +53,7 @@ Rails::Initializer.run do |config|
     :port => 587,
     :domain => "liberatubici.org",
     :authentication => :login,
-    :user_name => "bicicleta_liberada@liberatubici.org",
+    :user_name => "notificaciones@liberatubici.org",
     :password => "pee4ooJi",
     :enable_starttls_auto => true
   }
