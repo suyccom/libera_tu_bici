@@ -136,7 +136,7 @@ class User < ActiveRecord::Base
     return true if acting_user == self && direccions.size == 1
     
     
-    # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
+   		 # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
     # directly from a form submission.
   end
 
