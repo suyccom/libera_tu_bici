@@ -16,3 +16,5 @@ rerun.txt
 pickle-email-*.html
 .rvmrc
 config/environment.rb
+public/images/fotos
+public/iamges/fotos_entregas
