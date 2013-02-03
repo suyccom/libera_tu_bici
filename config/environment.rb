@@ -54,7 +54,7 @@ Rails::Initializer.run do |config|
     :domain => "liberatubici.org",
     :authentication => :login,
     :user_name => "notificaciones@liberatubici.org",
-    :password => "pee4ooJi",
+    :password => "password",
     :enable_starttls_auto => true
   }
 end
