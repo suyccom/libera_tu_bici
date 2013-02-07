@@ -203,7 +203,7 @@
     <account-nav:> 
       <prepend-ul:>
         <li><a href="/">Inicio</a></li>
-        <li><a href="/front/ayuda">Ayuda</a></li>
+        <li><a href="/front/ayuda">Como funciona</a></li>
       </prepend-ul:>
       <account: replace/>
       <sign-up: replace/>
