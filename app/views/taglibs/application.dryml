@@ -36,7 +36,13 @@
 <def tag="card" for="User">
   <card class="user" param="default" merge>
     <header: param>
-      <a><img style="float:left; padding-right:10px;" src="#{this.foto.url :small}"/></a>
+    <% 
+     url_foto = this.foto.url :small 
+     if this.direccions.last
+       url_foto = this.direccions.last.foto_entrega :small if this.direccions.last.foto_entrega_file_size
+     end
+    %>
+      <a><img style="float:left; padding-right:10px;" src="#{url_foto}"/></a>
       <h4 param="heading"><a><name/> <i>(<this.direccion/>)</i></a></h4>
     </header:>
     <body: param>
