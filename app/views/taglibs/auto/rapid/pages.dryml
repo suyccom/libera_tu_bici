@@ -5,124 +5,9 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
-    <nav-item with="&Bicicleta"><ht key="bicicletas.nav_item">Bicicletas</ht></nav-item>
     <nav-item with="&User"><ht key="users.nav_item">Users</ht></nav-item>
   </navigation>
 </def>
-
-
-
-
-<!-- ====== Bicicleta Pages ====== -->
-
-<def tag="index-page" for="Bicicleta">
-  <page merge title="#{ht 'bicicletas.index.title', :default=>['Bicicletas'] }">
-    <body: class="index-page bicicleta" param/>
-
-    <content: param>
-      <header param="content-header">
-        <h2 param="heading">
-          <ht key="bicicletas.index.heading">
-            Bicicletas
-          </ht>
-        </h2>
-
-        <p param="count" if>
-          <ht key="bicicletas.collection.count" count="&this.size">
-            There <count prefix="are"/>
-          </ht>
-        </p>
-      </header>
-
-      <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="bicicletas.actions.new">New Bicicleta</ht>
-        </a>
-
-        <page-nav param="top-page-nav"/>
-
-        <collection param/>
-
-        <page-nav param="bottom-page-nav"/>
-
-
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="new-page" for="Bicicleta">
-  <page merge title="#{ht 'bicicletas.new.title', :default=>[' New Bicicleta'] }">
-    <body: class="new-page bicicleta" param/>
-
-    <content: param>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="bicicletas.new.heading">
-            New Bicicleta
-          </ht>
-        </h2>
-      </section>
-
-      <section param="content-body">
-        <form param>
-          <submit: label="#{ht 'bicicletas.actions.create', :default=>['Create Bicicleta']}"/>
-        </form>
-      </section>
-    </content:>
-  </page>
-</def>
-
-
-<def tag="show-page" for="Bicicleta">
-  <page merge title="#{ht 'bicicletas.show.title', :default=>['Bicicleta'] }">
-
-    <body: class="show-page bicicleta" param/>
-
-    <content: param>
-          <header param="content-header">
-            <h2 param="heading">
-              <ht key="bicicletas.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
-                <name/>
-              </ht>
-            </h2>
-
-            <record-flags fields="" param/>
-          </header>
-
-          <section param="content-body">
-            <field-list fields="lugar, descripcion, estado" param/>
-          </section>
-    </content:>
-
-  </page>
-</def>
-
-
-<def tag="edit-page" for="Bicicleta">
-  <page merge title="#{ht 'bicicletas.edit.title', :default=>['Edit Bicicleta'] }">
-
-    <body: class="edit-page bicicleta" param/>
-
-    <content:>
-      <section param="content-header">
-        <h2 param="heading">
-          <ht key="bicicletas.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
-            Edit <type-name/>
-          </ht>
-        </h2>
-        <delete-button label="#{ht 'bicicletas.actions.delete', :default=>['Remove This Bicicleta']}" param/>
-      </section>
-
-      <section param="content-body">
-        <form param/>
-      </section>
-    </content:>
-
-  </page>
-</def>
-
 
 
 
@@ -497,29 +382,6 @@
 
       <section param="content-body">
         <signup-form param="form"/>
-      </section>
-    </content:>
-
-  </page>
-</def>
-
-<def tag="reset-password-page" polymorphic/>
-<def tag="reset-password-page" for="User">
-  <page title="#{ht 'users.reset_password.title', :default=>['Reset Password']}" merge>
-
-    <body: class="lifecycle-transition-page reset-password-page" param/>
-
-    <content:>
-      <header param="content-header">
-        <h2 param="heading">
-          <ht key="users.reset_password.heading">
-            Reset Password
-          </ht>
-        </h2>
-      </header>
-
-      <section param="content-body">
-        <reset-password-form param="form"/>
       </section>
     </content:>
 

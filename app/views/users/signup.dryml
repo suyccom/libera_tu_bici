@@ -8,10 +8,8 @@
   <form lifecycle="signup" merge param="default">
     <error-messages param/>
     <br/>
-    <field-list fields="name, password, password_confirmation">
+    <field-list fields="name">
       <name-label:>Nombre de la bicicleta</name-label:>
-      <password-label:>Contraseña</password-label:>
-      <password-confirmation-label:>Confirmar contraseña</password-confirmation-label:>
     </field-list>
     <div param="actions">
       <submit label="Siguiente paso" param/>

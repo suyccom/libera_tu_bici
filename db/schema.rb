@@ -9,19 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201071051) do
-
-  create_table "bicicletas", :force => true do |t|
-    t.string   "name"
-    t.string   "lugar"
-    t.text     "descripcion"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "estado",        :default => "disponible"
-    t.datetime "key_timestamp"
-  end
-
-  add_index "bicicletas", ["estado"], :name => "index_bicicletas_on_estado"
+ActiveRecord::Schema.define(:version => 20130222091024) do
 
   create_table "direccions", :force => true do |t|
     t.string   "email"

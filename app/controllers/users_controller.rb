@@ -23,7 +23,6 @@ class UsersController < ApplicationController
     end
   end 
   
-  
   def login
     hobo_login do
       redirect_to current_user
@@ -53,39 +52,4 @@ class UsersController < ApplicationController
       :not_administrator => true,
       :con_direccion_activa => true)
   end
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  # Personalizar controlador forgot_password: en esta aplicación el email se guarda en otra tabla
-  def forgot_password
-    if request.post?
-      # Simplemente cambiamos la forma de encontrar el usuario
-      # user = model.find_by_email_address(params[:email_address])
-      if Direccion.find_by_email(params[:email_address])
-        user = Direccion.find_by_email(params[:email_address]).user
-      end
-      if user && (!block_given? || yield(user))
-        user.lifecycle.request_password_reset!(:nobody)
-      end
-      respond_to do |wants|
-        wants.html { render_tag :forgot_password_email_sent_page }
-        wants.js { hobo_ajax_response}
-      end
-    end
-  end
-  
-  
-  
-  
-  
-  
-  
-  
 end
