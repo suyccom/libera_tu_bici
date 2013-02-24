@@ -53,6 +53,7 @@ class UserMailer < ActionMailer::Base
     subject 'Libera tu bici: Ha pasado un año desde que adquiriste tu bicicleta'
     if Rails.env.production?
       recipients bici.direccion_activa.email
+      bcc ['plvallejo@yahoo.com', 'tecnicos@unoycero.com']
     else
       recipients 'tecnicos@unoycero.com'
     end
