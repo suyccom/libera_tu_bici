@@ -7,6 +7,5 @@ for bici in bicis
   bici.update_attributes(:disponible => true, :fecha_liberacion => Date.today)
 
   # Por cada bicicleta, enviar un email diciendo X X 
-  usuario = bici.direccion_activa.email
-  UserMailer.deliver_bicicleta_reliberada(usuario) 
+  UserMailer.deliver_bicicleta_reliberada(bici) 
 end
