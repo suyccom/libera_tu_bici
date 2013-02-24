@@ -56,7 +56,7 @@ class UserMailer < ActionMailer::Base
     else
       recipients 'tecnicos@unoycero.com'
     end
-    
+    @bicicleta = usuario
   end
   
 end
