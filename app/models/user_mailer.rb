@@ -50,7 +50,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def bicicleta_reliberada(usuario)
-    subject 'Ha pasado un año desde que adquiriste tu bicicleta'
+    subject 'Libera tu bici: Ha pasado un año desde que adquiriste tu bicicleta'
     if Rails.env.production?
       recipients usuario
     else
