@@ -14,19 +14,37 @@ class UsersController < ApplicationController
       hobo_ajax_response if request.xhr?
     end
   end
-  
-  
+
   def do_signup
     hobo_do_signup do
       self.current_user = this if this.account_active?
       redirect_to @user if valid?
     end
-  end 
-  
+  end
+
+
   def login
-    hobo_login do
-      redirect_to current_user
+    if params[:email].blank?
+    else
+      usuario_recibido = Direccion.find_by_email(params[:email])
+      if usuario_recibido.blank?
+        flash[:error] = "No existe ningún usuario con ese email."
+      else
+        usuario_recibido = usuario_recibido.user
+        if usuario_recibido && params[:email] == usuario_recibido.direccion_activa.email
+          self.current_user = usuario_recibido
+          redirect_to usuario_recibido
+          flash[:notice] = "Login correcto."
+        else
+          flash[:error] = "No existe ningún usuario con esa dirección activa."
+        end
+      end
     end
+#    if params[:email] == email
+#      hobo_login do
+#        redirect_to(request.env["HTTP_REFERER"] ? :back : home_page)
+#      end
+#    end
   end
   
   # Si un usuario ya está logueado y pulsa en liberar bicicleta, cerrar su sesión automáticamente

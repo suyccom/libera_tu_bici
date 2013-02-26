@@ -149,7 +149,7 @@
 
 <!--Test para mejorar el aspecto de login-->
 <def tag="login-page">
-  <% remember_me = true if remember_me.nil? %>
+<!--  <% remember_me = true if remember_me.nil? %>-->
   <page title="#{ht 'hobo.login.title', :default=>['Log in'] }" merge>
    
     <body: class="login-page" param/>
@@ -162,15 +162,15 @@
       <section param="content-body">      
         <form action="&request.request_uri" class="login" param>
           <labelled-item-list param>
-            <labelled-item>
-              <item-label param="login-label">Nombre de la bicicleta</item-label>
-              <item-value><input type="text" name="login" id="login" class="string" param="login-input" /></item-value>
-            </labelled-item>
+<!--            <labelled-item>-->
+<!--              <item-label param="login-label">Nombre de la bicicleta</item-label>-->
+<!--              <item-value><input type="text" name="login" id="login" class="string" param="login-input" /></item-value>-->
+<!--            </labelled-item>-->
 
             <labelled-item>
-              <item-label param="password-label"><ht key="hobo.login.password">Password</ht></item-label>
+              <item-label param="email-label">Email</item-label>
               <item-value>
-                <input type="password" name="password" id="password" class="string" param="password-input"/>
+                <input type="email" name="email" id="email" class="string" param="email-input"/>
               </item-value>
             </labelled-item>
 

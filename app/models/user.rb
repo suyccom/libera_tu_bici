@@ -2,14 +2,14 @@ class User < ActiveRecord::Base
 
   # Nota: en esta aplicación las usuarias son las bicicletas, no las personas :)
   
-  hobo_user_model # http://hobocentral.net/manual/users_and_authentication#using-hobo-without-the-hobo-user-model
+  hobo_user_model
 
   fields do
-    name          :string, :required, :login => true
-    descripcion   :text
-    administrator :boolean, :default => false
-    disponible :boolean, :default => true
-    fecha_liberacion :date
+    name              :string, :required, :login => true
+    descripcion       :text
+    administrator     :boolean, :default => false
+    disponible        :boolean, :default => true
+    fecha_liberacion  :date
     timestamps
   end
 
@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
       direccion_activa.update_attribute(:direccion, direccion)
     end
   end
-  # Campo adicional para editar e email
+  # Campo adicional para editar el email
   def email_address
     if direccion_activa
       direccion_activa.email
@@ -98,36 +98,26 @@ class User < ActiveRecord::Base
 #               :params => [ :password, :password_confirmation ]
 
   end
-  
-  
 
-  
 
   # --- Permissions --- #
-
   def create_permitted?
     false
   end
-
   def update_permitted?
-    #acting_user.administrator? || 
+    #acting_user.administrator? ||
     #(acting_user == self && only_changed?(:email_address, :crypted_password,
     #       :current_password, :password, :password_confirmation))
     return true if acting_user.administrator?
     return true if acting_user == self && none_changed?(:name)
     return true if acting_user == self && direccions.size == 1
-    
-    
   # Note: crypted_password has attr_protected so although it is permitted to change, it cannot be changed
   # directly from a form submission.
   end
-
   def destroy_permitted?
     acting_user.administrator? || (acting_user == self && self.direccions.size == 1)
   end
-
   def view_permitted?(field)
-    acting_user == self || self.direccion_activa || acting_user.administrator? || new_record? 
+    acting_user == self || self.direccion_activa || acting_user.administrator? || new_record?
   end
-
 end
