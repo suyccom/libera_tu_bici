@@ -33,7 +33,61 @@ a:hover#gandi-footer, a#gandi-footer {
 }
 
 
-
+.page-header h2{
+  font-size:32px;
+  padding:5px 25px;
+  color:green;
+}
+.presentacion-bloque{
+  width:45%;
+  font-size:16px;
+  float:left;
+  padding-right:2%;
+}
+.presentacion-bloque h3{
+  color:green;
+  font-size:20px;
+  padding-top:10px;
+}
+.presentacion-bloque p{
+  padding:5px 0px 0px 25px;
+  color: black;
+}
+.card.user{
+  width:400px;
+  height:112px;
+  float:left;
+  margin-right:25px;
+}
+.heading{
+color:#fff;
+}
+.show-page.user .collection-section{
+  clear:both;
+}
+.show-page.user .field-list{
+  padding:15px;
+  width:auto;
+  background-color:#F5F5F5;
+}
+.show-page.user .new .field-list{
+  width:100%;
+}
+.card.peticion .heading{
+  color:black;
+}
+.transitions{
+  float:right;
+}
+.notita,.flash.notice{
+  background-color:#D9F471;
+  padding:30px;
+  font-size:16px;
+  color:black;
+}
+.notita{
+  width:500px;
+}
 
 
 .boton-principal{

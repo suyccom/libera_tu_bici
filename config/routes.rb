@@ -2,6 +2,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.site_search  'search', :controller => 'front', :action => 'search'
   map.root :controller => 'users', :action => 'index'
+  map.recuperar_bicicleta 'users/recuperar_bicicleta', :controller => 'users', :action => 'recuperar'
+
+
   
   map.resources :bicicletas, :controller => 'users'
 

@@ -57,9 +57,11 @@ class UsersController < ApplicationController
       hobo_signup
     end
   end
-  
-  
-  
+
+  def recuperar
+
+  end
+
   def index
     @estado_actual = params[:estado]
     

@@ -122,22 +122,16 @@
 
 
   <div class="presentacion-bloque">
-  <h2>Quiero liberar una bici</h2>
-  <p>Libera tu bici es un programa que pretende sacar a la calle y dar uso diario a todas esas bicicletas que ya no se usan y están aburridas, ocupando sitio en los trasteros, garajes o balcones.</p><br/>
-  <p>¿Te sobra una bici? Pincha aquí para liberarla:</p>
-  <br/>
-  <p><a class="boton-principal" href="/users/signup">
-    Liberar una bicicleta
-  </a></p>
-
-
-  
+    <h2>Quiero liberar una bici</h2>
+    <p>Libera tu bici es un programa que pretende sacar a la calle y dar uso diario a todas esas bicicletas que ya no se usan y están aburridas, ocupando sitio en los trasteros, garajes o balcones.</p>
+    <p>¿Te sobra una bici? Pincha aquí para liberarla:</p>
+    <br/>
+    <p><a class="boton-principal" href="/users/signup">Liberar una bicicleta</a></p>
   </div>
   <div class="presentacion-bloque">
     <h2>Necesito una bici</h2>
     <p>¿Necesitas una bici?</p><br/>
     <p>Pincha en el siguiente enlace para buscar una bicicleta y mandar un mensaje a la persona que está donando la bicicleta. </p>
-    <br/>
     <p><a class="boton-principal" href="/?necesito_una_bici=true">Buscar una bicicleta</a></p>
   </div>
   
@@ -162,31 +156,17 @@
       <section param="content-body">      
         <form action="&request.request_uri" class="login" param>
           <labelled-item-list param>
-<!--            <labelled-item>-->
-<!--              <item-label param="login-label">Nombre de la bicicleta</item-label>-->
-<!--              <item-value><input type="text" name="login" id="login" class="string" param="login-input" /></item-value>-->
-<!--            </labelled-item>-->
-
             <labelled-item>
               <item-label param="email-label">Email</item-label>
               <item-value>
                 <input type="email" name="email" id="email" class="string" param="email-input"/>
               </item-value>
             </labelled-item>
-
-            <labelled-item param="remember-me">
-              <item-label class="field-label" param="remember-me-label"><ht key="hobo.login.remember_me">Remember me:</ht></item-label>
-              <item-value>
-                <input type="checkbox" name="remember_me" id="remember-me" param="remember-me-input" checked/>
-              </item-value>
-            </labelled-item>
           </labelled-item-list>
           <div param="actions">
-            <submit label="#{ht 'hobo.actions.login', :default=>['Log in'] }" param/><if test="&signup_url" class='nav-item'>
-            <ht key="hobo.support.or">or</ht> <a href="&forgot_password_url" param="signup" if="&forgot_password_url"><ht key="hobo.login.forgot_password">Forgot your password?</ht></a></if>
+            <submit label="#{ht 'hobo.actions.login', :default=>['Log in'] }" param/>
           </div>
         </form>
-        
       </section>
     </content:>
   </page>
@@ -210,6 +190,7 @@
       <prepend-ul:>
         <li><a href="/">Inicio</a></li>
         <li><a href="/front/ayuda">Cómo funciona</a></li>
+        <li><a href="/users/recuperar_bicicleta">Recuperar bicicleta</a></li>
       </prepend-ul:>
       <account: replace/>
       <sign-up: replace/>
