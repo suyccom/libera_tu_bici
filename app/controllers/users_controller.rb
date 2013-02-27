@@ -31,12 +31,29 @@ class UsersController < ApplicationController
         flash[:error] = "No existe ningún usuario con ese email."
       else
         usuario_recibido = usuario_recibido.user
-        if usuario_recibido && params[:email] == usuario_recibido.direccion_activa.email
-          self.current_user = usuario_recibido
-          redirect_to usuario_recibido
-          flash[:notice] = "Login correcto."
-        else
-          flash[:error] = "No existe ningún usuario con esa dirección activa."
+        # Si el usuario es un administrador, hay que pedir la contraseña
+        if usuario_recibido.administrator
+          @admin_login = true
+          logger.info usuario_recibido.id
+          logger.info params[:password]
+          logger.info usuario_recibido.name
+          if params[:password] && User.authenticate(usuario_recibido.name, params[:password])
+            self.current_user = usuario_recibido
+            flash[:error] = ""
+            flash[:notice] = "Bienvenido!"
+            redirect_to current_user
+          else
+            flash[:error] = "Los administradores tienen que introducir email y contraseña."
+          end
+        # Login para los usuarios normales
+        else      
+          if usuario_recibido && params[:email] == usuario_recibido.direccion_activa.email
+            self.current_user = usuario_recibido
+            redirect_to usuario_recibido
+            flash[:notice] = "Login correcto."
+          else
+            flash[:error] = "No existe ningún usuario con esa dirección activa."
+          end
         end
       end
     end

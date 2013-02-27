@@ -162,6 +162,12 @@
                 <input type="email" name="email" id="email" class="string" param="email-input"/>
               </item-value>
             </labelled-item>
+            <labelled-item if="&@admin_login">
+              <item-label param="password-label">Contraseña</item-label>
+              <item-value>
+                <input type="password" name="password" id="password" class="string" param="password-input"/>
+              </item-value>
+            </labelled-item>
           </labelled-item-list>
           <div param="actions">
             <submit label="#{ht 'hobo.actions.login', :default=>['Log in'] }" param/>
