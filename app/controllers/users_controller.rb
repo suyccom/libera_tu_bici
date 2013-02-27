@@ -40,11 +40,6 @@ class UsersController < ApplicationController
         end
       end
     end
-#    if params[:email] == email
-#      hobo_login do
-#        redirect_to(request.env["HTTP_REFERER"] ? :back : home_page)
-#      end
-#    end
   end
   
   # Si un usuario ya está logueado y pulsa en liberar bicicleta, cerrar su sesión automáticamente
@@ -59,7 +54,18 @@ class UsersController < ApplicationController
   end
 
   def recuperar
-
+    if params[:email]
+      direccion = Direccion.find_by_email(params[:email])
+      usuario = direccion.user if direccion
+      if direccion && usuario && direccion == usuario.direccions.first
+        UserMailer.deliver_recuperar_bicicleta_prestamo(usuario) # Email a la direccion actual
+        UserMailer.deliver_recuperar_bicicleta(usuario) # Email al dueño
+        usuario.update_attributes(:devuelta => true, :disponible => false)
+        flash[:notice] = 'El proceso de recuperación de bicicleta ha comenzado, por favor compruebe su correo electrónico.'
+      else
+        flash[:error] = 'No hemos encontrado ninguna bicicleta con este email'
+      end
+    end
   end
 
   def index

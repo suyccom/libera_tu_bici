@@ -11,7 +11,7 @@
 
 
 <def tag="formulario-recuperacion">
-  <form style="width:30%" action="&request.request_uri">
+  <form style="width:30%" action="/recuperar_bicicleta">
     <labelled-item-list param>
       <labelled-item>
         <item-label>Email</item-label>

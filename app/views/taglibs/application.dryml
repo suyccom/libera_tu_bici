@@ -48,7 +48,7 @@
     <body: param>
 
 
-      <p unless="&this.disponible">Disponible el <%= apano_fecha(this.fecha_proxima_liberacion) %></p>
+      <p unless="&this.disponible || this.devuelta">Disponible el <%= apano_fecha(this.fecha_proxima_liberacion) %></p>
       <p><this.descripcion/></p>
     </body:>
   </card>
@@ -190,7 +190,7 @@
       <prepend-ul:>
         <li><a href="/">Inicio</a></li>
         <li><a href="/front/ayuda">Cómo funciona</a></li>
-        <li><a href="/users/recuperar_bicicleta">Recuperar bicicleta</a></li>
+        <li><a href="/recuperar_bicicleta">Recuperar bicicleta</a></li>
       </prepend-ul:>
       <account: replace/>
       <sign-up: replace/>

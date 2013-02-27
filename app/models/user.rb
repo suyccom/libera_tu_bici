@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
     administrator     :boolean, :default => false
     disponible        :boolean, :default => true
     fecha_liberacion  :date
+    devuelta          :boolean, :default => false
     timestamps
   end
 
@@ -58,7 +59,9 @@ class User < ActiveRecord::Base
   end
   # --- Calculamos la fecha en la que la bici volverá a ser liberada --- #
   def fecha_proxima_liberacion
-    if fecha_liberacion
+    if devuelta
+      "No disponible"
+    elsif fecha_liberacion
       fecha_liberacion.to_time.next_year.to_date
     else
       "Error"

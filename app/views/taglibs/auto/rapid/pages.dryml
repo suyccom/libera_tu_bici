@@ -322,7 +322,7 @@
               </ht>
             </h2>
 
-            <record-flags fields="administrator, disponible" param/>
+            <record-flags fields="administrator, disponible, devuelta" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="users.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
