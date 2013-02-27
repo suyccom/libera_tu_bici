@@ -24,6 +24,18 @@
 
 
 
+<def tag="form" for="Texto">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="name, texto" param/>
+    <div param="actions">
+      <submit label="#{ht 'textos.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>

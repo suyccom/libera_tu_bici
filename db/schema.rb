@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130227102144) do
+ActiveRecord::Schema.define(:version => 20130227131701) do
 
   create_table "direccions", :force => true do |t|
     t.string   "email"
@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(:version => 20130227102144) do
   add_index "peticions", ["estado"], :name => "index_peticions_on_estado"
   add_index "peticions", ["estado"], :name => "index_peticions_on_lifecycle_state"
   add_index "peticions", ["user_id"], :name => "index_peticions_on_user_id"
+
+  create_table "textos", :force => true do |t|
+    t.string   "name"
+    t.text     "texto"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40
