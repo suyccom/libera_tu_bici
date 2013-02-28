@@ -14,19 +14,31 @@ class UsersController < ApplicationController
       hobo_ajax_response if request.xhr?
     end
   end
-  
-  
+
   def do_signup
     hobo_do_signup do
       self.current_user = this if this.account_active?
       redirect_to @user if valid?
     end
-  end 
-  
-  
+  end
+
+
   def login
-    hobo_login do
-      redirect_to current_user
+    if params[:email].blank?
+    else
+      usuario_recibido = Direccion.find_by_email(params[:email])
+      if usuario_recibido.blank?
+        flash[:error] = "No existe ningún usuario con ese email."
+      else
+        usuario_recibido = usuario_recibido.user
+        if usuario_recibido && params[:email] == usuario_recibido.direccion_activa.email
+          self.current_user = usuario_recibido
+          redirect_to usuario_recibido
+          flash[:notice] = "Login correcto."
+        else
+          flash[:error] = "No existe ningún usuario con esa dirección activa."
+        end
+      end
     end
   end
   
@@ -40,9 +52,22 @@ class UsersController < ApplicationController
       hobo_signup
     end
   end
-  
-  
-  
+
+  def recuperar
+    if params[:email]
+      direccion = Direccion.find_by_email(params[:email])
+      usuario = direccion.user if direccion
+      if direccion && usuario && direccion == usuario.direccions.first
+        UserMailer.deliver_recuperar_bicicleta_prestamo(usuario) # Email a la direccion actual
+        UserMailer.deliver_recuperar_bicicleta(usuario) # Email al dueño
+        usuario.update_attributes(:devuelta => true, :disponible => false)
+        flash[:notice] = 'El proceso de recuperación de bicicleta ha comenzado, por favor compruebe su correo electrónico.'
+      else
+        flash[:error] = 'No hemos encontrado ninguna bicicleta con este email'
+      end
+    end
+  end
+
   def index
     @estado_actual = params[:estado]
     
@@ -53,39 +78,4 @@ class UsersController < ApplicationController
       :not_administrator => true,
       :con_direccion_activa => true)
   end
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  # Personalizar controlador forgot_password: en esta aplicación el email se guarda en otra tabla
-  def forgot_password
-    if request.post?
-      # Simplemente cambiamos la forma de encontrar el usuario
-      # user = model.find_by_email_address(params[:email_address])
-      if Direccion.find_by_email(params[:email_address])
-        user = Direccion.find_by_email(params[:email_address]).user
-      end
-      if user && (!block_given? || yield(user))
-        user.lifecycle.request_password_reset!(:nobody)
-      end
-      respond_to do |wants|
-        wants.html { render_tag :forgot_password_email_sent_page }
-        wants.js { hobo_ajax_response}
-      end
-    end
-  end
-  
-  
-  
-  
-  
-  
-  
-  
 end

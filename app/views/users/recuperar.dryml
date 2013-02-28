@@ -1,0 +1,35 @@
+<page title="Recuperar la bicicleta">
+  <content:>
+    <header class="content-header">
+      <h1>Recupera tu bicicleta</h1>
+    </header>
+    <section class="content-body" >
+      <formulario-recuperacion/>
+    </section>
+  </content:>
+</page>
+
+
+<def tag="formulario-recuperacion">
+  <form style="width:30%" action="/recuperar_bicicleta">
+    <labelled-item-list param>
+      <labelled-item>
+        <item-label>Email</item-label>
+        <item-value>
+          <input type="email" name="email" id="email" class="string"/>
+        </item-value>
+      </labelled-item>
+    </labelled-item-list>
+    <div param="actions">
+      <submit label="Recuperar" param/>
+    </div>
+  </form>
+</def>
+
+
+<def tag="main-nav">
+  <h2><a href="/">Inicio</a> > Recuperar bicicleta</h2>
+  <div class="presentacion-bloque">
+    <p>Bienvenido/a a la recuperación de la bicicleta. Este formulario enviará un correo al dueño actual de tu bicicleta pidiéndole que cuando acabe el periodo de préstamo devuelva la bicicleta a su primer dueño.</p>
+  </div>
+</def>

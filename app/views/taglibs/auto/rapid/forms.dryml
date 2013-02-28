@@ -1,17 +1,5 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
-<def tag="form" for="Bicicleta">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="name, lugar, descripcion, estado" param/>
-    <div param="actions">
-      <submit label="#{ht 'bicicletas.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
 <def tag="form" for="Direccion">
   <form merge param="default">
     <error-messages param/>
@@ -39,7 +27,7 @@
 <def tag="form" for="User">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="name, descripcion, administrator, disponible, fecha_liberacion, foto_file_name, foto_content_type, foto_file_size, foto_updated_at, state, direccion_activa" param/>
+    <field-list fields="name, descripcion, administrator, disponible, fecha_liberacion, devuelta, foto_file_name, foto_content_type, foto_file_size, foto_updated_at, state, direccion_activa" param/>
     <div param="actions">
       <submit label="#{ht 'users.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -50,22 +38,11 @@
 <def tag="signup-form" for="User">
   <form lifecycle="signup" merge param="default">
     <error-messages param/>
-    <field-list fields="name, email_address, password, password_confirmation" param/>
+    <field-list fields="name, email_address" param/>
     <div param="actions">
       <submit label="#{ht 'users.actions.signup', :default=>['Signup']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>
 
-<def tag="reset-password-form" polymorphic/>
-<def tag="reset-password-form" for="User">
-  <form lifecycle="reset_password" merge param="default">
-    <error-messages param/>
-    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
-    <field-list fields="password, password_confirmation" param/>
-    <div param="actions">
-      <submit label="#{ht 'users.actions.reset_password', :default=>['Reset Password']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
 
