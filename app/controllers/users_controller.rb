@@ -34,9 +34,6 @@ class UsersController < ApplicationController
         # Si el usuario es un administrador, hay que pedir la contraseña
         if usuario_recibido.administrator
           @admin_login = true
-          logger.info usuario_recibido.id
-          logger.info params[:password]
-          logger.info usuario_recibido.name
           if params[:password] && User.authenticate(usuario_recibido.name, params[:password])
             self.current_user = usuario_recibido
             flash[:error] = ""
