@@ -49,14 +49,15 @@ class UserMailer < ActionMailer::Base
     @peticion = peticion
   end
 
-  def bicicleta_reliberada(usuario)
-    subject 'Ha pasado un año desde que adquiriste tu bicicleta'
+  def bicicleta_reliberada(bici)
+    subject 'Libera tu bici: Ha pasado un año desde que adquiriste tu bicicleta'
     if Rails.env.production?
-      recipients usuario
+      recipients bici.direccion_activa.email
+      bcc ['plvallejo@yahoo.com', 'tecnicos@unoycero.com']
     else
       recipients 'tecnicos@unoycero.com'
     end
-    
+    @bicicleta = bici
   end
 
   def recuperar_bicicleta_prestamo(usuario)
