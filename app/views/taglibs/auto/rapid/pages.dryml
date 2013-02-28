@@ -5,6 +5,7 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Texto"><ht key="textos.nav_item">Textos</ht></nav-item>
     <nav-item with="&User"><ht key="users.nav_item">Users</ht></nav-item>
   </navigation>
 </def>
@@ -236,6 +237,126 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'peticions.actions.delete', :default=>['Remove This Peticion']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Texto Pages ====== -->
+
+<def tag="index-page" for="Texto">
+  <page merge title="#{ht 'textos.index.title', :default=>['Textos'] }">
+    <body: class="index-page texto" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="textos.index.heading">
+            Textos
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="textos.collection.count" count="&this.size">
+            There <count prefix="are"/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="textos.actions.new">New Texto</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Texto">
+  <page merge title="#{ht 'textos.new.title', :default=>[' New Texto'] }">
+    <body: class="new-page texto" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="textos.new.heading">
+            New Texto
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'textos.actions.create', :default=>['Create Texto']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Texto">
+  <page merge title="#{ht 'textos.show.title', :default=>['Texto'] }">
+
+    <body: class="show-page texto" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="textos.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="textos.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Texto
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="texto" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Texto">
+  <page merge title="#{ht 'textos.edit.title', :default=>['Edit Texto'] }">
+
+    <body: class="edit-page texto" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="textos.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit <type-name/>
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'textos.actions.delete', :default=>['Remove This Texto']}" param/>
       </section>
 
       <section param="content-body">

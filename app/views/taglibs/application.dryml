@@ -122,16 +122,13 @@
 
 
   <div class="presentacion-bloque">
-    <h2>Quiero liberar una bici</h2>
-    <p>Libera tu bici es un programa que pretende sacar a la calle y dar uso diario a todas esas bicicletas que ya no se usan y están aburridas, ocupando sitio en los trasteros, garajes o balcones.</p>
-    <p>¿Te sobra una bici? Pincha aquí para liberarla:</p>
-    <br/>
+    <h2><texto name="titulo_liberar"/></h2>
+    <texto name="cuerpo_liberar" parrafos="&true"/>
     <p><a class="boton-principal" href="/users/signup">Liberar una bicicleta</a></p>
   </div>
   <div class="presentacion-bloque">
-    <h2>Necesito una bici</h2>
-    <p>¿Necesitas una bici?</p><br/>
-    <p>Pincha en el siguiente enlace para buscar una bicicleta y mandar un mensaje a la persona que está donando la bicicleta. </p>
+    <h2><texto name="titulo_necesito"/></h2>
+    <texto name="cuerpo_necesito" parrafos="&true"/>
     <p><a class="boton-principal" href="/?necesito_una_bici=true">Buscar una bicicleta</a></p>
   </div>
   
@@ -160,6 +157,12 @@
               <item-label param="email-label">Email</item-label>
               <item-value>
                 <input type="email" name="email" id="email" class="string" param="email-input"/>
+              </item-value>
+            </labelled-item>
+            <labelled-item if="&@admin_login">
+              <item-label param="password-label">Contraseña</item-label>
+              <item-value>
+                <input type="password" name="password" id="password" class="string" param="password-input"/>
               </item-value>
             </labelled-item>
           </labelled-item-list>
@@ -191,6 +194,7 @@
         <li><a href="/">Inicio</a></li>
         <li><a href="/front/ayuda">Cómo funciona</a></li>
         <li><a href="/recuperar_bicicleta">Recuperar bicicleta</a></li>
+        <li if="&current_user.administrator?"><a href="/textos">Textos</a></li>
       </prepend-ul:>
       <account: replace/>
       <sign-up: replace/>
@@ -347,5 +351,10 @@
 
 
 
-
+<def tag="texto" attrs="name, parrafos">
+  <% if texto = Texto.find_by_name(name) %>
+    <%= simple_format(texto.texto) if parrafos %>
+    <%= texto.texto unless parrafos %>
+  <% end %>
+</def>
 
