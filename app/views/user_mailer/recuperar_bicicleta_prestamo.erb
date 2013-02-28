@@ -1,0 +1,7 @@
+Hola,
+
+Al dueño/a de la bicicleta que estás usando (<%= @usuario.name %>) le gustaría recuperarla. Según las normas de http://www.liberatubici.org puedes utilizar la bicicleta hasta <%= @usuario.fecha_proxima_liberacion %>, momento en el que la bicicleta pasará a un estado de inactividad y por consiguiente, no podrás liberarla nuevamente. Cuando llegue ese momento te pedimos que contactes con el/la dueño/a de la bicicleta mediante este correo electrónico: <%= @usuario.direccions.first.email %>. Después de todo esto te animamos a que vuelvas a utilizar http://www.liberatubici.org.
+
+Muchas gracias,
+El equipo de BizizBizi
+http://www.liberatubici.org

@@ -4,8 +4,9 @@ bicis = User.find(:all, :conditions => ['disponible = ? AND fecha_liberacion <= 
 
 # Por cada bicicleta, cambiarle el estado a "disponible"
 for bici in bicis
-  bici.update_attributes(:disponible => true, :fecha_liberacion => Date.today)
-
-  # Por cada bicicleta, enviar un email diciendo X X 
-  UserMailer.deliver_bicicleta_reliberada(bici) 
+  unless bici.devuelta
+    bici.update_attributes(:disponible => true, :fecha_liberacion => Date.today)
+    # Por cada bicicleta, enviar un email diciendo X X 
+    UserMailer.deliver_bicicleta_reliberada(bici) 
+  end 
 end

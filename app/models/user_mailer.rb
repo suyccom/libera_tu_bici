@@ -59,5 +59,27 @@ class UserMailer < ActionMailer::Base
     end
     @bicicleta = bici
   end
+
+  def recuperar_bicicleta_prestamo(usuario)
+    subject "El dueño original quiere recuperar su bicicleta #{usuario.name}"
+    if Rails.env.production?
+      recipients usuario.direccion_activa.email
+    else
+      recipients 'tecnicos@unoycero.com'
+    end
+    from 'notificaciones@liberatubici.org'
+    @usuario = usuario
+  end
+
+  def recuperar_bicicleta(usuario)
+    subject "Tu bicicleta #{usuario.name} ha comenzado el proceso de recuperación"
+    if Rails.env.production?
+      recipients usuario.direccions.first.email
+    else
+      recipients 'tecnicos@unoycero.com'
+    end
+    from 'notificaciones@liberatubici.org'
+    @usuario = usuario
+  end
   
 end
