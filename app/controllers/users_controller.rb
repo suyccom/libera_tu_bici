@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       else
         usuario_recibido = usuario_recibido.user
         # Si el usuario es un administrador, hay que pedir la contraseña
-        if usuario_recibido.administrator
+        if usuario_recibido && usuario_recibido.administrator
           @admin_login = true
           if params[:password] && User.authenticate(usuario_recibido.name, params[:password])
             self.current_user = usuario_recibido
