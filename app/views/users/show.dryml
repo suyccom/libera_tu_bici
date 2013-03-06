@@ -8,7 +8,10 @@
     <%= GMap.header %>
   </append-scripts:>
   
-  <edit-link: replace/>
+  <edit-link: replace>
+    <a action="edit" class="button"
+      if="&current_user.administrator? || this.foto_file_size">Editar bicicleta</a>
+  </edit-link:>
   
   
 
@@ -154,8 +157,6 @@
       <error-messages/>
       <input type="hidden" name="user[disponible]" value="1"/>
       <submit label="Volver a liberar la bicicleta"/>
-      <a action="edit" param="edit-link" class="button"
-      if="&this.administrator? || this.foto_file_size">Editar bicicleta</a>
     </form>
   
     

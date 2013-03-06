@@ -26,32 +26,26 @@ class UsersController < ApplicationController
   def login
     if params[:email].blank?
     else
-      usuario_recibido = Direccion.find_by_email(params[:email])
-      if usuario_recibido.blank?
-        flash[:error] = "No existe ningún usuario con ese email."
-      else
-        usuario_recibido = usuario_recibido.user
-        # Si el usuario es un administrador, hay que pedir la contraseña
-        if usuario_recibido && usuario_recibido.administrator
+      usuario = User.find_by_name(params[:bicicleta])
+      if usuario && usuario.direccions.last && usuario.direccions.last.email == params[:email]
+        if usuario.administrator
           @admin_login = true
-          if params[:password] && User.authenticate(usuario_recibido.name, params[:password])
-            self.current_user = usuario_recibido
+          if params[:password] && User.authenticate(usuario.name, params[:password])
+            self.current_user = usuario
             flash[:error] = ""
             flash[:notice] = "Bienvenido!"
             redirect_to current_user
           else
             flash[:error] = "Los administradores tienen que introducir email y contraseña."
           end
-        # Login para los usuarios normales
-        else      
-          if usuario_recibido && params[:email] == usuario_recibido.direccion_activa.email
-            self.current_user = usuario_recibido
-            redirect_to usuario_recibido
-            flash[:notice] = "Login correcto."
-          else
-            flash[:error] = "No existe ningún usuario con esa dirección activa."
-          end
+        else
+          self.current_user = usuario
+          flash[:error] = ""
+          flash[:notice] = "Bienvenido!"
+          redirect_to current_user
         end
+      else
+        flash[:error] = "No existe ningún usuario con esa dirección activa."
       end
     end
   end

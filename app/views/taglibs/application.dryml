@@ -154,6 +154,12 @@
         <form action="&request.request_uri" class="login" param>
           <labelled-item-list param>
             <labelled-item>
+              <item-label param="bicicleta-label">Bicicleta</item-label>
+              <item-value>
+                <input type="string" name="bicicleta" id="bicicleta" class="string" param="bicicleta-input"/>
+              </item-value>
+            </labelled-item>
+            <labelled-item>
               <item-label param="email-label">Email</item-label>
               <item-value>
                 <input type="email" name="email" id="email" class="string" param="email-input"/>
