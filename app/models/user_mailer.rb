@@ -36,6 +36,7 @@ class UserMailer < ActionMailer::Base
     else
       recipients 'tecnicos@unoycero.com'
     end
+    from 'notificaciones@liberatubici.org'
     @peticion = peticion
   end
   
@@ -46,6 +47,7 @@ class UserMailer < ActionMailer::Base
     else
       recipients 'tecnicos@unoycero.com'
     end
+    from 'notificaciones@liberatubici.org'
     @peticion = peticion
   end
 
@@ -57,6 +59,7 @@ class UserMailer < ActionMailer::Base
     else
       recipients 'tecnicos@unoycero.com'
     end
+    from 'notificaciones@liberatubici.org'
     @bicicleta = bici
   end
 
