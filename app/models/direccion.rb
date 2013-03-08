@@ -5,7 +5,7 @@ class Direccion < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    email     :email_address, :required, :unique
+    email     :email_address, :required
     direccion :string, :name => true
     telefono :string
     fecha_alta :date

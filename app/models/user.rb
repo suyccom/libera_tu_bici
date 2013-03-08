@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   hobo_user_model
 
   fields do
-    name              :string, :required, :login => true
+    name              :string, :required, :unique, :login => true
     descripcion       :text
     administrator     :boolean, :default => false
     disponible        :boolean, :default => true
