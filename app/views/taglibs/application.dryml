@@ -165,10 +165,10 @@
                 <input type="email" name="email" id="email" class="string" param="email-input"/>
               </item-value>
             </labelled-item>
-            <labelled-item if="&@admin_login">
+            <labelled-item>
               <item-label param="password-label">Contraseña</item-label>
               <item-value>
-                <input type="password" name="password" id="password" class="string" param="password-input"/>
+                <input type="password" name="password" id="password" class="string" param="password-input"/> (Solo usuario administrador)
               </item-value>
             </labelled-item>
           </labelled-item-list>
