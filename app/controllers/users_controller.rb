@@ -62,10 +62,11 @@ class UsersController < ApplicationController
   end
 
   def recuperar
-    if params[:email]
+    if params[:email] && params[:bicicleta]
       direccion = Direccion.find_by_email(params[:email])
+      bicicleta = params[:bicicleta]
       usuario = direccion.user if direccion
-      if direccion && usuario && direccion == usuario.direccions.first
+      if direccion && usuario && bicicleta && direccion == usuario.direccions.first && bicicleta == usuario.name
         UserMailer.deliver_recuperar_bicicleta_prestamo(usuario) # Email a la direccion actual
         UserMailer.deliver_recuperar_bicicleta(usuario) # Email al dueño
         usuario.update_attributes(:devuelta => true, :disponible => false)
