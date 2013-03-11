@@ -156,19 +156,33 @@
             <labelled-item>
               <item-label param="bicicleta-label">Bicicleta</item-label>
               <item-value>
-                <input type="string" name="bicicleta" id="bicicleta" class="string" param="bicicleta-input"/>
+                <if test="&@admin_login">
+                  <input type="string" name="bicicleta" id="bicicleta" class="string" 
+                         param="bicicleta-input" value="#{params[:bicicleta]}" if="&@admin_login"/>
+                </if>
+                <else>
+                  <input type="string" name="bicicleta" id="bicicleta" class="string" 
+                         param="bicicleta-input" />
+                </else>
               </item-value>
             </labelled-item>
             <labelled-item>
               <item-label param="email-label">Email</item-label>
               <item-value>
-                <input type="email" name="email" id="email" class="string" param="email-input"/>
+                <if test="&@admin_login">
+                  <input type="email" name="email" id="email" class="string" 
+                         param="email-input" value="#{params[:email]}" if="&@admin_login"/>
+                </if>
+                <else>
+                  <input type="email" name="email" id="email" class="string" 
+                         param="email-input" />
+                </else>
               </item-value>
             </labelled-item>
-            <labelled-item>
+            <labelled-item if="&@admin_login">
               <item-label param="password-label">Contraseña</item-label>
               <item-value>
-                <input type="password" name="password" id="password" class="string" param="password-input"/> (Solo usuario administrador)
+                <input type="password" name="password" id="password" class="string" param="password-input"/>
               </item-value>
             </labelled-item>
           </labelled-item-list>

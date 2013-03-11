@@ -138,8 +138,18 @@
     <ul class="historico-bicicleta">
     <repeat with="&@user.direccions">
       <li>
-        <%= apano_fecha(this.created_at.to_date) %> - <this.direccion/> 
-        <a target="_blank" if="&this.foto_entrega_file_size" href="/#{this.foto_entrega.url :original}"><img src="/images/camara.png"/></a>
+      <%= apano_fecha(this.created_at.to_date) %> - <this.direccion/> 
+      <if test="&this.foto_entrega_file_size">
+        <a target="_blank" if="&this.foto_entrega_file_size" href="/#{this.foto_entrega.url :original}">
+          <img src="/images/camara.png"/>
+        </a>
+      </if>
+      <else>
+        <!-- Esta es la primera foto -->
+        <a target="_blank" if="&this.user.foto_file_size" href="/#{this.user.foto.url :original}">
+          <img src="/images/camara.png"/>
+        </a> 
+      </else>
       </li>
     </repeat>
     </ul>
@@ -170,6 +180,7 @@
 <def tag="mensaje-administrador">
   <h3>Información para los administradores de Libera tu Bici</h3>
   <p>Los administradores son usuarios un poco especial: no tienen foto ni direcciones ya que no son bicicletas como los demás. Sirven para editar y eliminar cualquier bicicleta.</p>
+  <p>Puedes cambiar tu contraseña de administrador <a href="/users/#{this.id}/edit">aquí</a>. No olvides tu contraseña ya que no se puede recuperar.</p>
 </def>
 
 
