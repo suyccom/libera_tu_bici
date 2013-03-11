@@ -1,4 +1,20 @@
-<edit-page/>
+<if test="&current_user.administrator?">
+<% @campos = "name, current_password, password, descripcion, direccion, foto" %>  
+</if>
+<else>
+<% @campos = "descripcion, direccion, foto" %>  
+</else>
+
+<edit-page>
+  <title:>
+    Libera tu Bici - <this.name/>
+  </title>
+
+<form:>
+  <field-list: fields="#{@campos}"/>
+</form:>
+
+</edit-page>
 
 <def tag="main-nav">
   <h2><a href="/">Inicio</a> > <a href="/bicicletas/#{this.id}">Bicicleta <this.name/></a> > Editar</h2>
@@ -6,3 +22,6 @@
     <p>Aquí puedes editar la información de tu bicicleta</p>
   </div>
 </def>
+
+
+
