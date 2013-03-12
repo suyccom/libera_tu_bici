@@ -5,7 +5,7 @@
   </title>
 
   <append-scripts:>
-    <%= GMap.header %>
+<!--    <%= GMap.header %>-->
   </append-scripts:>
   
   <edit-link: replace>
@@ -32,7 +32,7 @@
     
     <div style="width:403px; height:334px; float:right; background-color:#F5F5F5;" unless="&this.administrator?">
       <formulario-direccion if="&this.foto_file_size && !this.direccion_activa"/>
-      <mapa-google if="&this.direccion_activa"/>
+<!--      <mapa-google if="&this.direccion_activa"/>-->
       <field-list if="&this.direccion_activa" style="width:100%;" fields="descripcion, direccion_activa"/>
     </div>
     
@@ -107,9 +107,9 @@
 
 
 <def tag="mapa-google">
-  <google-map id="sites" direccion="&this.direccion_activa.direccion" width="400" height="200">
-    <marker-address address="&this.direccion_activa.direccion" title="geocoded" />
-  </google-map>
+<!--  <google-map id="sites" direccion="&this.direccion_activa.direccion" width="400" height="200">-->
+<!--    <marker-address address="&this.direccion_activa.direccion" title="geocoded" />-->
+<!--  </google-map>-->
 </def>
 
 
