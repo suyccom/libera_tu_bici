@@ -1,0 +1,11 @@
+Hola,
+
+Alguna bicicleta que has usado en Libera tu Bici ha cambiado de manos y te mandamos una lista con todas sus posiciones para que veas el viaje una bicicleta. La bicicleta que usaste ha estado en:
+
+<% for d in @peticion.user.direccions %>
+  <%= d.direccion %>
+<% end %>
+
+Muchas gracias,
+El equipo de Libera tu Bici
+

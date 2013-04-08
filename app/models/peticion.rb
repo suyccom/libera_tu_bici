@@ -11,7 +11,6 @@ class Peticion < ActiveRecord::Base
     mensaje
   end
 
-  #belongs_to :owner, :class_name => "User", :creator => true #El usuario que hace la petición
   belongs_to :user #La bicicleta que se ha pedido
   
   # --- Lifecycle --- #
