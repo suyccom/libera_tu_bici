@@ -1,5 +1,6 @@
 <if test="&current_user.administrator?">
 <% @campos = "name, descripcion, direccion, foto" %>  
+<% @campos += ", current_password, password" if @user.administrator? %> 
 </if>
 <else>
 <% @campos = "descripcion, direccion, foto" %>  
