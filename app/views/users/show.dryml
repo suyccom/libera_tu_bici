@@ -5,8 +5,21 @@
   </title>
 
   <append-scripts:>
-<!--    <%= GMap.header %>-->
+    <script src="/javascripts/OpenLayers.js"></script>
+    <script src="/javascripts/openlayers_libera.js"></script>
+    <script>
+      function cargar_markers_bicicletas() {
+        find_address('<%= @user.direccion_activa.direccion %>', center_map, 'none');
+        find_address('<%= @user.direccion_activa.direccion %>', add_marker, '/users/<%= @user.id %>');
+      }
+      document.observe("dom:loaded", function() {
+        openlayers_map();
+      });
+    </script>
   </append-scripts:>
+  <append-stylesheets:>
+    <link rel="stylesheet" href="/stylesheets/openlayers.css" type="text/css"/>
+  </append-stylesheets:>
   
   <edit-link: replace>
     <a action="edit" class="button"
@@ -32,7 +45,7 @@
     
     <div style="width:403px; height:334px; float:right; background-color:#F5F5F5;" unless="&this.administrator?">
       <formulario-direccion if="&this.foto_file_size && !this.direccion_activa"/>
-<!--      <mapa-google if="&this.direccion_activa"/>-->
+      <div id="map" style="width:100%; height:200px"></div>
       <field-list if="&this.direccion_activa" style="width:100%;" fields="descripcion, direccion_activa"/>
     </div>
     
@@ -103,13 +116,6 @@
       </div>
     </form>
   </div>
-</def>
-
-
-<def tag="mapa-google">
-<!--  <google-map id="sites" direccion="&this.direccion_activa.direccion" width="400" height="200">-->
-<!--    <marker-address address="&this.direccion_activa.direccion" title="geocoded" />-->
-<!--  </google-map>-->
 </def>
 
 
