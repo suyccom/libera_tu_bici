@@ -49,6 +49,10 @@ class Direccion < ActiveRecord::Base
         end
       end
     end
+    # Cuando se crea la primera dirección clonamos la foto
+    if user.direccions.count == 1
+      self.update_attribute(:foto_entrega, user.foto)
+    end
   end
 
   # --- Permissions --- #

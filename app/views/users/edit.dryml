@@ -1,8 +1,8 @@
 <if test="&current_user.administrator?">
-<% @campos = "name, current_password, password, descripcion, direccion, foto" %>  
+<% @campos = "name, current_password, password, descripcion, direccion, foto_entrega" %>  
 </if>
 <else>
-<% @campos = "descripcion, direccion, foto" %>  
+<% @campos = "descripcion, direccion, foto_entrega" %>  
 </else>
 
 <edit-page>
@@ -11,7 +11,9 @@
   </title>
 
 <form:>
-  <field-list: fields="#{@campos}"/>
+  <field-list: fields="#{@campos}">
+    <foto-entrega-label:>Foto</foto-entrega-label:>
+  </field-list:>
 </form:>
 
 </edit-page>
