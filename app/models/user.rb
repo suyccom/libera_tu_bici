@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 
   # --- Campo adicional para la edición de la dirección --- #
   def direccion
-    if direccion_activa
+    if direccion_activa && direccion_activa.direccion
       direccion_activa.direccion
     else
       ''
