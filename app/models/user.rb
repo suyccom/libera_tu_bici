@@ -57,6 +57,22 @@ class User < ActiveRecord::Base
       direccion_activa.update_attribute(:email, direccion_email)
     end
   end
+  # Campo adicional para editar la foto
+  def foto_entrega
+    if direccion_activa
+      direccion_activa.foto_entrega
+    else
+      ''
+    end
+  end
+  def foto_entrega=(foto_entrega)
+    if direccion_activa
+      direccion_activa.update_attribute(:foto_entrega, foto_entrega)
+    end
+  end
+  
+  
+  
   # --- Calculamos la fecha en la que la bici volverá a ser liberada --- #
   def fecha_proxima_liberacion
     if devuelta
