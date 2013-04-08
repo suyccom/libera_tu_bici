@@ -108,3 +108,5 @@ color:#fff;
   background-color:green;
 }
 
+
+img[id *= "_innerImage"]:hover { cursor:pointer; }

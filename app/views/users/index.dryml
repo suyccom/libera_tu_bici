@@ -1,47 +1,36 @@
 <index-page>
-
-
   <title:>
     Libera tu Bici - Inicio
   </title>
 
-<!--Título de las bicis-->
   <content-header:>
-<!--    <div class="filter" style="float:right;">-->
-<!--          Filtrar por estado: <filter-menu no-filter=""-->
-<!--  param-name="disponible" options="&[true,'']"/>-->
-<!--    </div>-->
     <h2 class="heading">Hay <%= @users.size %> bicicletas disponibles</h2>
-
   </content-header:>
 
-
-<!-- Mapa de Google -->
+  <!-- Mapa de OpenStreetMaps -->
   <append-scripts:>
-<!--    <%= GMap.header %>-->
+    <script src="/javascripts/OpenLayers.js"></script>
+    <script src="/javascripts/openlayers_libera.js"></script>
+    <script>
+      function cargar_markers_bicicletas() {
+        <% for user in @users %>
+          find_address('<%= user.direccion_activa.direccion %>', add_marker, '/users/<%= user.id %>');
+        <% end %>
+      }
+      document.observe("dom:loaded", function() {
+        openlayers_map();
+      });
+    </script>
   </append-scripts:>
-
+  <append-stylesheets:>
+    <link rel="stylesheet" href="/stylesheets/openlayers.css" type="text/css"/>
+  </append-stylesheets:>
   <prepend-content:>
-<!--    <google-map unless="&params[:necesito_una_bici]" id="sites" direccion="Bilbao" width="100%" height="400">-->
-<!--      <repeat with="&@users">-->
-<!--        <marker-address-verde address="&this.direccion_activa.direccion" title="&this.name" info="-->
-<!--          <p><a href='/users/#{this.id}'><img src='#{this.foto.url :small}'/></a></p>-->
-<!--          <p><a href='/users/#{this.id}'>#{this.name}</a></p>-->
-<!--        "/>-->
-<!--      </repeat>-->
-<!--      <repeat with="&@bicis_no_disponibles">-->
-<!--        <marker-address address="&this.direccion_activa.direccion" title="&this.name" info="-->
-<!--          <p><a href='/users/#{this.id}'><img src='#{this.foto.url :small}'/></a></p>-->
-<!--          <p><a href='/users/#{this.id}'>#{this.name}</a></p>-->
-<!--        "/>-->
-<!--      </repeat>-->
-<!--          -->
-<!--          -->
-<!--    </google-map>-->
+    <div id="map" style="width:100%; height:400px"></div>
   </prepend-content>
 
 
-<!-- Pie de Página -->
+  <!-- Pie de Página -->
   <content-body:>
     <collection />
     <p style="clear:both;">&nbsp;</p>
@@ -49,6 +38,5 @@
     <collection with="&@bicis_no_disponibles"/>
     <p style="clear:both;">&nbsp;</p>
   </content-body:>
-
 
 </index-page>
