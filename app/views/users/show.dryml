@@ -1,8 +1,6 @@
 <show-page>
 
-  <title:>
-    Libera tu Bici - <this.name/>
-  </title>
+  <title:>Libera tu Bici - <this.name/></title>
 
   <append-scripts:>
 <!--    <%= GMap.header %>-->
@@ -12,28 +10,31 @@
     <a action="edit" class="button"
       if="&current_user.administrator? || this.foto_file_size">Editar bicicleta</a>
   </edit-link:>
-  
-  
 
   <field-list: replace>
     <!-- Si la foto no existe, mostrar formulario para subirla -->
     <formulario-subir-foto unless="&this.foto_file_size || this.administrator?"/>
-    
+
     <% 
      url_foto = this.foto.url :medium 
      if this.direccions.last
        url_foto = this.direccions.last.foto_entrega :medium if this.direccions.last.foto_entrega_file_size
      end
     %>
-    
-    
-    
+
     <img style="float:left;width:500px;height:334px;" src="/#{url_foto}" alt="foto de la bicicleta" if="&this.foto_file_size"/>
     
     <div style="width:403px; height:334px; float:right; background-color:#F5F5F5;" unless="&this.administrator?">
       <formulario-direccion if="&this.foto_file_size && !this.direccion_activa"/>
 <!--      <mapa-google if="&this.direccion_activa"/>-->
-      <field-list if="&this.direccion_activa" style="width:100%;" fields="descripcion, direccion_activa"/>
+<%
+      campos = "descripcion, direccion_activa" 
+      campos = "descripcion, direccion_activa, direccion_activa.email" if current_user.administrator?
+
+%>
+
+
+      <field-list if="&this.direccion_activa" style="width:100%;" fields="#{campos}"/>
     </div>
     
     
