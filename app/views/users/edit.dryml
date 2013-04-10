@@ -1,8 +1,9 @@
 <if test="&current_user.administrator?">
-<% @campos = "name, current_password, password, descripcion, direccion, foto_entrega" %>  
+  <% @campos = "name, current_password, password, descripcion, direccion, foto_entrega" %>
+  <% @campos += ", current_password, password" if @user.administrator? %>
 </if>
 <else>
-<% @campos = "descripcion, direccion, foto_entrega" %>  
+  <% @campos = "descripcion, direccion, foto_entrega" %>
 </else>
 
 <edit-page>
@@ -10,11 +11,11 @@
     Libera tu Bici - <this.name/>
   </title>
 
-<form:>
-  <field-list: fields="#{@campos}">
-    <foto-entrega-label:>Foto</foto-entrega-label:>
-  </field-list:>
-</form:>
+  <form:>
+    <field-list: fields="#{@campos}">
+      <foto-entrega-label:>Foto</foto-entrega-label:>
+    </field-list:>
+  </form:>
 
 </edit-page>
 
@@ -24,6 +25,3 @@
     <p>Aquí puedes editar la información de tu bicicleta</p>
   </div>
 </def>
-
-
-
