@@ -14,7 +14,10 @@
     <script>
       function cargar_markers_bicicletas() {
         <% for user in @users %>
-          find_address('<%= user.direccion_activa.direccion %>', add_marker, '/users/<%= user.id %>');
+          find_address('<%= user.direccion_activa.direccion %>', add_marker, 'green', '/users/<%= user.id %>');
+        <% end %>
+        <% for user in @bicis_no_disponibles %>
+          find_address('<%= user.direccion_activa.direccion %>', add_marker, 'red', '/users/<%= user.id %>');
         <% end %>
       }
       document.observe("dom:loaded", function() {
