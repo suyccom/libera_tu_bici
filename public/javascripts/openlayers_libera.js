@@ -6,7 +6,7 @@ function openlayers_map() {
     layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
     map.addLayer(layer);
     
-    // Centramos el mapa en Bilbao
+    // Centramos el mapa en Vitoria
     find_address('Vitoria', center_map, 'none');
     
     // Añadimos una capa de Markers
@@ -19,29 +19,7 @@ function openlayers_map() {
     //   find_address('Barakaldo', add_marker, '/users/1');
     cargar_markers_bicicletas();
 
-
-
-//    map.addControl(
-//        new OpenLayers.Control.Navigation({
-//            dragPanOptions: {
-//                enableKinetic: true
-//            }
-//        }),
-//        new OpenLayers.Control.Attribution(),
-//        new OpenLayers.Control.Zoom()
-//    );
-
-
-    
-
-    
 }
-
-
-
-
-
-
 
 
 function find_address(address, callback, url) {
@@ -58,7 +36,7 @@ function find_address(address, callback, url) {
 
 
 function requestFailure(response) {
-  alert("An error occurred while communicating with the OpenLS service. Please try again.");
+  alert("Ha ocurrido un error al comunicar con el servicio de mapas. Por favor inténtelo de nuevo.");
 }
 
 
@@ -72,10 +50,6 @@ function center_map(response, url) {
 }
 
 
-
-
-
-
 function add_marker(response, url) {
   // Procesamos la respuesta
   result = JSON.parse(response.responseText)
@@ -87,7 +61,7 @@ function add_marker(response, url) {
   // Creamos el icono
   var size = new OpenLayers.Size(21,25);
   var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-  var icon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png',size,offset);
+  var icon = new OpenLayers.Icon('/javascripts/img/marker-green.png', size, offset);
   marker = new OpenLayers.Marker(foundPosition,icon);
   
   // Al hacer clic, ir a la URL
@@ -99,19 +73,4 @@ function add_marker(response, url) {
   // Añadimos el icono a la capa de markers
   markers.addMarker(marker);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
