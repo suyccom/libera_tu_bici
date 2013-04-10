@@ -7,8 +7,8 @@
     <script src="/javascripts/openlayers_libera.js"></script>
     <script>
       function cargar_markers_bicicletas() {
-        find_address('<%= @user.direccion_activa.direccion %>', center_map, 'none');
-        find_address('<%= @user.direccion_activa.direccion %>', add_marker, '/users/<%= @user.id %>');
+        find_address('<%= @user.direccion_activa.direccion %>', center_map, 'none', 'none');
+        find_address('<%= @user.direccion_activa.direccion %>', add_marker, 'blue', '/users/<%= @user.id %>');
       }
       document.observe("dom:loaded", function() {
         openlayers_map();
