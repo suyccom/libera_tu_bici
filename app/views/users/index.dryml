@@ -14,10 +14,14 @@
     <script>
       function cargar_markers_bicicletas() {
         <% for user in @users %>
-          find_address('<%= user.direccion_activa.direccion %>', add_marker, 'green', '/users/<%= user.id %>');
+          <% if user.direccion_activa && user.direccion_activa.longitude %>
+            add_marker(<%= user.direccion_activa.longitude %>, <%= user.direccion_activa.latitude %>, 'green', '/users/<%= user.id %>');
+          <% end %>
         <% end %>
         <% for user in @bicis_no_disponibles %>
-          find_address('<%= user.direccion_activa.direccion %>', add_marker, 'red', '/users/<%= user.id %>');
+          <% if user.direccion_activa && user.direccion_activa.longitude %>
+            add_marker(<%= user.direccion_activa.longitude %>, <%= user.direccion_activa.latitude %>, 'red', '/users/<%= user.id %>');
+          <% end %>
         <% end %>
       }
       document.observe("dom:loaded", function() {

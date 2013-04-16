@@ -3,7 +3,7 @@
 <def tag="form" for="Direccion">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="email, direccion, telefono, fecha_alta, fecha_baja, foto_entrega_file_name, foto_entrega_content_type, foto_entrega_file_size, foto_entrega_updated_at, user" param/>
+    <field-list fields="email, direccion, telefono, fecha_alta, fecha_baja, latitude, longitude, foto_entrega_file_name, foto_entrega_content_type, foto_entrega_file_size, foto_entrega_updated_at, user" param/>
     <div param="actions">
       <submit label="#{ht 'direccions.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
