@@ -10,8 +10,14 @@ class Direccion < ActiveRecord::Base
     telefono :string
     fecha_alta :date
     fecha_baja :date
+    latitude :float
+    longitude :float
     timestamps
   end
+  
+  # https://github.com/alexreisner/geocoder/tree/rails2
+  geocoded_by :direccion
+  after_validation :fetch_coordinates
   
   belongs_to :user
   

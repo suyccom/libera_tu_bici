@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130227131701) do
+ActiveRecord::Schema.define(:version => 20130416081426) do
 
   create_table "direccions", :force => true do |t|
     t.string   "email"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 20130227131701) do
     t.string   "foto_entrega_content_type"
     t.integer  "foto_entrega_file_size"
     t.datetime "foto_entrega_updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "direccions", ["user_id"], :name => "index_direccions_on_user_id"
