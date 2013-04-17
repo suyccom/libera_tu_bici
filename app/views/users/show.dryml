@@ -3,8 +3,21 @@
   <title:>Libera tu Bici - <this.name/></title>
 
   <append-scripts:>
-<!--    <%= GMap.header %>-->
+    <script src="/javascripts/OpenLayers.js"></script>
+    <script src="/javascripts/openlayers_libera.js"></script>
+    <script>
+      function cargar_markers_bicicletas() {
+        center_map(<%= @user.direccion_activa.longitude %>, <%= @user.direccion_activa.latitude %>);
+        add_marker(<%= @user.direccion_activa.longitude %>, <%= @user.direccion_activa.latitude %>, 'blue', '/users/<%= @user.id %>');
+      }
+      document.observe("dom:loaded", function() {
+        openlayers_map();
+      });
+    </script>
   </append-scripts:>
+  <append-stylesheets:>
+    <link rel="stylesheet" href="/stylesheets/openlayers.css" type="text/css"/>
+  </append-stylesheets:>
   
   <edit-link: replace>
     <a action="edit" class="button"
@@ -16,53 +29,31 @@
     <formulario-subir-foto unless="&this.foto_file_size || this.administrator?"/>
 
     <% 
-     url_foto = this.foto.url :medium 
+     url_foto = this.foto :medium
      if this.direccions.last
        url_foto = this.direccions.last.foto_entrega :medium if this.direccions.last.foto_entrega_file_size
      end
     %>
 
     <img style="float:left;width:500px;height:334px;" src="/#{url_foto}" alt="foto de la bicicleta" if="&this.foto_file_size"/>
-    
+
     <div style="width:403px; height:334px; float:right; background-color:#F5F5F5;" unless="&this.administrator?">
       <formulario-direccion if="&this.foto_file_size && !this.direccion_activa"/>
-<!--      <mapa-google if="&this.direccion_activa"/>-->
-<%
-      campos = "descripcion, direccion_activa" 
-      campos = "descripcion, direccion_activa, direccion_activa.email" if current_user.administrator?
-
-%>
-
-
+      <%
+        campos = "descripcion, direccion_activa"
+        campos = "descripcion, direccion_activa, direccion_activa.email" if current_user.administrator?
+      %>
+      <div id="map" style="width:100%; height:200px"></div>
       <field-list if="&this.direccion_activa" style="width:100%;" fields="#{campos}"/>
     </div>
-    
-    
+
     <div style="clear:both">&nbsp;</div>
-    
     <peticiones-de-bicicleta/>
     <formulario-peticion if="&this.disponible"/>
-
-    
-    
     <br/><historico-bicicleta unless="&this.administrator?"/>
-    
     <mensaje-administrador if="&this.administrator?"/>
-
   </field-list:>
-
 </show-page>
-
-
-
-
-
-
-
-
-
-
-
 
 <def tag="peticiones-de-bicicleta">
   <collection:peticions param>
@@ -70,26 +61,28 @@
   </collection>
 </def>
 
-
 <def tag="formulario-peticion">
   <section style="background-color:#F5F5F5;" param="add-to-collection" if="&can_create?(@user.peticions)">
     <div part="mensaje">
-      <h3 style="background-color:#9AFF9A; padding:10px;" if="&@mensaje_ok"><%= @mensaje_ok %></h3>
-      <h3 style="background-color:#FF9D9A; padding:10px;" if="&@mensaje_fallo"><%= @mensaje_fallo %></h3>
-      <h3 unless="&@mensaje">Esta bicicleta está disponible. Pídela!</h3>
+      <h3 style="background-color:#9AFF9A; padding:10px;" if="&@mensaje_ok">
+        <%= @mensaje_ok %>
+      </h3>
+      <h3 style="background-color:#FF9D9A; padding:10px;" if="&@mensaje_fallo">
+        <%= @mensaje_fallo %>
+      </h3>
+      <h3 unless="&@mensaje">
+        Esta bicicleta está disponible. ¡Pídela!
+      </h3>
     </div>
-      <form with="&@peticion" update="mensaje" reset-form without-cancel param>
-        <field-list: fields="email, mensaje"/>
-        <after-field-list:>
-          <input type="hidden" name="peticion[user_id]" value="&@user.id"/>
-        </after-field-list:>
-        <submit: label="#{ht 'peticions.actions.add', :default=>['Add'] }"/>
-      </form>
-    
+    <form with="&@peticion" update="mensaje" reset-form without-cancel param>
+      <field-list: fields="email, mensaje"/>
+      <after-field-list:>
+        <input type="hidden" name="peticion[user_id]" value="&@user.id"/>
+      </after-field-list:>
+      <submit: label="#{ht 'peticions.actions.add', :default=>['Add'] }"/>
+    </form>
   </section>
-  
 </def>
-
 
 <def tag="formulario-subir-foto">
   <div style="float:left;width:480px;height:314px;padding:10px;background-color:#F8FA84;">
@@ -105,14 +98,6 @@
     </form>
   </div>
 </def>
-
-
-<def tag="mapa-google">
-<!--  <google-map id="sites" direccion="&this.direccion_activa.direccion" width="400" height="200">-->
-<!--    <marker-address address="&this.direccion_activa.direccion" title="geocoded" />-->
-<!--  </google-map>-->
-</def>
-
 
 <def tag="formulario-direccion">
   <h2 style="text-align:center;">
@@ -131,61 +116,40 @@
   </form>
 </def>
 
-
-
 <def tag="historico-bicicleta">
   <div style="background-color:#FFF8DC; padding:5px 15px 15px 15px;">
     <h2>Historial de esta bicicleta</h2>
     <ul class="historico-bicicleta">
     <repeat with="&@user.direccions">
       <li>
-      <%= apano_fecha(this.created_at.to_date) %> - <this.direccion/> 
-      <if test="&this.foto_entrega_file_size">
+        <%= apano_fecha(this.created_at.to_date) %> - <this.direccion/> 
         <a target="_blank" if="&this.foto_entrega_file_size" href="/#{this.foto_entrega.url :original}">
           <img src="/images/camara.png"/>
         </a>
-      </if>
-      <else>
-        <!-- Esta es la primera foto -->
-        <a target="_blank" if="&this.user.foto_file_size" href="/#{this.user.foto.url :original}">
-          <img src="/images/camara.png"/>
-        </a> 
-      </else>
       </li>
     </repeat>
     </ul>
   </div>
 </def>
 
-
 <def tag="bicicleta-no-disponible">
-
   <section style="margin-left: 28px; clear:both; color:black; width:60%; padding:7px 15px 10px 15px; background-color:#FFF787;">
     <h3>Esta bicicleta no está disponible en este momento.</h3>
-    
+
     <form merge>
       <h3>¿Quieres pasar a otra persona esta bicicleta?</h3>     
       <error-messages/>
       <input type="hidden" name="user[disponible]" value="1"/>
       <submit label="Volver a liberar la bicicleta"/>
     </form>
-  
-    
-  
-
-  </section>    
-
+  </section>
 </def>
-
 
 <def tag="mensaje-administrador">
   <h3>Información para los administradores de Libera tu Bici</h3>
   <p>Los administradores son usuarios un poco especial: no tienen foto ni direcciones ya que no son bicicletas como los demás. Sirven para editar y eliminar cualquier bicicleta.</p>
   <p>Puedes cambiar tu contraseña de administrador <a href="/users/#{this.id}/edit">aquí</a>. No olvides tu contraseña ya que no se puede recuperar.</p>
 </def>
-
-
-
 
 <def tag="main-nav">
   <div class="presentacion-bloque">

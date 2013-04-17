@@ -10,8 +10,14 @@ class Direccion < ActiveRecord::Base
     telefono :string
     fecha_alta :date
     fecha_baja :date
+    latitude :float
+    longitude :float
     timestamps
   end
+  
+  # https://github.com/alexreisner/geocoder/tree/rails2
+  geocoded_by :direccion
+  after_validation :fetch_coordinates
   
   belongs_to :user
   
@@ -48,6 +54,10 @@ class Direccion < ActiveRecord::Base
           peticion.update_attribute(:estado, "denegada")
         end
       end
+    end
+    # Cuando se crea la primera dirección clonamos la foto
+    if user.direccions.count == 1
+      self.update_attribute(:foto_entrega, user.foto)
     end
   end
 
