@@ -60,6 +60,11 @@ class UserMailer < ActionMailer::Base
     end
     from 'notificaciones@liberatubici.org'
     @peticion = peticion
+    if peticion.user.direccion_activa.foto_entrega.to_file
+      attachment :content_type => 'image/jpeg',
+                 :body => peticion.user.direccion_activa.foto_entrega.to_file(:medium).read,
+                 :filename => 'foto_entrega.jpg'
+    end
   end
 
   def bicicleta_reliberada(bici)
