@@ -13,14 +13,14 @@
     <script src="/javascripts/openlayers_libera.js"></script>
     <script>
       function cargar_markers_bicicletas() {
-        <% for user in @users %>
-          <% if user.direccion_activa && user.direccion_activa.longitude %>
-            add_marker(<%= user.direccion_activa.longitude %>, <%= user.direccion_activa.latitude %>, 'green', '/users/<%= user.id %>');
-          <% end %>
-        <% end %>
         <% for user in @bicis_no_disponibles %>
           <% if user.direccion_activa && user.direccion_activa.longitude %>
             add_marker(<%= user.direccion_activa.longitude %>, <%= user.direccion_activa.latitude %>, 'red', '/users/<%= user.id %>');
+          <% end %>
+        <% end %>
+        <% for user in @users %>
+          <% if user.direccion_activa && user.direccion_activa.longitude %>
+            add_marker(<%= user.direccion_activa.longitude %>, <%= user.direccion_activa.latitude %>, 'green', '/users/<%= user.id %>');
           <% end %>
         <% end %>
       }
