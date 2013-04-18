@@ -24,8 +24,8 @@ private
       end
     end  
  
-    # Envío de error por mensajería Jabber
-    if Rails.env.production?
+    # Envío de error por mensajería Jabber (excluimos los errores 404)
+    if Rails.env.production? && exception.class != ActionController::RoutingError
       # Preparar mensaje
       Socket.do_not_reverse_lookup = false
       mensaje = "Ha ocurrido un error en #{RAILS_ROOT.split('/').last}: \n" +
