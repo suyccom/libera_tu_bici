@@ -7,8 +7,10 @@
     <script src="/javascripts/openlayers_libera.js"></script>
     <script>
       function cargar_markers_bicicletas() {
+        <% if @user.direccion_activa %>
         center_map(<%= @user.direccion_activa.longitude %>, <%= @user.direccion_activa.latitude %>);
         add_marker(<%= @user.direccion_activa.longitude %>, <%= @user.direccion_activa.latitude %>, 'blue', '/users/<%= @user.id %>');
+        <% end %>
       }
       document.observe("dom:loaded", function() {
         openlayers_map();
