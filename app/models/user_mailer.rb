@@ -51,6 +51,22 @@ class UserMailer < ActionMailer::Base
     @peticion = peticion
   end
 
+  def notificacion_todos(peticion,destinatarios)
+    subject 'La bici que usaste tiene un nuevo dueño'
+    if Rails.env.production?
+      bcc destinatarios
+    else
+      recipients 'tecnicos@unoycero.com'
+    end
+    from 'notificaciones@liberatubici.org'
+    @peticion = peticion
+    if peticion.user.direccion_activa.foto_entrega.to_file
+      attachment :content_type => 'image/jpeg',
+                 :body => peticion.user.direccion_activa.foto_entrega.to_file(:medium).read,
+                 :filename => 'foto_entrega.jpg'
+    end
+  end
+
   def bicicleta_reliberada(bici)
     subject 'Libera tu bici: Ha pasado un año desde que adquiriste tu bicicleta'
     if Rails.env.production?
