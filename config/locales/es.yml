@@ -41,8 +41,8 @@ es:
       subheading: "Para:"
 
     login:
-      title: "Iniciar sesión"
-      heading: "Iniciar sesión"
+      title: "Editar bicicleta"
+      heading: "Editar bicicleta"
       email_address: "Correo eléctronico"
       name: "Nombre"
       password: "Contraseña"
@@ -98,7 +98,7 @@ es:
       send: "Enviar"
       remove: "Eliminar"
       signup: "Registro"
-      login: "Iniciar sesión"
+      login: "Editar bicicleta"
       logout: "Cerrar sesión"
       logged_in_as: "%{name}"
       account: "Mi cuenta"
