@@ -24,6 +24,7 @@
   <edit-link: replace>
     <a action="edit" class="button"
       if="&current_user.administrator? || this.foto_file_size">Editar bicicleta</a>
+    <span if="&current_user.administrator?">Email: <strong><this.email-address/></strong></span>
   </edit-link:>
 
   <field-list: replace>
