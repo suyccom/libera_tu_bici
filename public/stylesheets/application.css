@@ -1,3 +1,7 @@
+.pull-left{
+  float:left;
+}  
+
 .add-to-collection form .submit-button {
     margin-left: 145px;
 }
@@ -26,10 +30,14 @@ a:hover#gandi-footer, a#gandi-footer {
 
 
 /* Histórico de cada bicicleta */
-.historico-bicicleta li a{
-  border:none;
-  margin:0;
-  background-color:none;
+.historico-bicicleta-box{
+  clear:both; padding:10px 0;
+}
+.historico-bicicleta-box img{
+  border-radius:5px; background-color: transparent;
+}
+.historico-bicicleta-text{
+  margin-left:110px;
 }
 
 
