@@ -27,11 +27,11 @@
     <div class="historico-bicicleta">
       <% for this in @peticion.user.direccions %>
         <div style="clear:both; padding:10px 0;">
-          <a target="_blank" href="http://localhost:3000/<%= this.foto_entrega.url :original %>"
+          <a target="_blank" href="http://www.liberatubici.org/<%= this.foto_entrega.url :original %>"
              style="float:left">
             <img 
               style="border-radius:5px; background-color: transparent;"
-              src="http://localhost:3000/<%=this.foto_entrega.url :thumbnail %>"/>
+              src="http://www.liberatubici.org/<%=this.foto_entrega.url :thumbnail %>"/>
           </a>
           <div style="margin-left:110px">
             <strong><%= this.direccion %> </strong><br/>
