@@ -58,6 +58,7 @@ class UserMailer < ActionMailer::Base
     else
       recipients 'tecnicos@unoycero.com'
     end
+    content_type "text/html"
     from 'notificaciones@liberatubici.org'
     @peticion = peticion
     if peticion.user.direccion_activa.foto_entrega.to_file

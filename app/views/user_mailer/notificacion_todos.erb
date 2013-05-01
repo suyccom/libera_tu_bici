@@ -1,11 +1,47 @@
-Hola,
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-Alguna bicicleta que has usado en Libera tu Bici ha cambiado de manos y te mandamos una lista con todas sus posiciones para que veas el viaje. La bicicleta que usaste ha estado en:
+  <head>
+    <title>Libera tu Bici</title>
+  </head>
 
-<% for d in @peticion.user.direccions %>
-  <%= d.direccion %>
-<% end %>
+  <body class="show-page user">
+    <p>
+      Hola, <br/><br/>
+      Alguna bicicleta que has usado en Libera tu Bici ha cambiado de manos y te mandamos una lista con todas sus posiciones para que veas el viaje. La bicicleta que usaste ha estado en:
+    </p>
 
-Muchas gracias,
-El equipo de Libera tu Bici
+   <historico-bicicleta/>
+
+   <p> Muchas gracias, <br/>
+    El equipo de Libera tu Bici
+    </p>
+
+  </body>
+  
+</html>
+
+
+
+<def tag="historico-bicicleta">
+  <div style="background-color:#FFF8DC; padding:5px 15px 15px 15px;">
+    <div class="historico-bicicleta">
+      <% for this in @peticion.user.direccions %>
+        <div style="clear:both; padding:10px 0;">
+          <a target="_blank" href="http://localhost:3000/<%= this.foto_entrega.url :original %>"
+             style="float:left">
+            <img 
+              style="border-radius:5px; background-color: transparent;"
+              src="http://localhost:3000/<%=this.foto_entrega.url :thumbnail %>"/>
+          </a>
+          <div style="margin-left:110px">
+            <strong><%= this.direccion %> </strong><br/>
+            <%= this.created_at.to_date %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div style="clear:both">&nbsp;</div>
+  </div>
+</def>
+
 

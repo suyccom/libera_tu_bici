@@ -122,16 +122,21 @@
 <def tag="historico-bicicleta">
   <div style="background-color:#FFF8DC; padding:5px 15px 15px 15px;">
     <h2>Historial de esta bicicleta</h2>
-    <ul class="historico-bicicleta">
-    <repeat with="&@user.direccions">
-      <li>
-        <%= apano_fecha(this.created_at.to_date) %> - <this.direccion/> 
-        <a target="_blank" if="&this.foto_entrega_file_size" href="/#{this.foto_entrega.url :original}">
-          <img src="/images/camara.png"/>
-        </a>
-      </li>
-    </repeat>
-    </ul>
+    <div class="historico-bicicleta">
+      <repeat with="&@user.direccions">
+        <div class="historico-bicicleta-box">
+          <a target="_blank" if="&this.foto_entrega_file_size" href="/#{this.foto_entrega.url :original}"
+             class="pull-left">
+            <img src="/#{this.foto_entrega.url :thumbnail}"/>
+          </a>
+          <div class="historico-bicicleta-text">
+            <strong><this.direccion/> </strong><br/>
+            <%= apano_fecha(this.created_at.to_date) %>
+          </div>
+        </div>
+      </repeat>
+    </div>
+    <div style="clear:both">&nbsp;</div>
   </div>
 </def>
 
