@@ -3,11 +3,8 @@ class UsersController < ApplicationController
   hobo_user_controller
 
   auto_actions :all, :except => [ :new, :create ]
-  
+
   def show
-    if params[:masinfo]
-      @test = "patata - nos han pasado el ID " + params[:masinfo]
-    end
     @peticion = Peticion.new
     @nueva_direccion = Direccion.new
     hobo_show do
@@ -21,7 +18,6 @@ class UsersController < ApplicationController
       redirect_to @user if valid?
     end
   end
-
 
   def login
     if params[:email].blank?
@@ -49,7 +45,7 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   # Si un usuario ya está logueado y pulsa en liberar bicicleta, cerrar su sesión automáticamente
   def signup
     unless current_user.class == Guest
@@ -79,12 +75,18 @@ class UsersController < ApplicationController
 
   def index
     @estado_actual = params[:estado]
-    
     @bicis_no_disponibles = User.not_disponible
-  
     hobo_index User.apply_scopes(
       :disponible => true,
       :not_administrator => true,
       :con_direccion_activa => true)
+  end
+  
+  def update
+    hobo_update do
+      if params[:direccion]
+        this.update_attribute(:direccion, params[:direccion])
+      end
+    end
   end
 end

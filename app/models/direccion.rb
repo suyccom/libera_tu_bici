@@ -1,6 +1,8 @@
 class Direccion < ActiveRecord::Base
 
-  #Nota: esta clase lleva un registro de todos los usuarios que han tenido la bicicleta. Fecha alta y fecha baja guardan la fecha en que el estado ha cambiado
+  # Nota: esta clase lleva un registro de todos los usuarios que han tenido la 
+  # bicicleta. Fecha alta y fecha baja guardan la fecha en que el estado ha 
+  # cambiado
 
   hobo_model # Don't put anything above this
 
@@ -14,15 +16,14 @@ class Direccion < ActiveRecord::Base
     longitude :float
     timestamps
   end
-  
+
   # https://github.com/alexreisner/geocoder/tree/rails2
   geocoded_by :direccion
   after_validation :fetch_coordinates
-  
+  before_update :fetch_coordinates
+
   belongs_to :user
-  
   has_one :bicicleta_en_uso, :class_name => "Bicicleta"
-  
   has_attached_file :foto_entrega,
           :styles => {
             :original => ["1000x1000", :jpg ],

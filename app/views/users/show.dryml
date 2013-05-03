@@ -110,7 +110,6 @@
 
   <form with="&Direccion.new" merge>
     <error-messages param/>
-    <!-- NOS FALTA EL HIDDEN FIELD CON EL USER AL QUE ASOCIARLO -->
     <input type="hidden" name="direccion[user_id]" value="&@user.id"/>
     <field-list fields="direccion, email"/>
     <div param="actions">
