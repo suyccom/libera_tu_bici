@@ -16,6 +16,7 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 .rvmrc
+.rbenv-version
 config/environment.rb
 public/images/fotos
 public/images/fotos_entregas
