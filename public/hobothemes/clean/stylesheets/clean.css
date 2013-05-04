@@ -15,7 +15,6 @@ background-color:#EEEBE2 }
 .section.content {
   background-repeat: repeat-x;
   margin-right:42px;
-  padding-bottom:20px;
 }
 .button {color: white; background: #5B8BA0;}
 .button:hover {background-color: #193440;}
@@ -213,7 +212,11 @@ form .actions input { margin: 0; }
 .user-account-page .change-password {width: 350px;}
 .user-account-page .change-password th {width: 150px;}
 
-.page-footer {text-align: right; color: #ccc; padding: 5px; font-size: 11px;}
+.page-footer {text-align:right;color:#ccc;font-size:11px;}
+.page-footer div{margin-right: 42px;background-color:white;}
+.page-footer div.bizizbizi{float:left; color:black; width:300px; padding:1em 0 1em 2em;}
+.page-footer div.credits{padding:1em 0;}
+.page-footer div.bizizbizi a:nth-child(3){color:white;background-color:black;border-bottom:none;padding:0.2em;}
 
 /* pagination nav, needs a more specific class on the wrapper */
 .content-body .nav {margin-bottom: 10px; font-size: 11px;}

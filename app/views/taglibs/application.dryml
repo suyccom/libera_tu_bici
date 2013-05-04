@@ -173,36 +173,37 @@
   <old-editor merge blank-message="(click para editar)" />
 </extend>
 
-<!-- Changes to the page layout -->
+<!-- Personalización del pié -->
 <extend tag="page">
   <old-page merge> 
-    <!-- Change footer to include message -->
     <footer: param>
-      <p style="float:left; color:black; width:300px;">
+      <div class='bizizbizi'>
         <a href="http://www.bizizbizi.org"><img src="/images/bizizbizi.png" 
         align="left" style="margin: 0 4px; padding-top:3px;"/></a>
         Financiado por el ayuntamiento de Bilbao.
         <br/>
         Ideada por <a href="http://www.bizizbizi.org">Biziz Bizi</a> - 
         Asociación de Ciclistas Urbanos y Cicloturistas de Bilbao.
-      </p>
-      <div class='footer-item'>
-        <a id='suyccom-footer' class='tc'
-          href='http://www.unoycero.com/'>
-          Creado por unoycero.com
-        </a>
       </div>
-      <div class='footer-item'>
-        <a id='ubuntu-footer' class='ds'
-          href='http://es.wikipedia.org/wiki/Ubuntu/'>
-          Funciona con Ubuntu
-        </a>
-      </div>
-      <div class='footer-item'>
-        <a id='gandi-footer' class='ds'
-          href='http://www.gandi.net'>
-          Funciona con Gandi
-        </a>
+      <div class='credits'>
+        <div class='footer-item'>
+          <a id='suyccom-footer' class='tc'
+            href='http://www.unoycero.com/'>
+            Creado por unoycero.com
+          </a>
+        </div>
+        <div class='footer-item'>
+          <a id='ubuntu-footer' class='ds'
+            href='http://es.wikipedia.org/wiki/Ubuntu/'>
+            Funciona con Ubuntu
+          </a>
+        </div>
+        <div class='footer-item'>
+          <a id='gandi-footer' class='ds'
+            href='http://www.gandi.net'>
+            Funciona con Gandi
+          </a>
+        </div>
       </div>
     </footer:>
 
