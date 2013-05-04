@@ -22,9 +22,9 @@
       <h4 param="heading"><a><name/> <i>(<this.direccion/>)</i></a></h4>
     </header:>
     <body: param>
-
-
-      <p unless="&this.disponible || this.devuelta">Disponible el <%= apano_fecha(this.fecha_proxima_liberacion) %></p>
+      <p unless="&this.disponible || this.devuelta">
+        Disponible el <%= apano_fecha(this.fecha_proxima_liberacion) %>
+      </p>
       <p><this.descripcion/></p>
     </body:>
   </card>
@@ -37,27 +37,20 @@
 </extend>
 
 <!-- ====== Main Navigation ====== -->
-<!-- Trucamos el menú principal para mostrar la cabecera -->
 <def tag="main-nav">
   <if test="&params[:necesito_una_bici]">
     <div class="presentacion-bloque">
-    <h2><a href="/">Inicio</a> > Buscar una bicicleta</h2>
-    <p>A continuación puedes ver las bicicletas que hay disponibles ahora mismo. Hac clic en cualquiera para enviar un mensaje a la persona que ha liberado la bicicleta.</p>
+      <h2><a href="/">Inicio</a> > Buscar una bicicleta</h2>
+      <p>A continuación puedes ver las bicicletas que hay disponibles ahora mismo.
+       Hac clic en la que te interese para enviar un mensaje a la persona que ha 
+       liberado la bicicleta.</p>
     </div>
   </if>
   <else>
-
-  <div class="presentacion-bloque">
-    <h2><texto name="titulo_liberar"/></h2>
-    <texto name="cuerpo_liberar" parrafos="&true"/>
-    <p><a class="boton-principal" href="/users/signup">Liberar una bicicleta</a></p>
-  </div>
-  <div class="presentacion-bloque">
-    <h2><texto name="titulo_necesito"/></h2>
-    <texto name="cuerpo_necesito" parrafos="&true"/>
-    <p><a class="boton-principal" href="/?necesito_una_bici=true">Buscar una bicicleta</a></p>
-  </div>
-  
+    <div class="presentacion-bloque">
+      <p><a class="boton-principal" href="/users/signup">Liberar una bicicleta</a></p>
+      <p><a class="boton-principal" href="/?necesito_una_bici=true">Buscar una bicicleta</a></p>
+    </div>
   </else>
 </def>
 
@@ -65,15 +58,15 @@
 <def tag="login-page">
 <!--  <% remember_me = true if remember_me.nil? %>-->
   <page title="#{ht 'hobo.login.title', :default=>['Log in'] }" merge>
-   
+
     <body: class="login-page" param/>
-    
+
     <content: param>
       <header param="content-header">
         <h2 param="heading"><ht key="hobo.login.heading">Log In</ht></h2>
       </header>
-      
-      <section param="content-body">      
+
+      <section param="content-body">
         <form action="&request.request_uri" class="login" param>
           <labelled-item-list param>
             <labelled-item>
@@ -129,8 +122,8 @@
     <account-nav:> 
       <prepend-ul:>
         <li><a href="/">Inicio</a></li>
-        <li><a href="/front/ayuda">Cómo funciona</a></li>
-        <li><a href="/recuperar_bicicleta">Recuperar bicicleta</a></li>
+        <li><a href="/front/ayuda">¿Cómo funciona?</a></li>
+        <li><a href="/recuperar_bicicleta">Recuperar mi bicicleta</a></li>
         <li if="&current_user.administrator?"><a href="/textos">Textos</a></li>
       </prepend-ul:>
       <account: replace/>
@@ -139,9 +132,9 @@
   </old-page>
 </extend>
 
-
-<!-- Renders a readable list of error messages following a form submission. Expects the errors to be in `this.errors`. Renders nothing if there are no errors.
-  -->
+<!-- Renders a readable list of error messages following a form submission. 
+  Expects the errors to be in `this.errors`. Renders nothing if there 
+  are no errors. -->
 <def tag="error-messages">
   <section class="error-messages" merge-attrs if="&this.errors.length > 0">
     <h2 param="heading">Para continuar por favor corrige los siguientes errores:</h2>
@@ -176,8 +169,12 @@
     <!-- Change footer to include message -->
     <footer: param>
       <p style="float:left; color:black; width:300px;">
-        <a href="http://www.bizizbizi.org"><img src="/images/bizizbizi.png" align="left" style="margin: 0 4px; padding-top:3px;"/></a>
-        Financiado por el ayuntamiento de Bilbao. <br/>Ideada por <a href="http://www.bizizbizi.org">Biziz Bizi</a> - asociación de ciclistas urbanos y cicloturistas de Bilbao.
+        <a href="http://www.bizizbizi.org"><img src="/images/bizizbizi.png" 
+        align="left" style="margin: 0 4px; padding-top:3px;"/></a>
+        Financiado por el ayuntamiento de Bilbao.
+        <br/>
+        Ideada por <a href="http://www.bizizbizi.org">Biziz Bizi</a> - 
+        Asociación de Ciclistas Urbanos y Cicloturistas de Bilbao.
       </p>
       <div class='footer-item'>
         <a id='suyccom-footer' class='tc'
@@ -199,29 +196,38 @@
       </div>
     </footer:>
 
-<!-- Piwik -->
-<after-page-scripts:>
-  <script type="text/javascript">
-  var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.unoycero.com/" : "http://piwik.unoycero.com/");
-  document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-  </script><script type="text/javascript">
-  try {
-  var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 13);
-  piwikTracker.trackPageView();
-  piwikTracker.enableLinkTracking();
-  } catch( err ) {}
-  </script><noscript><p><img src="http://piwik.unoycero.com/piwik.php?idsite=13" style="border:0" alt="" /></p></noscript>
-</after-page-scripts:>
-    
+    <!-- Piwik -->
+    <after-page-scripts:>
+      <script type="text/javascript">
+        var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.unoycero.com/" : "http://piwik.unoycero.com/");
+        document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+        try {
+        var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 13);
+        piwikTracker.trackPageView();
+        piwikTracker.enableLinkTracking();
+        } catch( err ) {}
+      </script>
+      <noscript>
+        <p>
+          <img src="http://piwik.unoycero.com/piwik.php?idsite=13" 
+            style="border:0" alt="piwik" />
+        </p>
+      </noscript>
+    </after-page-scripts:>
   </old-page>
 </extend>
 
 <def tag="card" for="Peticion">
   <card class="peticion" param="default" merge>
     <header: param>
-      <h2 param="heading">Alguien está interesado en tu bicicleta:</h2><h4><name/></h4>
+      <h2 param="heading">Alguien está interesado en tu bicicleta:</h2>
+      <h4><name/></h4>
       <p>Fecha de la petición: <this.created-at/></p>
-      <p>Para prestar la bici a esta persona <b>ponte en contacto por email</b>: <a href="mailto:#{this.email}"><this.email /></a></p>
+      <p>Para prestar la bici a esta persona <b>ponte en contacto por email</b>:
+        <a href="mailto:#{this.email}"><this.email /></a>
+      </p>
       <br/>
     </header:>
     <body:>
@@ -232,22 +238,23 @@
         </form>
 
         <div style="background-color:#F3FFC6;">
-        <form with="&Direccion.new" enctype="multipart/form-data">
-          <h3 style="padding:15px;">Para finalizar la entrega de la bicicleta rellana por favor los siguientes datos del receptor</h3>
-          <error-messages />
-          <input type="hidden" name="direccion[user_id]" value="&@user.id"/>
-          <input type="hidden" name="direccion[email]" value="&@email"/>
-          <field-list fields="direccion, foto_entrega" style="background-color:#F3FFC6;"/>
-          <div>
-            <submit style="margin-left:145px; float:left;" label="Finalizar entrega"/>
-          </div>
-        </form>
-
-        <form if="&@test" update="self" action="/users/show/#{@user.id}">
-          <submit style="background-color:#aaa; float:left;" label="Cancelar"/>
-          &nbsp;<br/>&nbsp;
-        </form>
-
+          <form with="&Direccion.new" enctype="multipart/form-data">
+            <h3 style="padding:15px;">
+              Para finalizar la entrega de la bicicleta rellana por favor los 
+              siguientes datos del receptor
+            </h3>
+            <error-messages />
+            <input type="hidden" name="direccion[user_id]" value="&@user.id"/>
+            <input type="hidden" name="direccion[email]" value="&@email"/>
+            <field-list fields="direccion, foto_entrega" style="background-color:#F3FFC6;"/>
+            <div>
+              <submit style="margin-left:145px; float:left;" label="Finalizar entrega"/>
+            </div>
+          </form>
+          <form if="&@test" update="self" action="/users/show/#{@user.id}">
+            <submit style="background-color:#aaa; float:left;" label="Cancelar"/>
+            &nbsp;<br/>&nbsp;
+          </form>
         </div>
 
         <ul if="&@subcategorias">

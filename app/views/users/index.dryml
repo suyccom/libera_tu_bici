@@ -3,10 +3,6 @@
     Libera tu Bici - Inicio
   </title>
 
-  <content-header:>
-    <h2 class="heading">Hay <%= @users.size %> bicicletas disponibles</h2>
-  </content-header:>
-
   <!-- Mapa de OpenStreetMaps -->
   <append-scripts:>
     <script src="/javascripts/OpenLayers.js"></script>
@@ -29,19 +25,30 @@
       });
     </script>
   </append-scripts:>
+
   <append-stylesheets:>
     <link rel="stylesheet" href="/stylesheets/openlayers.css" type="text/css"/>
   </append-stylesheets:>
+
   <prepend-content:>
     <div id="map" style="width:100%; height:400px"></div>
   </prepend-content>
 
+  <content-header:>
+    <h2 class="heading">
+      <ht key='users.hay_una' if='&@users.size == 1'/>
+      <ht key='users.hay_muchas' count='&@users.size' if='&@users.size > 1'/>
+    </h2>
+  </content-header:>
 
-  <!-- Pie de Página -->
   <content-body:>
     <collection />
     <p style="clear:both;">&nbsp;</p>
-    <h2 class="heading">Hay <%= @bicis_no_disponibles.size %> bicicletas no disponibles</h2>
+    <h2 class="heading">
+      <ht key='users.no_hay_una' if='&@bicis_no_disponibles.size == 1'/>
+      <ht key='users.no_hay_muchas' count='&@bicis_no_disponibles.size' 
+        if='&@bicis_no_disponibles.size > 1'/>
+    </h2>
     <collection with="&@bicis_no_disponibles"/>
     <p style="clear:both;">&nbsp;</p>
   </content-body:>

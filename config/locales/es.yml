@@ -188,7 +188,7 @@ es:
         delimiter: "."
         format: "%n"
 
-  #Errores de validacion     
+  #Errores de validacion
   activerecord:
     errors:
       messages:
@@ -198,12 +198,7 @@ es:
         too_short: "es demasiado corto"
         taken: "ya hay otro registro igual"
 
-
-
-
-
-
-  # SUYCCOMHACK: Cadenas personalizadas
+  # Cadenas personalizadas
   peticions:
     collection:
       count: &peticions_count
@@ -221,10 +216,9 @@ es:
       create:
         success: "La petición se ha realizado correctamente. Recibirás un correo electrónico con la contestación del dueño. Ten en cuento que puede que más personas pidan esta misma bicicleta. ¡Buena suerte!"
     actions:
-      add: "Enviar mensaje"       
-  
-  
-  # SUYCCOM: Modelo "users"
+      add: "Enviar mensaje"
+
+  # Modelo "users" (bicicletas)
   users:
     current_password: "Contraseña actual"
     email_address: "Email"
@@ -250,21 +244,10 @@ es:
     messages:
       create:
         success: "La bicicleta se ha liberado correctamente. Ahora otros usuarios podrán pedírtela. Recibirás sus mensajes por correo electrónico. ¡Gracias!"
-        error: "Test"
-      name:
-        blank: "PRueba2"
-    errors:
-      name:
-        blank: "Prueba"
       destroy:
         success: "La bicicleta se ha eliminado correctamente."
         # <br/><a href='/'><b>Volver a la página de Inicio</b></a>
-        
-
-  
-
-  suyccom:
-    not_available: "(Vacío)"
-    
-    
-
+    hay_una: 1 bicicleta no tiene con quien pedalear
+    hay_muchas: %{count} bicicletas no tienen con quien pedalear
+    no_hay_una: 1 bicicleta ya está rodando de nuevo :)
+    no_hay_muchas: %{count} bicicletas ya están rodando de nuevo :)
