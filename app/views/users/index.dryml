@@ -34,16 +34,17 @@
     <div id="map" style="width:100%; height:400px"></div>
   </prepend-content>
 
-  <content-header:>
+  <content-header: replace/>
+
+  <content-body:>
+    <!-- Bicicletas disponibles -->
     <h2 class="heading">
       <ht key='users.hay_una' if='&@users.size == 1'/>
       <ht key='users.hay_muchas' count='&@users.size' if='&@users.size > 1'/>
     </h2>
-  </content-header:>
-
-  <content-body:>
-    <collection />
+    <collection/>
     <p style="clear:both;">&nbsp;</p>
+    <!-- Bicicletas NO disponibles -->
     <h2 class="heading">
       <ht key='users.no_hay_una' if='&@bicis_no_disponibles.size == 1'/>
       <ht key='users.no_hay_muchas' count='&@bicis_no_disponibles.size' 

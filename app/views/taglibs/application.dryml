@@ -12,20 +12,30 @@
 <def tag="card" for="User">
   <card class="user" param="default" merge>
     <header: param>
-    <% 
-     url_foto = this.foto.url :small 
-     if this.direccions.last
-       url_foto = this.direccions.last.foto_entrega :small if this.direccions.last.foto_entrega_file_size
-     end
-    %>
-      <a><img style="float:left; padding-right:10px;" src="#{url_foto}"/></a>
+      <% 
+       url_foto = this.foto.url :small 
+       if this.direccions.last
+         url_foto = this.direccions.last.foto_entrega :small if this.direccions.last.foto_entrega_file_size
+       end
+      %>
+      <a><img height='112' src="#{url_foto}"/></a>
       <h4 param="heading"><a><name/> <i>(<this.direccion/>)</i></a></h4>
     </header:>
     <body: param>
-      <p unless="&this.disponible || this.devuelta">
-        Disponible el <%= apano_fecha(this.fecha_proxima_liberacion) %>
+      <p id='disponible'>
+        <% unless this.disponible || this.devuelta %>
+          Disponible el <%= apano_fecha(this.fecha_proxima_liberacion) %>
+        <% else %>
+          <ht key='users.disponible_ya'/>
+        <% end %>
       </p>
-      <p><this.descripcion/></p>
+      <p id='descripcion' if='&this.descripcion.size > 150'>
+        <%= truncate(this.descripcion, :length => 150) %>
+        <a href="/users/#{this.id}"><ht key='users.descripcion.leer_mas'/></a>
+      </p>
+      <p id='descripcion' if='&this.descripcion.size <= 150'>
+        <this.descripcion/>
+      </p>
     </body:>
   </card>
 </def>

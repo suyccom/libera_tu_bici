@@ -263,10 +263,11 @@ form .actions {margin: 30px 0; width: 100%; text-align: center;}
   position: relative;
 }
 .card h4 {margin-top: 0;}
-.card a {background: #f5f5f5;}
-.card .creation-details {
-  display: block; color: #333; font-size: 11px; 
-}
+.card a {background: #606152;color: white;}
+.card p#descripcion a {border-bottom: none; padding: 0.2em; border-radius: 2px}
+.card h4.heading a {padding: 0.2em;border-radius: 4px;border-bottom: none;}
+.card .creation-details {display: block; color: #333; font-size: 11px;}
+.card img {min-width:150px;float:left;padding-right:10px;border-radius:5px;}
 .card .datetime {color: #666;}
 .card .actions { position:absolute; right: 10px; top: 10px; }
 div.ordering-handle { float: left; background: #ccc; color: white; margin-right: 5px; cursor: move; padding: 0 2px;}

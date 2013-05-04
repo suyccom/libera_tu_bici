@@ -224,6 +224,8 @@ es:
     email_address: "Email"
     direccion: "Población"
     password: "Contraseña"
+    descripcion:
+      leer_mas: mas detalles
     password_confirmation: "Confirmación de contraseña"
     reset_password:
       heading: "Cambio de contraseña"
@@ -247,7 +249,8 @@ es:
       destroy:
         success: "La bicicleta se ha eliminado correctamente."
         # <br/><a href='/'><b>Volver a la página de Inicio</b></a>
-    hay_una: 1 bicicleta no tiene con quien pedalear
-    hay_muchas: %{count} bicicletas no tienen con quien pedalear
+    hay_una: 1 bicicleta no tiene con quien pedalear, ¡anímate!
+    hay_muchas: %{count} bicicletas no tienen con quien pedalear, ¡anímate!
     no_hay_una: 1 bicicleta ya está rodando de nuevo :)
     no_hay_muchas: %{count} bicicletas ya están rodando de nuevo :)
+    disponible_ya: Disponible ya, ¡pedaléame!
