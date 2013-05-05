@@ -26,8 +26,15 @@ a:hover#gandi-footer, a#gandi-footer {
   background: url('../images/gandi-logo.png') no-repeat scroll left center transparent;
 }
 /* Histórico de cada bicicleta */
-.historico-bicicleta-box{clear:both; padding:10px 0;}
-.historico-bicicleta-box img{border-radius:5px; background-color: transparent;}
+.historico-bicicleta-box{
+  float:left;
+  margin:0.2em 1px 0.2em 0;
+  width:454px;
+  border-radius: 5px;
+  background-color:#A0A196;
+  border: 1px solid white;
+}
+.historico-bicicleta{margin-top:1.4em;}
 .historico-bicicleta-text{margin-left:110px;}
 .card.user{
   width:400px;
@@ -39,11 +46,8 @@ a:hover#gandi-footer, a#gandi-footer {
 }
 .heading{color:#fff;}
 .show-page.user .collection-section{clear:both;}
-.show-page.user .field-list{
-  padding:15px;
-  width:auto;
-  background-color:#F5F5F5;
-}
+.fields-list{padding:5px;width:auto;color:white}
+.fields-list span{font-weight:bold;}
 .show-page.user .new .field-list{width:100%;}
 .card.peticion .heading{color:black;}
 .transitions{float:right;}
@@ -82,7 +86,7 @@ img[id *= "_innerImage"]:hover { cursor:pointer; }
   -moz-box-shadow: inset 0 1px 3px #fff, inset 0 -15px #CDE5F3, 0 0 8px #A7DAFA;
   color: #4BBAFF;
 }
-h2.heading {
+h2.heading,div#historico-bicicleta h2 {
   font-size: 2.5em;
   background-color: #525245;
   padding: 1em;
@@ -92,3 +96,22 @@ h2.heading {
 p#disponible {
   font-weight: bold;
 }
+h2.miguita{margin-top:1.4em}
+span.miguita{
+  margin-left:1em;
+  background-color:#4BBAFF;
+  padding:0.2em;
+  border-radius:5px;
+}
+div.estado-bicicleta{text-align:center;margin-right:41px;}
+div.estado-bicicleta h3{font-weight:bold;font-size:1.6em;}
+img.bicicleta-show{float:left;width:500px;height:334px;border-radius:5px}
+div.mapa-show{
+  width:403px;
+  height:334px;
+  float:right;
+  border:1px solid white;
+  border-radius: 5px;
+  overflow: auto;
+}
+div#historico-bicicleta{color:white;}

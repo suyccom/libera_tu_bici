@@ -221,17 +221,18 @@ es:
   # Modelo "users" (bicicletas)
   users:
     current_password: "Contraseña actual"
-    email_address: "Email"
+    email_address: "Correo electrónico"
     direccion: "Población"
     password: "Contraseña"
-    descripcion:
-      leer_mas: mas detalles
+    descripcion: Detalles
+    leer_mas: mas detalles
+    direccion_activa: Ubicacion actual
     password_confirmation: "Confirmación de contraseña"
     reset_password:
       heading: "Cambio de contraseña"
     show:
       title: "%{model}"
-      heading: "Bicicleta: %{name}"
+      heading: "Estos son los datos sobre %{name} actualmente..."
       back_link: "Atrás"
       edit_link: "Editar bicicleta"
       new_link: "Nueva bicicleta"
@@ -254,3 +255,4 @@ es:
     no_hay_una: 1 bicicleta ya está rodando de nuevo :)
     no_hay_muchas: %{count} bicicletas ya están rodando de nuevo :)
     disponible_ya: Disponible ya, ¡pedaléame!
+    cabecera_historico: ...y este es su historial

@@ -31,7 +31,7 @@
       </p>
       <p id='descripcion' if='&this.descripcion.size > 150'>
         <%= truncate(this.descripcion, :length => 150) %>
-        <a href="/users/#{this.id}"><ht key='users.descripcion.leer_mas'/></a>
+        <a href="/users/#{this.id}"><ht key='users.leer_mas'/></a>
       </p>
       <p id='descripcion' if='&this.descripcion.size <= 150'>
         <this.descripcion/>
