@@ -177,7 +177,7 @@
     <footer: param>
       <p style="float:left; color:black; width:300px;">
         <a href="http://www.bizizbizi.org"><img src="/images/bizizbizi.png" align="left" style="margin: 0 4px; padding-top:3px;"/></a>
-        Financiado por el ayuntamiento de Bilbao. <br/>Ideada por <a href="http://www.bizizbizi.org">Biziz Bizi</a> - asociación de ciclistas urbanos y cicloturistas de Bilbao.
+        Web ideada por <a href="http://www.bizizbizi.org">Biziz Bizi</a><br/>Asociación de ciclistas urbanos y cicloturistas de Bilbao.
       </p>
       <div class='footer-item'>
         <a id='suyccom-footer' class='tc'
