@@ -1,12 +1,10 @@
 <index-page>
-  <title:>
-    Libera tu Bici - Inicio
-  </title>
+  <title:><app-name/> - <ht key='paginas.inicio'/></title>
 
   <!-- Mapa de OpenStreetMaps -->
   <append-scripts:>
-    <script src="/javascripts/OpenLayers.js"></script>
-    <script src="/javascripts/openlayers_libera.js"></script>
+    <script async src='/javascripts/OpenLayers.js'></script>
+    <script async src='/javascripts/openlayers_libera.js'></script>
     <script>
       function cargar_markers_bicicletas() {
         <% for user in @bicis_no_disponibles %>
@@ -20,38 +18,58 @@
           <% end %>
         <% end %>
       }
-      document.observe("dom:loaded", function() {
+      document.observe('dom:loaded', function() {
         openlayers_map();
       });
     </script>
   </append-scripts:>
 
   <append-stylesheets:>
-    <link rel="stylesheet" href="/stylesheets/openlayers.css" type="text/css"/>
+    <link rel='stylesheet' href='/stylesheets/openlayers.css' type='text/css'/>
   </append-stylesheets:>
 
   <prepend-content:>
-    <div id="map" style="width:100%; height:400px"></div>
+    <div id='map' style='width:100%; height:400px'></div>
   </prepend-content>
 
   <content-header: replace/>
 
   <content-body:>
-    <!-- Bicicletas disponibles -->
-    <h2 class="heading">
-      <ht key='users.hay_una' if='&@users.size == 1'/>
-      <ht key='users.hay_muchas' count='&@users.size' if='&@users.size > 1'/>
-    </h2>
-    <collection/>
-    <p style="clear:both;">&nbsp;</p>
-    <!-- Bicicletas NO disponibles -->
-    <h2 class="heading">
-      <ht key='users.no_hay_una' if='&@bicis_no_disponibles.size == 1'/>
-      <ht key='users.no_hay_muchas' count='&@bicis_no_disponibles.size' 
-        if='&@bicis_no_disponibles.size > 1'/>
-    </h2>
-    <collection with="&@bicis_no_disponibles"/>
-    <p style="clear:both;">&nbsp;</p>
+    <if test='&@users.size > 0'>
+      <!-- Bicicletas disponibles -->
+      <h2 class='label label-info'>
+        <ht key='users.hay_una' if='&@users.size == 1'/>
+        <ht key='users.hay_muchas' count='&@users.size' if='&@users.size > 1'/>
+      </h2>
+      <collection>
+        <card>
+          <after-heading:>
+            <span class='arrow'>
+              <img src='../images/blue-arrow.gif' alt='User card arrow head'/>
+            </span>
+          </after-heading:>
+        </card>
+      </collection>
+      <p style='clear:both;'>&nbsp;</p>
+    </if>
+    <if test='&@bicis_no_disponibles.size > 0'>
+      <!-- Bicicletas NO disponibles -->
+      <h2 class='label label-success'>
+        <ht key='users.no_hay_una' if='&@bicis_no_disponibles.size == 1'/>
+        <ht key='users.no_hay_muchas' count='&@bicis_no_disponibles.size' 
+          if='&@bicis_no_disponibles.size > 1'/>
+      </h2>
+      <collection id='no-disponibles' with='&@bicis_no_disponibles'>
+        <card>
+          <after-heading:>
+            <span class='arrow'>
+              <img src='../images/green-arrow.gif' alt='User card arrow head'/>
+            </span>
+          </after-heading:>
+        </card>
+      </collection>
+      <p style='clear:both;'>&nbsp;</p>
+    </if>
   </content-body:>
 
 </index-page>

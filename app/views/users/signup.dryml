@@ -1,29 +1,36 @@
 <signup-page>
-<heading:><span style="font-size:1.8em">Paso 1 de 3</span> Nombre de la bicicleta</heading:>
+  <heading: replace/>
 </signup-page>
 
-
 <def tag="signup-form" polymorphic/>
+
 <def tag="signup-form" for="User">
   <form lifecycle="signup" merge param="default">
     <error-messages param/>
     <br/>
     <field-list fields="name">
-      <name-label:>Nombre de la bicicleta</name-label:>
+      <name-label:><ht key='liberar.nombre_bici'/></name-label:>
     </field-list>
     <div param="actions">
-      <submit label="Siguiente paso" param/>
+      <submit class='btn btn-success' label="#{I18n.t('liberar.siguiente_paso')}" param/>
     </div>
   </form>
 </def>
 
-
-
 <def tag="main-nav">
+  <cabecera>
+    <middle: replace>
+      <div class='pasos-liberar'>
+        <span><ht key='liberar.titulo'/></span>
+        <br/><br/>
+        <strong><ht key='liberar.paso1'/></strong>
+        <br/>
+        <ht key='liberar.nombre_bici'/>
+      </div>
+    </middle:>
+  </cabecera>
   <div class="presentacion-bloque">
-    <h2><a href="/">Inicio</a> > Liberar una bicicleta</h2>
-    <p>Para liberar una bicicleta hay que dar tres pasos, en los que te vamos a pedir: el nombre de la bicicleta, una contraseña, localidad, una foto de la bicicleta, tu email y una breve descripción.</p>
-    <br/>
-    <p>Cuando estés preparado/a, comienza con el primer paso.</p>
+    <p><ht key='liberar.paso1_p1'/></p>
+    <p><ht key='liberar.paso1_p2'/></p>
   </div>
 </def>

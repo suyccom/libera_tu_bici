@@ -6,7 +6,7 @@
     margin: 20px;
     position: fixed;
     background: white;
-    font-family: tahoma, sans-serif;
+    font-family: 'Raleway', sans-serif;
     display: none;
     z-index: 10;
 }
@@ -77,7 +77,7 @@ textarea.tall { height: 350px; }
 
 /* rails error message */
 .error_messages {
-	font-family: "Lucida Grande", arial, sans-serif;
+	font-family: 'Raleway', sans-serif;
 	background: #9d0018;
 	border: 1px solid #7a0013;
 	padding: 20px;

@@ -52,8 +52,8 @@ es:
       forgot_password: &forgot_password "¿Contraseña olvidada?"
 
     signup:
-      title: "Formulario para liberar una nueva bicicleta"
-      heading: "Formulario para liberar una nueva bicicleta"
+      title: "Liberar una nueva bici"
+      heading: "Liberar una nueva bici"
 
     forgot_password:
       title: *forgot_password
@@ -255,4 +255,19 @@ es:
     no_hay_una: 1 bicicleta ya está rodando de nuevo :)
     no_hay_muchas: %{count} bicicletas ya están rodando de nuevo :)
     disponible_ya: Disponible ya, ¡pedaléame!
+    disponible_el: Disponible a partir del %{date}
     cabecera_historico: ...y este es su historial
+
+  subtitulo: Desempolvando bicis desde 2010.
+  boton_liberar: Liberar una bicicleta
+  boton_buscar: Buscar una bicicleta
+  liberar:
+    titulo: Estás liberando una bici
+    siguiente_paso: Siguiente paso
+    nombre_bici: Nombre de la bicicleta
+    paso1: Paso 1 de 3
+    paso1_p1: Para liberar una bici hay que completar tres sencillos pasos, en los que te vamos a pedir unos pocos datos.
+    paso1_p2: Comienza por decirnos como llamas a esa bici tan chula que quieres liberar :)
+
+  paginas:
+    inicio: Inicio

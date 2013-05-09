@@ -35,7 +35,7 @@ div.olLayerDiv {
 .olControlAttribution {
     font-size: smaller;
     right: 3px;
-    bottom: 4.5em;
+    bottom: 1.5em;
     position: absolute;
     display: block;
 }
@@ -78,7 +78,7 @@ div.olControlMousePosition {
     right: 3px;
     display: block;
     position: absolute;
-    font-family: Arial;
+    font-family: 'Raleway', sans-serif;
     font-size: smaller;
 }
 
@@ -128,7 +128,7 @@ div.olControlMousePosition {
     color:gray;
     font-size:1.2em;
     margin-right:6px;
-    font-family:sans-serif;
+    font-family:'Raleway', sans-serif;
 }
 .olLayerGeoRSSTitle {
     float:left;font-size:1.2em;
@@ -310,7 +310,7 @@ div.olControlSaveFeaturesItemInactive {
     top: 25px;
     right: 0;
     width: 20em;
-    font-family: sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: bold;
     margin-top: 3px;
     margin-left: 3px;
@@ -447,7 +447,7 @@ div.olControlZoom a {
     padding: 0;
     color: white;
     font-size: 18px;
-    font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: bold;
     text-decoration: none;
     text-align: center;

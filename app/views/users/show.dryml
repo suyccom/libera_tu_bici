@@ -1,10 +1,10 @@
 <show-page>
 
-  <title:>Libera tu Bici - <this.name/></title>
+  <title:><app-name/> - <this.name/></title>
 
   <append-scripts:>
-    <script src="/javascripts/OpenLayers.js"></script>
-    <script src="/javascripts/openlayers_libera.js"></script>
+    <script async src="/javascripts/OpenLayers.js"></script>
+    <script async src="/javascripts/openlayers_libera.js"></script>
     <script>
       function cargar_markers_bicicletas() {
         <% if @user.direccion_activa %>
@@ -17,6 +17,7 @@
       });
     </script>
   </append-scripts:>
+
   <append-stylesheets:>
     <link rel="stylesheet" href="/stylesheets/openlayers.css" type="text/css"/>
   </append-stylesheets:>
@@ -135,16 +136,15 @@
     <h2><ht key='users.cabecera_historico'/></h2>
     <div class="historico-bicicleta">
       <repeat with="&@user.direccions">
-        <div class="historico-bicicleta-box">
-          <a target="_blank" if="&this.foto_entrega_file_size" href="/#{this.foto_entrega.url :original}"
-             class="pull-left">
-            <img src="/#{this.foto_entrega.url :thumbnail}"/>
-          </a>
-          <div class="historico-bicicleta-text">
-            <strong><this.direccion/> </strong><br/>
-            <%= apano_fecha(this.created_at.to_date) %>
-          </div>
-        </div>
+        <a class='tooltip' target="_blank" href="/#{this.foto_entrega.url :original}">
+          <%= apano_fecha(this.created_at.to_date) %>: 
+          <strong><this.direccion/> </strong>
+          <span>
+            <img class="callout" src="/images/callout.gif" />
+            <img src="/#{this.foto_entrega.url :small}" />
+          </span>
+<!--          <img src="/#{this.foto_entrega.url :thumbnail}"/>-->
+        </a>
       </repeat>
     </div>
     <div style="clear:both">&nbsp;</div>

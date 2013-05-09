@@ -1,30 +1,59 @@
-.pull-left{
-  float:left;
-}  
-.add-to-collection form .submit-button {
-    margin-left: 145px;
+div.section{min-height:350px;}
+div.presentacion-bloque{clear:both;}
+.label{
+  padding:6px 12px;border-radius:3px;
+  background-color:#999999;color:#FFFFFF;display:inline-block;
+  line-height:14px;padding:8px 15px;text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);
+  vertical-align:baseline;white-space:nowrap;
 }
-/* Pié de página */
-div.footer-item {
-  clear: right;
-  margin-bottom: 5px;
-  margin-right:36px;
+.label-info{background-color:#029ACF;}
+.label-success{background-color:#3D9400}
+.btn{padding-top:0.6em;
+  background-color: #F5F5F5;
+  background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+  background-repeat: repeat-x;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
+  border-image: none;
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 0;
+  padding: 4px 12px;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  vertical-align: middle;
 }
-a.ds {
-  padding: 5px 0 5px 20px;
+.btn-info,.btn-success{
+  background-repeat: repeat-x;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  font-size: 17.5px;
 }
-a.tc {
-  padding: 5px 0 5px 40px;
+.btn-info{
+  background-color: #68C5E1;
+  background-image: linear-gradient(to bottom, #70C8E2, #5BC0DE);
 }
-a:hover#ubuntu-footer, a#ubuntu-footer {
-  background: url('../images/ubuntu-logo.png') no-repeat scroll left center transparent;
+.btn-success{
+  background-color: #43A300;
+  background-image: linear-gradient(to bottom, #48AE00, #3D9400);
 }
-a:hover#suyccom-footer, a#suyccom-footer {
-  background: url('../images/suyccom-logo.png') no-repeat scroll left center transparent;
-}
-a:hover#gandi-footer, a#gandi-footer {
-  background: url('../images/gandi-logo.png') no-repeat scroll left center transparent;
-}
+/*Titulo cabecera*/
+div#titulo h1{font-size:5em;line-height:1em;padding:0;}
+div.header div.presentacion-bloque div {float:left;width:33%;}
+div#botones,div#logo{text-align:center;}
+div#botones a{margin-top:20px;}
+/* Pasos liberar */
+div.pasos-liberar{font-size:16px;margin-top:20px;}
+div.pasos-liberar span{background-color:#68C5E1;padding:5px;
+  color:white;font-weight:bold;}
+div.presentacion-bloque p{font-size:14px;}
 /* Histórico de cada bicicleta */
 .historico-bicicleta-box{
   float:left;
@@ -36,73 +65,33 @@ a:hover#gandi-footer, a#gandi-footer {
 }
 .historico-bicicleta{margin-top:1.4em;}
 .historico-bicicleta-text{margin-left:110px;}
-.card.user{
-  width:400px;
-  height:112px;
-  float:left;
-  margin-right:25px;
-  border-radius: 4px;
-  border: 1px solid black;
-}
-.heading{color:#fff;}
+/*Card de bici*/
+.card.user{max-width:24%;float:left;background-color:white;margin-right:10px;}
+.card.user .header{text-align:center;border-radius:4px;border: 1px solid #029ACF;}
+span.arrow{display:inline;position:absolute;}
+span.arrow img{position: absolute;left:-7px}
+.card.user .header a.user-link img{margin:10px 0;}
+.card.user .header a:hover{border-bottom:none;}
+.card.user .header h4.heading{background-color:#029ACF;padding:5px;margin:0;}
+ul#no-disponibles h4.heading{background-color:#3D9400;}
+ul#no-disponibles .header{border-color:#3D9400;}
+.card.user .header h4 a{color:white;}
+.card.user .body{margin-top:20px;font-size:14px;}
+.card p#descripcion a {border-bottom:none;font-weight:bold;}
+
+
 .show-page.user .collection-section{clear:both;}
 .fields-list{padding:5px;width:auto;color:white}
 .fields-list span{font-weight:bold;}
 .show-page.user .new .field-list{width:100%;}
 .card.peticion .heading{color:black;}
 .transitions{float:right;}
-.notita,.flash.notice{
-  background-color:#D9F471;
-  padding:30px;
-  font-size:16px;
-  color:black;
-}
+.notita,.flash.notice{background-color:#D9F471;padding:30px;font-size:16px;color:black;}
 .notita{width:500px;}
-img[id *= "_innerImage"]:hover { cursor:pointer; }
-.boton-principal {
-  border: 1px solid #CDE5F3;
-  background-color: #ddeef6;
-  border-radius: 4px;
-  box-shadow: inset 0 1px 3px #fff, inset 0 -15px #A7DAFA, 0 0 3px #CDE5F3;
-  -o-box-shadow: inset 0 1px 3px #fff, inset 0 -15px #A7DAFA, 0 0 3px #CDE5F3;
-  -webkit-box-shadow: inset 0 1px 3px #fff, inset 0 -15px #A7DAFA, 0 0 3px #CDE5F3;
-  -moz-box-shadow: inset 0 1px 3px #fff, inset 0 -15px #A7DAFA, 0 0 3px #CDE5F3;
-  color: #0074BD;
-  text-shadow: 0 1px #fff;
-  padding: 0.7em 1em;
-  margin-top: 1.2em;
-  font-size: 2em;
-  margin:0 auto;
-  margin-top: 1.5em;
-  font-weight:bold;
-  text-align:center;
-  width:50%;
-  display:block;
-}
-.boton-principal:hover {
-  box-shadow: inset 0 1px 3px #fff, inset 0 -15px #CDE5F3, 0 0 8px #A7DAFA;
-  -o-box-shadow: inset 0 1px 3px #fff, inset 0 -15px #CDE5F3, 0 0 8px #A7DAFA;
-  -webkit-box-shadow: inset 0 1px 3px #fff, inset 0 -15px #CDE5F3, 0 0 8px #A7DAFA;
-  -moz-box-shadow: inset 0 1px 3px #fff, inset 0 -15px #CDE5F3, 0 0 8px #A7DAFA;
-  color: #4BBAFF;
-}
-h2.heading,div#historico-bicicleta h2 {
-  font-size: 2.5em;
-  background-color: #525245;
-  padding: 1em;
-  border-radius: 4px;
-  border: 1px solid white;
-}
-p#disponible {
-  font-weight: bold;
-}
+img[id *= "_innerImage"]:hover{cursor:pointer;}
+p#disponible {font-weight: bold;}
 h2.miguita{margin-top:1.4em}
-span.miguita{
-  margin-left:1em;
-  background-color:#4BBAFF;
-  padding:0.2em;
-  border-radius:5px;
-}
+span.miguita{margin-left:1em;background-color:#4BBAFF;padding:0.2em;border-radius:5px;}
 div.estado-bicicleta{text-align:center;margin-right:41px;}
 div.estado-bicicleta h3{font-weight:bold;font-size:1.6em;}
 img.bicicleta-show{float:left;width:500px;height:334px;border-radius:5px}
@@ -115,3 +104,16 @@ div.mapa-show{
   overflow: auto;
 }
 div#historico-bicicleta{color:white;}
+/* Pié de página */
+div.footer-item{clear:right;margin-bottom:5px;margin-right:36px;}
+a.ds{padding: 5px 0 5px 20px;}
+a.tc{padding: 5px 0 5px 40px;}
+a:hover#ubuntu-footer, a#ubuntu-footer {
+  background: url('../images/ubuntu-logo.png') no-repeat scroll left center transparent;
+}
+a:hover#suyccom-footer, a#suyccom-footer {
+  background: url('../images/suyccom-logo.png') no-repeat scroll left center transparent;
+}
+a:hover#gandi-footer, a#gandi-footer {
+  background: url('../images/gandi-logo.png') no-repeat scroll left center transparent;
+}

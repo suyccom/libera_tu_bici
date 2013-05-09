@@ -8,42 +8,9 @@
 
 <def tag="app-name">Libera tu bici</def>
 
-<!-- Card de cada bicicleta -->
-<def tag="card" for="User">
-  <card class="user" param="default" merge>
-    <header: param>
-      <% 
-       url_foto = this.foto.url :small 
-       if this.direccions.last
-         url_foto = this.direccions.last.foto_entrega :small if this.direccions.last.foto_entrega_file_size
-       end
-      %>
-      <a><img height='112' src="#{url_foto}"/></a>
-      <h4 param="heading"><a><name/> <i>(<this.direccion/>)</i></a></h4>
-    </header:>
-    <body: param>
-      <p id='disponible'>
-        <% unless this.disponible || this.devuelta %>
-          Disponible el <%= apano_fecha(this.fecha_proxima_liberacion) %>
-        <% else %>
-          <ht key='users.disponible_ya'/>
-        <% end %>
-      </p>
-      <p id='descripcion' if='&this.descripcion.size > 150'>
-        <%= truncate(this.descripcion, :length => 150) %>
-        <a href="/users/#{this.id}"><ht key='users.leer_mas'/></a>
-      </p>
-      <p id='descripcion' if='&this.descripcion.size <= 150'>
-        <this.descripcion/>
-      </p>
-    </body:>
-  </card>
-</def>
-
-<!--Desactivar la búsqueda-->
+<!-- Desactivar la búsqueda -->
 <extend tag="page">
-<old-page merge without-live-search>
-</old-page>
+<old-page merge without-live-search/>
 </extend>
 
 <!-- ====== Main Navigation ====== -->
@@ -57,11 +24,65 @@
     </div>
   </if>
   <else>
-    <div class="presentacion-bloque">
-      <p><a class="boton-principal" href="/users/signup">Liberar una bicicleta</a></p>
-      <p><a class="boton-principal" href="/?necesito_una_bici=true">Buscar una bicicleta</a></p>
-    </div>
+    <cabecera/>
   </else>
+</def>
+
+<!-- Cabecera: mantenemos la cabecera a lo largo de toda el sitio -->
+<def tag='cabecera' merge>
+  <div class="presentacion-bloque">
+    <div id='titulo'>
+      <h1>
+        <app-name>
+          <%= this.split[0] %><br/><%= this.split[1..-1].join(' ') %>
+        </app-name>
+      </h1>
+      <h3><i><ht key='subtitulo'/></i></h3>
+    </div>
+    <div id='botones' param='middle'>
+      <a class="btn btn-info" href="/users/signup"><ht key='boton_liberar'/></a>
+      <br/>
+      <a class="btn btn-info" href="/?necesito_una_bici=true"><ht key='boton_buscar'/></a>
+    </div>
+    <div id='logo'>
+      <img src='../images/bike.svg' width='40%' alt='Libera tu bici'/>
+    </div>
+  </div>
+  <div style='clear:both;'>&nbsp;</div>
+</def>
+
+<!-- Card de cada bicicleta -->
+<def tag="card" for="User">
+  <card class="user" param="default" merge>
+    <header: param>
+      <% 
+       url_foto = this.foto.url :small 
+       if this.direccions.last
+         url_foto = this.direccions.last.foto_entrega :small if this.direccions.last.foto_entrega_file_size
+       end
+      %>
+      <a><img height='112' src="#{url_foto}"/></a>
+      <h4 param="heading">
+        <a><name/> <i>(<this.direccion/>)</i></a>
+      </h4>
+    </header:>
+    <body: param>
+      <p id='disponible'>
+        <% unless this.disponible || this.devuelta %>
+          <ht key='users.disponible_el' date="#{apano_fecha(this.fecha_proxima_liberacion)}"/>
+        <% else %>
+          <ht key='users.disponible_ya'/>
+        <% end %>
+      </p>
+      <p id='descripcion' if='&this.descripcion.size > 120'>
+        <%= truncate(this.descripcion, :length => 100) %>
+        <a href="/users/#{this.id}"><ht key='users.leer_mas'/></a>
+      </p>
+      <p id='descripcion' if='&this.descripcion.size <= 120'>
+        <this.descripcion/>
+      </p>
+    </body:>
+  </card>
 </def>
 
 <!--Test para mejorar el aspecto de login-->
@@ -129,7 +150,8 @@
 <!--Change pages header to include a link to Inicio-->
 <extend tag="page">
   <old-page merge>
-    <account-nav:> 
+    <app-name: replace/>
+    <account-nav:>
       <prepend-ul:>
         <li><a href="/">Inicio</a></li>
         <li><a href="/front/ayuda">¿Cómo funciona?</a></li>
@@ -175,7 +197,13 @@
 
 <!-- Personalización del pié -->
 <extend tag="page">
-  <old-page merge> 
+  <old-page merge>
+
+    <append-stylesheets:>
+      <link href='http://fonts.googleapis.com/css?family=Raleway' 
+        rel='stylesheet' type='text/css'/>
+    </append-stylesheets:>
+
     <footer: param>
       <div class='bizizbizi'>
         <a href="http://www.bizizbizi.org"><img src="/images/bizizbizi.png" 
