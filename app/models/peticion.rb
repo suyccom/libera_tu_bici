@@ -12,7 +12,7 @@ class Peticion < ActiveRecord::Base
   end
 
   belongs_to :user #La bicicleta que se ha pedido
-  
+
   # --- Lifecycle --- #
   lifecycle :state_field => :estado do
     state :esperando, :default => :true

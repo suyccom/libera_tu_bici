@@ -50,7 +50,7 @@
 <def tag="signup-form" for="User">
   <form lifecycle="signup" merge param="default">
     <error-messages param/>
-    <field-list fields="name, email_address" param/>
+    <field-list fields="name, email_address, descripcion, foto, direccion_activa_id, fecha_liberacion" param/>
     <div param="actions">
       <submit label="#{ht 'users.actions.signup', :default=>['Signup']}" param/><or-cancel param="cancel"/>
     </div>

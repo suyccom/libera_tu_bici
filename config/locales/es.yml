@@ -52,8 +52,8 @@ es:
       forgot_password: &forgot_password "¿Contraseña olvidada?"
 
     signup:
-      title: "Liberar una nueva bici"
-      heading: "Liberar una nueva bici"
+      title: "Liberando una bici"
+      heading: "Liberado una bici"
 
     forgot_password:
       title: *forgot_password
@@ -262,12 +262,12 @@ es:
   boton_liberar: Liberar una bicicleta
   boton_buscar: Buscar una bicicleta
   liberar:
+    link: Liberar una bicicleta
     titulo: Estás liberando una bici
-    siguiente_paso: Siguiente paso
-    nombre_bici: Nombre de la bicicleta
-    paso1: Paso 1 de 3
-    paso1_p1: Para liberar una bici hay que completar tres sencillos pasos, en los que te vamos a pedir unos pocos datos.
-    paso1_p2: Comienza por decirnos como llamas a esa bici tan chula que quieres liberar :)
-
+    subtitulo: Necesitamos algo de información sobre tu bici
+    datos: Dinos su nombre, danos algún dato interesante sobre ella, un correo electrónico para que podamos contactar contigo, sube una foto de la bici y por último dínos en que población está.
+    nombre_bici: Nombre de la bici
+    descripcion: Describe algún dato interesante
+    boton: Liberar esta bici
   paginas:
     inicio: Inicio

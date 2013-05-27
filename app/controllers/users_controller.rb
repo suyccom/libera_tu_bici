@@ -4,19 +4,27 @@ class UsersController < ApplicationController
 
   auto_actions :all, :except => [ :new, :create ]
 
-  def show
-    @peticion = Peticion.new
-    @nueva_direccion = Direccion.new
-    hobo_show do
-      hobo_ajax_response if request.xhr?
-    end
-  end
-
   def do_signup
     hobo_do_signup do
       self.current_user = this if this.account_active?
-      redirect_to @user if valid?
+      redirect_to @user, :bici_liberada => true if valid?
     end
+  end
+
+    # Si un usuario ya está logueado y pulsa en liberar bicicleta, cerrar su sesión automáticamente
+  def signup
+    unless current_user.class == Guest
+      hobo_logout do
+        redirect_to '/users/signup'
+      end
+    else
+      hobo_signup
+    end
+  end
+
+  def show
+    @bici_liberada if params[:bici_liberada] == true
+    hobo_show
   end
 
   def login
@@ -46,17 +54,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # Si un usuario ya está logueado y pulsa en liberar bicicleta, cerrar su sesión automáticamente
-  def signup
-    unless current_user.class == Guest
-      hobo_logout do
-        redirect_to '/users/signup'
-      end
-    else
-      hobo_signup
-    end
-  end
-
   def recuperar
     if params[:email] && params[:bicicleta]
       direccion = Direccion.find_by_email(params[:email])
@@ -81,7 +78,7 @@ class UsersController < ApplicationController
       :not_administrator => true,
       :con_direccion_activa => true)
   end
-  
+
   def update
     hobo_update do
       if params[:direccion]

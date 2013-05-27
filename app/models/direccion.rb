@@ -23,7 +23,6 @@ class Direccion < ActiveRecord::Base
   before_update :fetch_coordinates
 
   belongs_to :user
-  has_one :bicicleta_en_uso, :class_name => "Bicicleta"
   has_attached_file :foto_entrega,
           :styles => {
             :original => ["1000x1000", :jpg ],
@@ -62,7 +61,7 @@ class Direccion < ActiveRecord::Base
     end
   end
 
-  # --- Permissions --- #
+  # Permissions
   def create_permitted?
     acting_user.signed_up?
   end

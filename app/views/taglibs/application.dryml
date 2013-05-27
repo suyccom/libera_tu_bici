@@ -7,13 +7,14 @@
 <set-theme name="clean"/>
 
 <def tag="app-name">Libera tu bici</def>
+<def tag="app-name-header">Libera<br/>tu bici</def>
 
 <!-- Desactivar la búsqueda -->
 <extend tag="page">
-<old-page merge without-live-search/>
+  <old-page merge without-live-search/>
 </extend>
 
-<!-- ====== Main Navigation ====== -->
+<!-- Main Navigation -->
 <def tag="main-nav">
   <if test="&params[:necesito_una_bici]">
     <div class="presentacion-bloque">
@@ -33,14 +34,12 @@
   <div class="presentacion-bloque">
     <div id='titulo'>
       <h1>
-        <app-name>
-          <%= this.split[0] %><br/><%= this.split[1..-1].join(' ') %>
-        </app-name>
+        <app-name-header/>
       </h1>
       <h3><i><ht key='subtitulo'/></i></h3>
     </div>
     <div id='botones' param='middle'>
-      <a class="btn btn-info" href="/users/signup"><ht key='boton_liberar'/></a>
+      <a class="btn btn-info" href="/users/signup"><ht key='liberar.link'/></a>
       <br/>
       <a class="btn btn-info" href="/?necesito_una_bici=true"><ht key='boton_buscar'/></a>
     </div>
@@ -51,7 +50,7 @@
   <div style='clear:both;'>&nbsp;</div>
 </def>
 
-<!-- Card de cada bicicleta -->
+<!-- Card de cada bicicleta: users index -->
 <def tag="card" for="User">
   <card class="user" param="default" merge>
     <header: param>

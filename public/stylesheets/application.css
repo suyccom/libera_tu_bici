@@ -50,8 +50,8 @@ div.header div.presentacion-bloque div {float:left;width:33%;}
 div#botones,div#logo{text-align:center;}
 div#botones a{margin-top:20px;}
 /* Pasos liberar */
-div.pasos-liberar{font-size:16px;margin-top:20px;}
-div.pasos-liberar span{background-color:#68C5E1;padding:5px;
+div.liberar-bici{font-size:16px;margin-top:20px;}
+div.liberar-bici span{background-color:#68C5E1;padding:5px;
   color:white;font-weight:bold;}
 div.presentacion-bloque p{font-size:14px;}
 /* Histórico de cada bicicleta */

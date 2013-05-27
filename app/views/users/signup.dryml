@@ -8,11 +8,11 @@
   <form lifecycle="signup" merge param="default">
     <error-messages param/>
     <br/>
-    <field-list fields="name">
+    <field-list fields="name,descripcion,email_address,foto,direccion">
       <name-label:><ht key='liberar.nombre_bici'/></name-label:>
     </field-list>
     <div param="actions">
-      <submit class='btn btn-success' label="#{I18n.t('liberar.siguiente_paso')}" param/>
+      <submit class='btn btn-success' label="#{I18n.t('liberar.boton')}" param/>
     </div>
   </form>
 </def>
@@ -20,17 +20,13 @@
 <def tag="main-nav">
   <cabecera>
     <middle: replace>
-      <div class='pasos-liberar'>
+      <div class='liberar-bici'>
         <span><ht key='liberar.titulo'/></span>
         <br/><br/>
-        <strong><ht key='liberar.paso1'/></strong>
+        <strong><ht key='liberar.subtitulo'/></strong>
         <br/>
-        <ht key='liberar.nombre_bici'/>
+        <ht key='liberar.datos'/>
       </div>
     </middle:>
   </cabecera>
-  <div class="presentacion-bloque">
-    <p><ht key='liberar.paso1_p1'/></p>
-    <p><ht key='liberar.paso1_p2'/></p>
-  </div>
 </def>

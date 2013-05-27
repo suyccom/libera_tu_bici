@@ -1,0 +1,173 @@
+  <field-list: replace>
+    COMENTARIO: Si la foto no existe, mostrar formulario para subirla 
+    <formulario-subir-foto unless="&this.foto_file_size || this.administrator?"/>
+    <% 
+     url_foto = this.foto :medium
+     if this.direccions.last
+       url_foto = this.direccions.last.foto_entrega :medium if this.direccions.last.foto_entrega_file_size
+     end
+    %>
+    <img class='bicicleta-show' src="/#{url_foto}" alt="Foto de #{this.name}" 
+      if="&this.foto_file_size"/>
+    <div class='mapa-show' if="&this.administrator?">
+      <formulario-direccion if="&this.foto_file_size && !this.direccion_activa"/>
+      <div id="map" style="width:100%; height:200px"></div>
+      <div class='fields-list'>
+        <span>
+          <ht key='users.direccion_activa'/>
+        </span>: <%= this.direccion_activa %>
+      </div>
+      <div class='fields-list' if='&current_user.administrator?'>
+        <span>
+          <ht key='users.email'/>
+        </span>: 
+          <%= this.direccion_activa.email %>
+      </div>
+      <div class='fields-list'>
+        <span>
+          <ht key='users.descripcion'/>
+        </span>:
+        <br/>
+        <%= this.descripcion %>
+      </div>
+    </div>
+
+    <div style="clear:both">&nbsp;</div>
+    <peticiones-de-bicicleta/>
+    <formulario-peticion if="&this.disponible"/>
+    <br/><historico-bicicleta unless="&this.administrator?"/>
+    <mensaje-administrador if="&this.administrator?"/>
+  </field-list:>
+
+
+<def tag="peticiones-de-bicicleta">
+  <collection:peticions param>
+    <empty-message: replace/>
+  </collection>
+</def>
+
+<def tag="formulario-peticion">
+  <section style="background-color:#F5F5F5;" param="add-to-collection" if="&can_create?(@user.peticions)">
+    <div part="mensaje">
+      <h3 style="background-color:#9AFF9A; padding:10px;" if="&@mensaje_ok">
+        <%= @mensaje_ok %>
+      </h3>
+      <h3 style="background-color:#FF9D9A; padding:10px;" if="&@mensaje_fallo">
+        <%= @mensaje_fallo %>
+      </h3>
+      <h3 unless="&@mensaje">
+        Esta bicicleta está disponible. ¡Pídela!
+      </h3>
+    </div>
+    <form with="&@peticion" update="mensaje" reset-form without-cancel param>
+      <field-list: fields="email, mensaje"/>
+      <after-field-list:>
+        <input type="hidden" name="peticion[user_id]" value="&@user.id"/>
+      </after-field-list:>
+      <submit: label="#{ht 'peticions.actions.add', :default=>['Add'] }"/>
+    </form>
+  </section>
+</def>
+
+<def tag="formulario-subir-foto">
+  <div style="float:left;width:480px;height:314px;padding:10px;background-color:#F8FA84;">
+    <h2><span style="font-size:1.8em">Paso 2 de 3</span>&nbsp;Foto y descripción de la bicicleta</h2>
+    <form merge enctype="multipart/form-data" param="default">
+      <error-messages param/>
+      <field-list style="background-color:#F8FA84;" fields="foto,descripcion" param>
+        <descripcion-view:><input style="height:130px;"/></descripcion-view:>
+      </field-list>
+      <div param="actions" style="margin:10px;">
+        <submit label="Siguiente paso" param/>
+      </div>
+    </form>
+  </div>
+</def>
+
+<def tag="formulario-direccion">
+  <h2 style="text-align:center;">
+    <span style="font-size:1.8em">Paso 3 de 3</span>
+    &nbsp;Datos de contacto
+  </h2>
+
+  <form with="&Direccion.new" merge>
+    <error-messages param/>
+    <input type="hidden" name="direccion[user_id]" value="&@user.id"/>
+    <field-list fields="direccion, email"/>
+    <div param="actions">
+      <submit label="Liberar bicicleta" param/>
+    </div>
+  </form>
+</def>
+
+<def tag="historico-bicicleta">
+  <div id='historico-bicicleta'>
+    <h2><ht key='users.cabecera_historico'/></h2>
+    <div class="historico-bicicleta">
+      <repeat with="&@user.direccions">
+        <a class='tooltip' target="_blank" href="/#{this.foto_entrega.url :original}">
+          <%= apano_fecha(this.created_at.to_date) %>: 
+          <strong><this.direccion/> </strong>
+          <span>
+            <img class="callout" src="/images/callout.gif" />
+            <img src="/#{this.foto_entrega.url :small}" />
+          </span>
+  COMENTARIO <img src="/#{this.foto_entrega.url :thumbnail}"/>
+        </a>
+      </repeat>
+    </div>
+    <div style="clear:both">&nbsp;</div>
+  </div>
+</def>
+
+<def tag="bicicleta-no-disponible">
+  <div class='estado-bicicleta'>
+    <h3>
+      Esta bicicleta no está disponible en este momento
+      <br/><br/>
+      Paciencia, lo estará a partir del 
+      <%= apano_fecha(this.fecha_proxima_liberacion) %>
+    </h3>
+    <form merge>
+      <h3>¿Quieres pasar a otra persona esta bicicleta?</h3>
+      <error-messages/>
+      <input type="hidden" name="user[disponible]" value="1"/>
+      <submit label="Volver a liberar la bicicleta"/>
+    </form>
+  </div>
+</def>
+
+<def tag="mensaje-administrador">
+  <h3>Información para los administradores de Libera tu Bici</h3>
+  <p>Los administradores son usuarios un poco especial: no tienen foto ni direcciones ya que no son bicicletas como los demás. Sirven para editar y eliminar cualquier bicicleta.</p>
+  <p>Puedes cambiar tu contraseña de administrador <a href="/users/#{this.id}/edit">aquí</a>. No olvides tu contraseña ya que no se puede recuperar.</p>
+</def>
+
+<def tag="main-nav">
+  <div class="presentacion-bloque">
+    <p if="&this.disponible && this.foto_file_size">
+      Esta bicicleta está disponible. Anímate y pídela ;)
+    </p>
+    <p if="&current_user == this && this.disponible && this.foto_file_size">
+      Cuando una persona te pida la bicicleta, ponte en contacto con ella y 
+      pásale la bicicleta, ¡así de fácil! No te olvides de sacar una foto :).
+      <br/><br/>
+      Una vez se la hayas pasado, acuérdate de pulsar en "He entregado la 
+      bicicleta a esta persona" para que los demás sepan que esta bicicleta ya 
+      no está disponible.
+      <br/><br/>
+      Puedes pedir esta bicicleta utilizando el formulario al final de esta 
+      página. ¡Suerte!
+    </p>
+    <p unless="&this.foto_file_size">
+      ¡Ánimo que ya queda poco para liberar tu bicicleta!
+    </p>
+    <p unless="&this.foto_file_size">
+      Para liberar una bicicleta hay que dar tres pasos, en los que te vamos a 
+      pedir: el nombre de la bicicleta, una contraseña, localidad, una foto de 
+      la bicicleta, tu correo electrónico y una breve descripción.
+    </p>
+  </div>
+  <br/>
+  <bicicleta-no-disponible unless="&this.disponible"/>
+</def>
