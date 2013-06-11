@@ -12,7 +12,7 @@ class PeticionObserver < ActiveRecord::Observer
         if peticion.user.direccions.count > 1
           destinatarios = []
           for d in peticion.user.direccions
-            destinatarios += [d.email]
+            destinatarios += [d.email] unless peticion.email == d.email
           end
           UserMailer.deliver_notificacion_todos(peticion,destinatarios)
         end
