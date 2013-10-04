@@ -41,7 +41,7 @@ class UserMailer < ActionMailer::Base
   end
   
   def bicicleta_entregada(peticion)
-    subject 'Enhorabuena por tu nueva bicicleta'
+    subject "Enhorabuena por la bicicleta #{peticion.user}"
     if Rails.env.production?
       recipients peticion.email
     else
@@ -52,7 +52,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def notificacion_todos(peticion,destinatarios)
-    subject 'La bici que usaste tiene un nuevo dueño'
+    subject "La bici #{peticion.user} ha cambiado de casa"
     if Rails.env.production?
       bcc destinatarios
     else

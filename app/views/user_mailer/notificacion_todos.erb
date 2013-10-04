@@ -7,13 +7,15 @@
   <body class="show-page user">
     <p>
       Hola, <br/><br/>
-      Alguna bicicleta que has usado en Libera tu Bici ha cambiado de manos y te mandamos una lista con todas sus posiciones para que veas el viaje. La bicicleta que usaste ha estado en:
+      Libera tu bici te informa que la bicicleta <%= @peticion.user %> ha cambiado de casa y ahora se encuentra en <%= @peticion.user.direccion %>. Te mandamos un listado por donde ha pasado para que veas su viaje:
     </p>
 
    <historico-bicicleta/>
 
    <p> Muchas gracias, <br/>
     El equipo de Libera tu Bici
+    <br/>
+    Para cualquier cuestión o pregunta, envía un correo a info@liberatubici.org
     </p>
 
   </body>
