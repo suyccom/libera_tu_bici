@@ -201,16 +201,21 @@
 
 <!-- Piwik -->
 <after-page-scripts:>
-  <script type="text/javascript">
-  var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.unoycero.com/" : "http://piwik.unoycero.com/");
-  document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-  </script><script type="text/javascript">
-  try {
-  var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 13);
-  piwikTracker.trackPageView();
-  piwikTracker.enableLinkTracking();
-  } catch( err ) {}
-  </script><noscript><p><img src="http://piwik.unoycero.com/piwik.php?idsite=13" style="border:0" alt="" /></p></noscript>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://estadisticas.unoycero.com/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 11]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="http://estadisticas.unoycero.com/piwik.php?idsite=11" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
 </after-page-scripts:>
     
   </old-page>
